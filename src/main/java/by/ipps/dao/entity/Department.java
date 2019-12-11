@@ -32,4 +32,7 @@ public class Department extends BaseEntity implements Serializable {
     private UserPortal leader;
     @ManyToMany(mappedBy = "departments")
     private List<Position> positions;
+    @ManyToOne
+    @JoinColumn(name = "section_id", insertable = false, updatable = false)
+    private Section section;
 }

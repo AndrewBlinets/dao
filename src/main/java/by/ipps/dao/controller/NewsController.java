@@ -5,7 +5,9 @@ import by.ipps.dao.controller.base.BaseEntityController;
 import by.ipps.dao.custom.CustomPage;
 import by.ipps.dao.dto.news.NewsDto;
 import by.ipps.dao.dto.news.NewsDtoFull;
+import by.ipps.dao.entity.Department;
 import by.ipps.dao.entity.News;
+import by.ipps.dao.entity.Section;
 import by.ipps.dao.service.NewsService;
 import by.ipps.dao.utils.constant.FilterName;
 import org.hibernate.Session;
@@ -69,4 +71,11 @@ public class NewsController extends BaseEntityAbstractController<News, NewsServi
         }
     }
 
+    @GetMapping(value = "/qwe/{id}")
+    ResponseEntity<News> getA(@PathVariable Long id,
+                          @RequestParam(value = "language", required = false, defaultValue = "ru") String language,
+                          @RequestParam(value = "section", required = false) long section,
+                          @RequestParam(value = "department", required = false) Department department){
+        return null;
+    }
 }

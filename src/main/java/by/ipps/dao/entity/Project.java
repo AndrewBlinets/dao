@@ -28,4 +28,12 @@ public class Project extends BaseEntity implements Serializable {
 
     @OneToMany(fetch = FetchType.LAZY)
     private List<FileManager> images;
+
+    @ManyToOne
+    @JoinColumn(name = "departament_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Department department;
+
+    @ManyToOne
+    @JoinColumn(name = "section_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Section section;
 }

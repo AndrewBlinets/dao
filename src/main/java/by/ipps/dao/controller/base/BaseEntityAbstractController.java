@@ -1,6 +1,8 @@
 package by.ipps.dao.controller.base;
 
 import by.ipps.dao.entity.BaseEntity;
+import by.ipps.dao.entity.Department;
+import by.ipps.dao.entity.Section;
 import by.ipps.dao.service.base.BaseEntityService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
@@ -22,7 +24,7 @@ public abstract class BaseEntityAbstractController<T extends BaseEntity, S exten
     }
 
     @Override
-    public ResponseEntity<T> get(Long id, String language) {
+    public ResponseEntity<T> get(Long id, String language, Section section, Department department) {
         log.info(id);
         log.info(language);
         T entity = baseEntityServuce.findById(id);

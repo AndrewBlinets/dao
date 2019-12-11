@@ -39,4 +39,11 @@ public class News extends BaseEntity implements Serializable {
     @Column
     private String status;
 
+    @ManyToOne
+    @JoinColumn(name = "departament_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Department department;
+
+    @ManyToOne
+    @JoinColumn(name = "section_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Section section;
 }
