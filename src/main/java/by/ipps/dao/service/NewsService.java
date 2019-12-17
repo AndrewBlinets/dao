@@ -10,9 +10,6 @@ import java.util.List;
 
 @Service
 public interface NewsService extends BaseEntityService<News> {
-    public List<News> getNewsByClient(String code);
-
     News findByIdForClient(Long id);
-
     Page<News> findPagingRecordsForClient(Pageable pageable);
 }

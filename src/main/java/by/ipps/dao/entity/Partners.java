@@ -19,6 +19,7 @@ public class Partners extends BaseEntity implements Serializable {
 
     @Column
     private String name;
+
     @OneToOne
     private FileManager image;
 

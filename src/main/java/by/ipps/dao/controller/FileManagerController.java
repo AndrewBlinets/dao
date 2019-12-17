@@ -2,18 +2,17 @@ package by.ipps.dao.controller;
 
 import by.ipps.dao.entity.FileManager;
 import by.ipps.dao.service.FileManagerService;
+import by.ipps.dao.utils.view.ViewFile;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 @RestController
 @RequestMapping("/file")
@@ -58,19 +57,10 @@ public class FileManagerController {
         return "asd";
     }
 
+    @JsonView(ViewFile.BaseClass.class)
     @GetMapping(value = "/{id}")
-    public ResponseEntity getImage(HttpServletResponse response,
-                                   @PathVariable long id) throws IOException {
+    public ResponseEntity<FileManager> getImage(@PathVariable long id) throws IOException {
         FileManager fileManager = fileManagerService.findById(id);
-        if(fileManager != null) {
-            response.setContentType(fileManager.getFileMine());
-            response.setHeader("Content-Disposition", "attachment; filename=" + fileManager.getFileName());
-            byte[] array = Files.readAllBytes(
-                    Paths.get(
-                            ROOT_PATH + fileManager.getPath() + File.separator + fileManager.getFileName()));
-            response.getOutputStream().write(array);
-            return new ResponseEntity(HttpStatus.OK);
-        } else
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(fileManager, fileManager != null ? HttpStatus.OK :HttpStatus.NOT_FOUND);
     }
 }

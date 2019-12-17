@@ -1,6 +1,7 @@
 package by.ipps.dao.entity;
 
 import by.ipps.dao.utils.view.ViewContact;
+import by.ipps.dao.utils.view.ViewFile;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
@@ -21,7 +22,7 @@ import java.util.Date;
 @EqualsAndHashCode
 public class BaseEntity implements Serializable {
 
-    @JsonView(ViewContact.BaseClass.class)
+    @JsonView({ViewContact.BaseClass.class, ViewFile.BaseClass.class})
     @Id
     @Column
     @GeneratedValue(generator = "increment")

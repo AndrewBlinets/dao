@@ -51,7 +51,7 @@ public class NewsController extends BaseEntityAbstractController<News, NewsServi
         }.getType();
         CustomPage<NewsDto> newsDto = mapper.map(news, targetListType);
         entityManager.unwrap(Session.class).disableFilter(FilterName.LANGUAGE);
-        return new ResponseEntity<>(newsDto, news != null ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(newsDto, HttpStatus.OK );
     }
 
     @Transactional
@@ -69,13 +69,5 @@ public class NewsController extends BaseEntityAbstractController<News, NewsServi
             entityManager.unwrap(Session.class).disableFilter(FilterName.LANGUAGE);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-    }
-
-    @GetMapping(value = "/qwe/{id}")
-    ResponseEntity<News> getA(@PathVariable Long id,
-                          @RequestParam(value = "language", required = false, defaultValue = "ru") String language,
-                          @RequestParam(value = "section", required = false) long section,
-                          @RequestParam(value = "department", required = false) Department department){
-        return null;
     }
 }

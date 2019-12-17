@@ -1,6 +1,9 @@
 package by.ipps.dao.entity;
 
+import by.ipps.dao.utils.view.ViewContact;
+import by.ipps.dao.utils.view.ViewFile;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,14 +21,14 @@ import java.io.Serializable;
 public class FileManager extends BaseEntity implements Serializable {
 
     @Column(nullable = false)
-    @JsonIgnore
+    @JsonView(ViewFile.BaseClass.class)
     private String fileName;
 
     @Column(nullable = false)
-    @JsonIgnore
+    @JsonView(ViewFile.BaseClass.class)
     private String fileMine;
 
     @Column(nullable = false)
-    @JsonIgnore
+    @JsonView(ViewFile.BaseClass.class)
     private String path;
 }
