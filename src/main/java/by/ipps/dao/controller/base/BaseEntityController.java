@@ -23,7 +23,7 @@ public interface BaseEntityController<T extends BaseEntity> {
     @GetMapping(value = "/{id}")
     ResponseEntity<T> get(@PathVariable Long id,
                           @RequestParam(value = "language", required = false, defaultValue = "ru") String language,
-                          @RequestParam(value = "section", required = false, defaultValue = "1") Section section,
+                          @RequestParam(value = "section", required = false) Section section,
                           @RequestParam(value = "department", required = false) Department department);
 
     @PutMapping

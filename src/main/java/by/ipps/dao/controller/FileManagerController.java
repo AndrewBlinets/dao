@@ -9,10 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.*;
 
 @RestController
 @RequestMapping("/file")
@@ -26,7 +26,7 @@ public class FileManagerController {
         this.fileManagerService = fileManagerService;
     }
 
-    @PostMapping(value = "/{typefile}/{year}/{month}/")
+    @PostMapping(value = "/{typefile}/{year}/{month}")
     @ResponseBody
     public String saveImage(@RequestParam("file") MultipartFile[] file) {
         String name = null;
@@ -44,6 +44,16 @@ public class FileManagerController {
                     stream.write(bytes);
                     stream.flush();
                     stream.close();
+                    int width = 60;
+                    InputStream in = new ByteArrayInputStream(bytes);
+                    BufferedImage originalImage = ImageIO.read(in);
+                    int height = originalImage.getHeight() / (originalImage.getWidth() / 60);
+                    Image image = originalImage.getScaledInstance(width, height, Image.SCALE_AREA_AVERAGING);
+                    BufferedImage changedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+                    Graphics2D g2d = changedImage.createGraphics();
+                    g2d.drawImage(image, 0, 0, null);
+                    g2d.dispose();
+                    ImageIO.write(changedImage, "jpg", new File("C:\\Users\\blinec_a\\Desktop\\news-resize(4).jpg"));
 //                logger.info("uploaded: " + uploadedFile.getAbsolutePath());
 //                    return "You successfully uploaded file=" + name;
                 } catch (Exception e) {
@@ -59,7 +69,7 @@ public class FileManagerController {
 
     @JsonView(ViewFile.BaseClass.class)
     @GetMapping(value = "/{id}")
-    public ResponseEntity<FileManager> getImage(@PathVariable long id) throws IOException {
+    public ResponseEntity<FileManager> getImage(@PathVariable long id) {
         FileManager fileManager = fileManagerService.findById(id);
         return new ResponseEntity<>(fileManager, fileManager != null ? HttpStatus.OK :HttpStatus.NOT_FOUND);
     }
