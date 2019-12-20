@@ -1,8 +1,6 @@
 package by.ipps.dao.controller;
 
-import by.ipps.dao.entity.Contact;
 import by.ipps.dao.entity.Department;
-import by.ipps.dao.service.ContactService;
 import by.ipps.dao.service.DepartmentService;
 import by.ipps.dao.utils.view.ViewContact;
 import com.fasterxml.jackson.annotation.JsonView;

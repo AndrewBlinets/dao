@@ -39,9 +39,13 @@ public interface BaseEntityController<T extends BaseEntity> {
             @SortDefault.SortDefaults({
                     @SortDefault(sort = "id", direction = Sort.Direction.ASC),
             }) Pageable pageable,
-            @RequestParam(value = "language", required = false, defaultValue = "ru") String language);
+            @RequestParam(value = "language", required = false, defaultValue = "ru") String language,
+            @RequestParam(value = "section", required = false) Section section,
+            @RequestParam(value = "department", required = false) Department department);
 
     @GetMapping(value = "/all")
     @ResponseBody
-    ResponseEntity<List<T>> getAll();
+    ResponseEntity<List<T>> getAll(
+            @RequestParam(value = "section", required = false) Section section,
+            @RequestParam(value = "department", required = false) Department department);
 }

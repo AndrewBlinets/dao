@@ -44,9 +44,10 @@ public class NewsController extends BaseEntityAbstractController<News, NewsServi
     @GetMapping("/client")
     public ResponseEntity<CustomPage<NewsDto>> getAllForClient(
             @PageableDefault() Pageable pageable,
-            @RequestParam(value = "language", required = false, defaultValue = "ru") String language) {
+            @RequestParam(value = "language", required = false, defaultValue = "ru") String language,
+            @RequestParam(value = "section", required = false) Section section) {
         entityManager.unwrap(Session.class).enableFilter(FilterName.LANGUAGE).setParameter("language", language);
-        Page<News> news = service.findPagingRecordsForClient(pageable);
+        Page<News> news = service.findPagingRecordsForClient(pageable, section);
         java.lang.reflect.Type targetListType = new TypeToken<CustomPage<NewsDto>>() {
         }.getType();
         CustomPage<NewsDto> newsDto = mapper.map(news, targetListType);
@@ -58,9 +59,10 @@ public class NewsController extends BaseEntityAbstractController<News, NewsServi
     @GetMapping("/client/{id}")
     public ResponseEntity<NewsDtoFull> getByIdForClient(
             @PathVariable Long id,
-            @RequestParam(value = "language", required = false, defaultValue = "ru") String language) {
+            @RequestParam(value = "language", required = false, defaultValue = "ru") String language,
+            @RequestParam(value = "section", required = false) Section section) {
         entityManager.unwrap(Session.class).enableFilter(FilterName.LANGUAGE).setParameter("language", language);
-        News news = service.findByIdForClient(id);
+        News news = service.findByIdForClient(id, section);
         if(news != null) {
             NewsDtoFull newsF = mapper.map(news, NewsDtoFull.class);
             entityManager.unwrap(Session.class).disableFilter(FilterName.LANGUAGE);
@@ -70,4 +72,24 @@ public class NewsController extends BaseEntityAbstractController<News, NewsServi
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    public ResponseEntity getAll(
+            @PageableDefault() Pageable pageable,
+            @RequestParam(value = "language", required = false, defaultValue = "ru") String language,
+            @RequestParam(value = "section", required = false) Section section) {
+        entityManager.unwrap(Session.class).enableFilter(FilterName.LANGUAGE).setParameter("language", language);
+        Page<News> news = service.findPagingRecordsForClient(pageable, section);
+        java.lang.reflect.Type targetListType = new TypeToken<CustomPage<NewsDto>>() {
+        }.getType();
+        CustomPage<NewsDto> newsDto = mapper.map(news, targetListType);
+        entityManager.unwrap(Session.class).disableFilter(FilterName.LANGUAGE);
+        return new ResponseEntity<>(newsDto, HttpStatus.OK );
+    }
+
+    @Override
+    public ResponseEntity<News> get(Long id, String language, Section section, Department department) {
+        News news = service.findById(id, section);
+        return new ResponseEntity<>(news, news != null ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+    }
+
 }

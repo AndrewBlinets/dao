@@ -1,6 +1,8 @@
 package by.ipps.dao.service.base;
 
 import by.ipps.dao.entity.BaseEntity;
+import by.ipps.dao.entity.Department;
+import by.ipps.dao.entity.Section;
 import by.ipps.dao.repository.BaseEntityRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,12 +29,6 @@ public class BaseEntityServiceImpl<T extends BaseEntity, R extends BaseEntityRep
         return repository.findByStatusR(page, "A");
     }
 
-
-    @Override
-    public T findById(Long id) {
-        return repository.findByIdAndStatusR(id, "A").orElse(null);
-    }
-
     @Override
     public T update(T t) {
         T tFromBD = repository.findById(t.getId()).orElse(null);
@@ -55,6 +51,11 @@ public class BaseEntityServiceImpl<T extends BaseEntity, R extends BaseEntityRep
         }catch (Exception e) {
             return false;
         }
+    }
+
+    @Override
+    public T findById(Long id) {
+        return repository.findByIdAndStatusR(id, "A").orElse(null);
     }
 
     @Override

@@ -1,6 +1,9 @@
 package by.ipps.dao.service.impl;
 
+import by.ipps.dao.entity.BaseEntity;
+import by.ipps.dao.entity.Department;
 import by.ipps.dao.entity.News;
+import by.ipps.dao.entity.Section;
 import by.ipps.dao.repository.NewsRepository;
 import by.ipps.dao.service.NewsService;
 import by.ipps.dao.service.base.BaseEntityServiceImpl;
@@ -26,13 +29,19 @@ public class NewsServiceImpl extends BaseEntityServiceImpl<News, NewsRepository>
     }
 
     @Override
-    public News findByIdForClient(Long id) {
-        return repository.findByIdAndStatusRAndAndDatePublicBefore(id, "A", new Date()).orElse(null);
+    public News findByIdForClient(Long id, Section section) {
+        return repository.findByIdAndStatusRAndAndDatePublicBeforeAndSection(id, "A", new Date(), section)
+                .orElse(null);
     }
 
     @Override
-    public Page<News> findPagingRecordsForClient(Pageable pageable) {
-        return repository.findByStatusRAndAndDatePublicBefore(pageable, "A", new Date());
+    public Page<News> findPagingRecordsForClient(Pageable pageable, Section section) {
+        return repository.findByStatusRAndAndDatePublicBeforeAndSection(pageable, "A", new Date(), section);
     }
 
+    @Override
+    public News findById(Long id, Section section) {
+        return section != null ? repository.findByIdAndSection(id, section).orElse(null) :
+                repository.findById(id).orElse(null);
+    }
 }

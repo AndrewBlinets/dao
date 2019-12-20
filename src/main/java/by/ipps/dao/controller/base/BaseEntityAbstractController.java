@@ -51,7 +51,7 @@ public abstract class BaseEntityAbstractController<T extends BaseEntity, S exten
 
     @Transactional
     @Override
-    public ResponseEntity<Page<T>> getAll(Pageable pageable, String language) {
+    public ResponseEntity<Page<T>> getAll(Pageable pageable, String language, Section section, Department department) {
         log.info(pageable.toString());
         log.info(language);
         Page<T> ts = baseEntityServuce.findPagingRecords(pageable);
@@ -59,7 +59,7 @@ public abstract class BaseEntityAbstractController<T extends BaseEntity, S exten
     }
 
     @Override
-    public ResponseEntity<List<T>> getAll(){
+    public ResponseEntity<List<T>> getAll(Section section, Department department){
         List<T> ts = baseEntityServuce.findAll();
         return new ResponseEntity<>(ts, ts != null ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
     }

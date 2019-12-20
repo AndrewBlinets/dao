@@ -1,9 +1,12 @@
 package by.ipps.dao.service.impl;
 
 import by.ipps.dao.entity.Department;
+import by.ipps.dao.entity.Section;
 import by.ipps.dao.repository.DepartmentRepository;
 import by.ipps.dao.service.DepartmentService;
 import by.ipps.dao.service.base.BaseEntityServiceImpl;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
