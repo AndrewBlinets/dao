@@ -1,6 +1,5 @@
 package by.ipps.dao.service.impl;
 
-import by.ipps.dao.entity.BaseEntity;
 import by.ipps.dao.entity.Department;
 import by.ipps.dao.entity.News;
 import by.ipps.dao.entity.Section;
@@ -10,9 +9,6 @@ import by.ipps.dao.service.base.BaseEntityServiceImpl;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.Date;
-import java.util.List;
 
 @Service
 public class NewsServiceImpl extends BaseEntityServiceImpl<News, NewsRepository> implements NewsService {
@@ -24,24 +20,13 @@ public class NewsServiceImpl extends BaseEntityServiceImpl<News, NewsRepository>
         this.repository = repository;
     }
 
-    public List<News> getNewsByClient(String code){
-        return repository.findByStatusRAndLanguageVersions_codeLanguage("A", code);
+    @Override
+    public Page<News> findNewsPageBySectionAndDepartment(Section section, Department department, Pageable pageable) {
+        return repository.findNewsPageBySectionAndDepartment(section, department, pageable);
     }
 
     @Override
-    public News findByIdForClient(Long id, Section section) {
-        return repository.findByIdAndStatusRAndAndDatePublicBeforeAndSection(id, "A", new Date(), section)
-                .orElse(null);
-    }
-
-    @Override
-    public Page<News> findPagingRecordsForClient(Pageable pageable, Section section) {
-        return repository.findByStatusRAndAndDatePublicBeforeAndSection(pageable, "A", new Date(), section);
-    }
-
-    @Override
-    public News findById(Long id, Section section) {
-        return section != null ? repository.findByIdAndSection(id, section).orElse(null) :
-                repository.findById(id).orElse(null);
+    public News findByIdAndSectionAndDepartment(Long id, Section section, Department department) {
+        return repository.findByIdAndSectionAndDepartment(id, section, department).orElse(null);
     }
 }

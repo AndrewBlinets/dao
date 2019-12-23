@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/users")
-//@Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class UserController extends BaseEntityAbstractController<UserPortal, UserService>
         implements BaseEntityController<UserPortal> {
 
@@ -27,11 +26,9 @@ public class UserController extends BaseEntityAbstractController<UserPortal, Use
 
     @PostMapping("/auth")
     @ResponseBody
-    public ResponseEntity auth(@RequestBody String login){
+    public ResponseEntity<UserDto> auth(@RequestBody String login){
         UserPortal userPortal = userService.getUserByLogin(login);
-//        System.out.println(user.toString());
         UserDto userDto = modelMapper.map(userPortal, UserDto.class);
-//        System.out.println(userDto.toString());
         return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
 }

@@ -1,8 +1,6 @@
 package by.ipps.dao.service.base;
 
 import by.ipps.dao.entity.BaseEntity;
-import by.ipps.dao.entity.Department;
-import by.ipps.dao.entity.Section;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

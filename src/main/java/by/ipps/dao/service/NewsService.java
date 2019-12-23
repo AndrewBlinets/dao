@@ -1,5 +1,6 @@
 package by.ipps.dao.service;
 
+import by.ipps.dao.entity.Department;
 import by.ipps.dao.entity.News;
 import by.ipps.dao.entity.Section;
 import by.ipps.dao.service.base.BaseEntityService;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface NewsService extends BaseEntityService<News> {
-    News findByIdForClient(Long id, Section section);
-    Page<News> findPagingRecordsForClient(Pageable pageable, Section section);
-    News findById(Long id, Section section);
+    Page<News> findNewsPageBySectionAndDepartment(Section section, Department department, Pageable pageable);
+    News findByIdAndSectionAndDepartment(Long id, Section section, Department department);
 }

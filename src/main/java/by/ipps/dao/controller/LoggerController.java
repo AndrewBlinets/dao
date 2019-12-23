@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/logger")
-//@Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class LoggerController extends BaseEntityAbstractController<Logger, LoggerService>
         implements BaseEntityController<Logger> {
 

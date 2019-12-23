@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/language")
-//@Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class LanguageController extends BaseEntityAbstractController<Language, LanguageService>
         implements BaseEntityController<Language> {
 
