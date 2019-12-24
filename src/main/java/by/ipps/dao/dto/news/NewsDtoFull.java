@@ -1,6 +1,7 @@
 package by.ipps.dao.dto.news;
 
 import by.ipps.dao.dto.BaseDto;
+import by.ipps.dao.entity.FileManager;
 import by.ipps.dao.entity.NewsLanguageVersion;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,5 +27,9 @@ public class NewsDtoFull extends BaseDto implements Serializable {
     public void setLanguageVersions(List<NewsLanguageVersion> versions) {
         this.title = versions.get(0).getTitle();
         this.content = versions.get(0).getContent();
+    }
+
+    public void setMainImage(FileManager mainImage) {
+        this.mainImage = mainImage.getId();
     }
 }

@@ -48,7 +48,7 @@ public class NewsController extends BaseEntityAbstractController<News, NewsServi
             @RequestParam(value = "section", required = false) Section section,
             @RequestParam(value = "department", required = false) Department department) {
         entityManager.unwrap(Session.class).enableFilter(FilterName.LANGUAGE).setParameter("language", language);
-        Page<News> news = service.findNewsPageBySectionAndDepartment(section, department, pageable);
+        Page<News> news = service.findNewsPageBySectionAndDepartmentForClient(section, department, pageable);
         java.lang.reflect.Type targetListType = new TypeToken<CustomPage<NewsDto>>() {
         }.getType();
         CustomPage<NewsDto> newsDto = mapper.map(news, targetListType);
@@ -64,7 +64,7 @@ public class NewsController extends BaseEntityAbstractController<News, NewsServi
             @RequestParam(value = "section", required = false) Section section,
             @RequestParam(value = "department", required = false) Department department) {
         entityManager.unwrap(Session.class).enableFilter(FilterName.LANGUAGE).setParameter("language", language);
-        News news = service.findByIdAndSectionAndDepartment(id, section, department);
+        News news = service.findByIdAndSectionAndDepartmentForClient(id, section, department);
         if(news != null) {
             NewsDtoFull newsF = mapper.map(news, NewsDtoFull.class);
             entityManager.unwrap(Session.class).disableFilter(FilterName.LANGUAGE);
