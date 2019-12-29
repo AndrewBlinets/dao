@@ -15,7 +15,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+//@ToString
 public class UserPortal extends BaseEntity implements Serializable {
 
     @Column(nullable = false, length = 60)
@@ -45,6 +45,8 @@ public class UserPortal extends BaseEntity implements Serializable {
     private String room;
     @Column
     private Boolean enabled;
+    @Column
+    private Boolean block;
     @ManyToMany
     @JoinTable(
             name = "department_user",

@@ -28,7 +28,11 @@ public class UserController extends BaseEntityAbstractController<UserPortal, Use
     @ResponseBody
     public ResponseEntity<UserDto> auth(@RequestBody String login){
         UserPortal userPortal = userService.getUserByLogin(login);
-        UserDto userDto = modelMapper.map(userPortal, UserDto.class);
-        return new ResponseEntity<>(userDto, HttpStatus.OK);
+        if(userPortal != null) {
+            UserDto userDto = modelMapper.map(userPortal, UserDto.class);
+            return new ResponseEntity<>(userDto, HttpStatus.OK);
+        } else
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
     }
 }

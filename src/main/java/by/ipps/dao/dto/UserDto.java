@@ -2,6 +2,7 @@ package by.ipps.dao.dto;
 
 import by.ipps.dao.entity.Department;
 import by.ipps.dao.entity.Role;
+import java.util.Set;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -22,8 +23,10 @@ public class UserDto extends BaseDto {
     private String position;
     private String email;
     private long department;
+    private boolean enabled;
+    private boolean block;
 
-    public void setRole(List<Role> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = new ArrayList<>();
         for (Role r : roles) {
             this.roles.add(r.getName());
