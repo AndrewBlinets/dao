@@ -20,7 +20,7 @@ public class FileManagerServiceImpl extends BaseEntityServiceImpl<FileManager, F
     }
 
     @Override
-    public List<FileManager> save(List<FileManager> fileManagers) {
-        return repository.saveAll(fileManagers);
+    public FileManager save(FileManager fileManagers) {
+        return repository.save(fileManagers);
     }
 }

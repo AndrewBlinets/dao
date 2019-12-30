@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -17,10 +18,10 @@ public class Achievement extends BaseEntity implements Serializable {
     @Column
     private String name;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn
-    private FileManager image;
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<FileManager> images;
 
-    @Column
-    private String type;
+    @ManyToOne
+    @JoinColumn(name = "type_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private TypeAchievement typeAchievement;
 }

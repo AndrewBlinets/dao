@@ -8,5 +8,5 @@ import java.util.List;
 
 @Service
 public interface FileManagerService extends BaseEntityService<FileManager> {
-    List<FileManager> save(List<FileManager> paths);
+    FileManager save(FileManager paths);
 }

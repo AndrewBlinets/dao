@@ -4,6 +4,7 @@ import by.ipps.dao.controller.base.BaseEntityAbstractController;
 import by.ipps.dao.controller.base.BaseEntityController;
 import by.ipps.dao.custom.CustomPage;
 import by.ipps.dao.dto.news.NewsDto;
+import by.ipps.dao.dto.news.NewsDtoAdmin;
 import by.ipps.dao.dto.news.NewsDtoFull;
 import by.ipps.dao.entity.Department;
 import by.ipps.dao.entity.News;
@@ -73,6 +74,19 @@ public class NewsController extends BaseEntityAbstractController<News, NewsServi
             entityManager.unwrap(Session.class).disableFilter(FilterName.LANGUAGE);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }@GetMapping("/admin")
+    public ResponseEntity<CustomPage<NewsDtoAdmin>> getAllForAdmin(
+            @PageableDefault() Pageable pageable,
+            @RequestParam(value = "language", required = false, defaultValue = "ru") String language,
+            @RequestParam(value = "section", required = false) Section section,
+            @RequestParam(value = "department", required = false) Department department) {
+        entityManager.unwrap(Session.class).enableFilter(FilterName.LANGUAGE).setParameter("language", language);
+        Page<News> news = service.findNewsPageBySectionAndDepartmentForAdmin(section, department, pageable);
+        java.lang.reflect.Type targetListType = new TypeToken<CustomPage<NewsDtoAdmin>>() {
+        }.getType();
+        CustomPage<NewsDtoAdmin> newsDto = mapper.map(news, targetListType);
+        entityManager.unwrap(Session.class).disableFilter(FilterName.LANGUAGE);
+        return new ResponseEntity<>(newsDto, HttpStatus.OK );
     }
 
     @Override

@@ -23,7 +23,7 @@ public class FileManagerController {
 
     @PostMapping
     @ResponseBody
-    public List<FileManager> saveImage(@RequestBody List<FileManager> fileManagers) {
+    public FileManager saveImage(@RequestBody FileManager fileManagers) {
         return fileManagerService.save(fileManagers);
     }
 

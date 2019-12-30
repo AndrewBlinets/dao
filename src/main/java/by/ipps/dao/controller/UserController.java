@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
+
 @RestController
 @RequestMapping("/users")
 public class UserController extends BaseEntityAbstractController<UserPortal, UserService>
@@ -24,6 +26,7 @@ public class UserController extends BaseEntityAbstractController<UserPortal, Use
         this.modelMapper = modelMapper;
     }
 
+    @Transactional
     @PostMapping("/auth")
     @ResponseBody
     public ResponseEntity<UserDto> auth(@RequestBody String login){

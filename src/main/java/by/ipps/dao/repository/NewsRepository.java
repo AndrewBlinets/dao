@@ -33,4 +33,9 @@ public interface NewsRepository extends BaseEntityRepository<News> {
             " (n.department = :department or :department is null) and  n.datePublic < current_timestamp ")
     Page<News> findNewsPageBySectionAndDepartmentForClient(@Param("section") Section section,
                                                   @Param("department") Department department, Pageable pageable);
+
+    @Query(value = "SELECT n from News n where n.statusR = 'A' and (n.section = :section or :section is null) and" +
+            " (n.department = :department or :department is null) ")
+    Page<News> findNewsPageBySectionAndDepartmentForAdmin(@Param("section") Section section,
+                                                          @Param("department") Department department, Pageable pageable);
 }

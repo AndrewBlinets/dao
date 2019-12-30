@@ -14,4 +14,6 @@ public interface NewsService extends BaseEntityService<News> {
     News findByIdAndSectionAndDepartment(Long id, Section section, Department department);
     Page<News> findNewsPageBySectionAndDepartmentForClient(Section section, Department department, Pageable pageable);
     News findByIdAndSectionAndDepartmentForClient(Long id, Section section, Department department);
+
+    Page<News> findNewsPageBySectionAndDepartmentForAdmin(Section section, Department department, Pageable pageable);
 }

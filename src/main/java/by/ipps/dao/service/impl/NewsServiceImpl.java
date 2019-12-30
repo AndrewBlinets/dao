@@ -39,4 +39,9 @@ public class NewsServiceImpl extends BaseEntityServiceImpl<News, NewsRepository>
     public News findByIdAndSectionAndDepartmentForClient(Long id, Section section, Department department) {
         return repository.findByIdAndSectionAndDepartmentForClient(id, section, department).orElse(null);
     }
+
+    @Override
+    public Page<News> findNewsPageBySectionAndDepartmentForAdmin(Section section, Department department, Pageable pageable) {
+        return repository.findNewsPageBySectionAndDepartmentForAdmin(section, department, pageable);
+    }
 }
