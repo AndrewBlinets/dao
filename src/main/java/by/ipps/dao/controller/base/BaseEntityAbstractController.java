@@ -4,6 +4,8 @@ import by.ipps.dao.entity.BaseEntity;
 import by.ipps.dao.entity.Department;
 import by.ipps.dao.entity.Section;
 import by.ipps.dao.service.base.BaseEntityService;
+import by.ipps.dao.utils.view.ViewDepartment;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -49,7 +51,7 @@ public abstract class BaseEntityAbstractController<T extends BaseEntity, S exten
         return new ResponseEntity<>(flag ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
     }
 
-    @Transactional
+//    @Transactional
     @Override
     public ResponseEntity<Page<T>> getAll(Pageable pageable, String language, Section section, Department department) {
         log.info(pageable.toString());

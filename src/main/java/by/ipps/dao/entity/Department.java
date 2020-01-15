@@ -1,11 +1,9 @@
 package by.ipps.dao.entity;
 
 import by.ipps.dao.utils.view.ViewContact;
+import by.ipps.dao.utils.view.ViewDepartment;
 import com.fasterxml.jackson.annotation.JsonView;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -17,11 +15,13 @@ import java.util.Set;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Entity
+@ToString
 public class Department extends BaseEntity implements Serializable {
 
-    @JsonView(ViewContact.BaseClass.class)
+    @JsonView({ViewContact.BaseClass.class, ViewDepartment.BaseClassDepartment.class})
     @Column
     private String name;
+    @JsonView({ViewDepartment.BaseClassDepartment.class})
     @Column
     private String code;
     @JsonView(ViewContact.BaseClass.class)
@@ -32,6 +32,7 @@ public class Department extends BaseEntity implements Serializable {
     private UserPortal leader;
     @ManyToMany(mappedBy = "departments")
     private List<Position> positions;
+    @JsonView(ViewDepartment.BaseClassDepartment.class)
     @ManyToOne
     @JoinColumn(name = "section_id", insertable = false, updatable = false)
     private Section section;

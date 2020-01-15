@@ -4,7 +4,7 @@ public class ViewContact {
     interface Base {
     }
 
-    public static class BaseClass implements ViewNews.Base {
+    public static class BaseClass implements ViewContact.Base {
     }
 
 }

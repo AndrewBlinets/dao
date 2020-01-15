@@ -3,6 +3,8 @@ package by.ipps.dao.controller.base;
 import by.ipps.dao.entity.BaseEntity;
 import by.ipps.dao.entity.Department;
 import by.ipps.dao.entity.Section;
+import by.ipps.dao.utils.view.ViewDepartment;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -31,6 +33,7 @@ public interface BaseEntityController<T extends BaseEntity> {
 
     @DeleteMapping(value = "/{id}")
     ResponseEntity<Boolean> remove(@PathVariable Long id);
+
 
 
     @GetMapping

@@ -1,5 +1,7 @@
 package by.ipps.dao.entity;
 
+import by.ipps.dao.utils.view.ViewDepartment;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -17,6 +19,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Section extends BaseEntity implements Serializable {
+    @JsonView(ViewDepartment.BaseClassDepartment.class)
     @Column
     private String name;
     @Column
