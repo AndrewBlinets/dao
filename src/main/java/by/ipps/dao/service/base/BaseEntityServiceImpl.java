@@ -2,11 +2,10 @@ package by.ipps.dao.service.base;
 
 import by.ipps.dao.entity.BaseEntity;
 import by.ipps.dao.repository.BaseEntityRepository;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-
 import java.util.Date;
 import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 //@Transactional
 public class BaseEntityServiceImpl<T extends BaseEntity, R extends BaseEntityRepository<T>> implements BaseEntityService<T> {

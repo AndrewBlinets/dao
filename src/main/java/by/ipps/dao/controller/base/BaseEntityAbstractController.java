@@ -4,16 +4,12 @@ import by.ipps.dao.entity.BaseEntity;
 import by.ipps.dao.entity.Department;
 import by.ipps.dao.entity.Section;
 import by.ipps.dao.service.base.BaseEntityService;
-import by.ipps.dao.utils.view.ViewDepartment;
-import com.fasterxml.jackson.annotation.JsonView;
+import java.util.List;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
-import javax.transaction.Transactional;
-import java.util.List;
 
 @Log4j2
 public abstract class BaseEntityAbstractController<T extends BaseEntity, S extends BaseEntityService<T>>

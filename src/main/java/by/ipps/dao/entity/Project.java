@@ -1,15 +1,19 @@
 package by.ipps.dao.entity;
 
 import by.ipps.dao.utils.constant.FilterName;
+import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Filter;
-
-import javax.persistence.*;
-import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @NoArgsConstructor

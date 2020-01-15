@@ -3,13 +3,12 @@ package by.ipps.dao.dto.project;
 import by.ipps.dao.dto.BaseDto;
 import by.ipps.dao.entity.FileManager;
 import by.ipps.dao.entity.ProjectLanguageVersion;
+import java.io.Serializable;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.io.Serializable;
-import java.util.List;
 
 @Getter
 @Setter

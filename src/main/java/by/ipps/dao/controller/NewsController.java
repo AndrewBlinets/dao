@@ -11,6 +11,9 @@ import by.ipps.dao.entity.News;
 import by.ipps.dao.entity.Section;
 import by.ipps.dao.service.NewsService;
 import by.ipps.dao.utils.constant.FilterName;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import org.hibernate.Session;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -19,75 +22,84 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/news")
 public class NewsController extends BaseEntityAbstractController<News, NewsService>
-        implements BaseEntityController<News> {
+    implements BaseEntityController<News> {
 
-    private final NewsService service;
-    private ModelMapper mapper;
+  private final NewsService service;
+  private ModelMapper mapper;
+  @PersistenceContext private EntityManager entityManager;
 
-    protected NewsController(NewsService newsService, ModelMapper mapper) {
-        super(newsService);
-        this.service = newsService;
-        this.mapper = mapper;
+  protected NewsController(NewsService newsService, ModelMapper mapper) {
+    super(newsService);
+    this.service = newsService;
+    this.mapper = mapper;
+  }
+
+  @GetMapping("/client")
+  public ResponseEntity<CustomPage<NewsDto>> getAllForClient(
+      @PageableDefault() Pageable pageable,
+      @RequestParam(value = "language", required = false, defaultValue = "ru") String language,
+      @RequestParam(value = "section", required = false) Section section,
+      @RequestParam(value = "department", required = false) Department department) {
+    entityManager
+        .unwrap(Session.class)
+        .enableFilter(FilterName.LANGUAGE)
+        .setParameter("language", language);
+    Page<News> news =
+        service.findNewsPageBySectionAndDepartmentForClient(section, department, pageable);
+    java.lang.reflect.Type targetListType = new TypeToken<CustomPage<NewsDto>>() {}.getType();
+    CustomPage<NewsDto> newsDto = mapper.map(news, targetListType);
+    entityManager.unwrap(Session.class).disableFilter(FilterName.LANGUAGE);
+    return new ResponseEntity<>(newsDto, HttpStatus.OK);
+  }
+
+  @Transactional
+  @GetMapping("/client/{id}")
+  public ResponseEntity<NewsDtoFull> getByIdForClient(
+      @PathVariable Long id,
+      @RequestParam(value = "language", required = false, defaultValue = "ru") String language,
+      @RequestParam(value = "section", required = false) Section section,
+      @RequestParam(value = "department", required = false) Department department) {
+    entityManager
+        .unwrap(Session.class)
+        .enableFilter(FilterName.LANGUAGE)
+        .setParameter("language", language);
+    News news = service.findByIdAndSectionAndDepartmentForClient(id, section, department);
+    if (news != null) {
+      NewsDtoFull newsF = mapper.map(news, NewsDtoFull.class);
+      entityManager.unwrap(Session.class).disableFilter(FilterName.LANGUAGE);
+      return new ResponseEntity<>(newsF, HttpStatus.OK);
+    } else {
+      entityManager.unwrap(Session.class).disableFilter(FilterName.LANGUAGE);
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+  }
 
-    @PersistenceContext
-    private EntityManager entityManager;
-
-    @GetMapping("/client")
-    public ResponseEntity<CustomPage<NewsDto>> getAllForClient(
-            @PageableDefault() Pageable pageable,
-            @RequestParam(value = "language", required = false, defaultValue = "ru") String language,
-            @RequestParam(value = "section", required = false) Section section,
-            @RequestParam(value = "department", required = false) Department department) {
-        entityManager.unwrap(Session.class).enableFilter(FilterName.LANGUAGE).setParameter("language", language);
-        Page<News> news = service.findNewsPageBySectionAndDepartmentForClient(section, department, pageable);
-        java.lang.reflect.Type targetListType = new TypeToken<CustomPage<NewsDto>>() {
-        }.getType();
-        CustomPage<NewsDto> newsDto = mapper.map(news, targetListType);
-        entityManager.unwrap(Session.class).disableFilter(FilterName.LANGUAGE);
-        return new ResponseEntity<>(newsDto, HttpStatus.OK );
-    }
-
-    @Transactional
-    @GetMapping("/client/{id}")
-    public ResponseEntity<NewsDtoFull> getByIdForClient(
-            @PathVariable Long id,
-            @RequestParam(value = "language", required = false, defaultValue = "ru") String language,
-            @RequestParam(value = "section", required = false) Section section,
-            @RequestParam(value = "department", required = false) Department department) {
-        entityManager.unwrap(Session.class).enableFilter(FilterName.LANGUAGE).setParameter("language", language);
-        News news = service.findByIdAndSectionAndDepartmentForClient(id, section, department);
-        if(news != null) {
-            NewsDtoFull newsF = mapper.map(news, NewsDtoFull.class);
-            entityManager.unwrap(Session.class).disableFilter(FilterName.LANGUAGE);
-            return new ResponseEntity<>(newsF, HttpStatus.OK);
-        } else {
-            entityManager.unwrap(Session.class).disableFilter(FilterName.LANGUAGE);
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }@GetMapping("/admin")
-    public ResponseEntity<CustomPage<NewsDtoAdmin>> getAllForAdmin(
-            @PageableDefault() Pageable pageable,
-            @RequestParam(value = "language", required = false, defaultValue = "ru") String language,
-            @RequestParam(value = "section", required = false) Section section,
-            @RequestParam(value = "department", required = false) Department department) {
-        entityManager.unwrap(Session.class).enableFilter(FilterName.LANGUAGE).setParameter("language", language);
-        Page<News> news = service.findNewsPageBySectionAndDepartmentForAdmin(section, department, pageable);
-        java.lang.reflect.Type targetListType = new TypeToken<CustomPage<NewsDtoAdmin>>() {
-        }.getType();
-        CustomPage<NewsDtoAdmin> newsDto = mapper.map(news, targetListType);
-        entityManager.unwrap(Session.class).disableFilter(FilterName.LANGUAGE);
-        return new ResponseEntity<>(newsDto, HttpStatus.OK );
-    }
+  @GetMapping("/admin")
+  public ResponseEntity<CustomPage<NewsDtoAdmin>> getAllForAdmin(
+      @PageableDefault() Pageable pageable,
+      @RequestParam(value = "language", required = false, defaultValue = "ru") String language,
+      @RequestParam(value = "section", required = false) Section section,
+      @RequestParam(value = "department", required = false) Department department) {
+    entityManager
+        .unwrap(Session.class)
+        .enableFilter(FilterName.LANGUAGE)
+        .setParameter("language", language);
+    Page<News> news =
+        service.findNewsPageBySectionAndDepartmentForAdmin(section, department, pageable);
+    java.lang.reflect.Type targetListType = new TypeToken<CustomPage<NewsDtoAdmin>>() {}.getType();
+    CustomPage<NewsDtoAdmin> newsDto = mapper.map(news, targetListType);
+    entityManager.unwrap(Session.class).disableFilter(FilterName.LANGUAGE);
+    return new ResponseEntity<>(newsDto, HttpStatus.OK);
+  }
 
     @Override
     public ResponseEntity<Page<News>> getAll(

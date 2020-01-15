@@ -6,8 +6,6 @@ import by.ipps.dao.service.FileManagerService;
 import by.ipps.dao.service.base.BaseEntityServiceImpl;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class FileManagerServiceImpl extends BaseEntityServiceImpl<FileManager, FileManagerRepository>
         implements FileManagerService {

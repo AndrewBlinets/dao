@@ -3,13 +3,12 @@ package by.ipps.dao.repository;
 import by.ipps.dao.entity.Department;
 import by.ipps.dao.entity.Project;
 import by.ipps.dao.entity.Section;
+import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
-import java.util.Optional;
 
 @Repository
 public interface ProjectRepository extends BaseEntityRepository<Project> {
