@@ -31,7 +31,8 @@ public class BaseEntity implements Serializable {
     ViewContact.BaseClass.class,
     ViewFile.BaseClass.class,
     ViewSection.BaseClassSection.class,
-    ViewDepartment.BaseClassDepartment.class
+    ViewDepartment.BaseClassDepartment.class,
+    ViewDepartment.FullInformationClassDepartment.class
   })
   @Id
   @Column

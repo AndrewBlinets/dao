@@ -7,13 +7,14 @@ import by.ipps.dao.entity.Section;
 import by.ipps.dao.service.DepartmentService;
 import by.ipps.dao.utils.view.ViewDepartment;
 import com.fasterxml.jackson.annotation.JsonView;
-import java.util.List;
-import javax.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/department")
@@ -25,22 +26,24 @@ public class DepartmentController
     super(departmentService);
   }
 
-//  @Override
-//  public ResponseEntity<Department> create(@Valid Department create) {
-//    return super.create(create);
-//  }
+  @Override
+  @JsonView(ViewDepartment.FullInformationClassDepartment.class)
+  public ResponseEntity<Department> create(@Valid Department create) {
+    return super.create(create);
+  }
 
-  @JsonView(ViewDepartment.BaseClassDepartment.class)
+  @JsonView(ViewDepartment.FullInformationClassDepartment.class)
   @Override
   public ResponseEntity<Department> get(
       Long id, String language, Section section, Department department) {
     return super.get(id, language, section, department);
   }
 
-  //    @Override
-  //    public ResponseEntity<Department> update(@Valid Department entity) {
-  //        return null;
-  //    }
+  @Override
+  @JsonView(ViewDepartment.FullInformationClassDepartment.class)
+  public ResponseEntity<Department> update(@Valid Department entity) {
+    return super.update(entity);
+  }
 
   @Override
   @JsonView(ViewDepartment.BaseClassDepartment.class)

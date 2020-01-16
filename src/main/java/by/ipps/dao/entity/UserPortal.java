@@ -1,6 +1,7 @@
 package by.ipps.dao.entity;
 
 import by.ipps.dao.utils.view.ViewContact;
+import by.ipps.dao.utils.view.ViewDepartment;
 import com.fasterxml.jackson.annotation.JsonView;
 import java.io.Serializable;
 import java.util.Date;
@@ -38,7 +39,7 @@ public class UserPortal extends BaseEntity implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateLastChangePassword;
     @Column(nullable = false, length = 60)
-    @JsonView(ViewContact.BaseClass.class)
+    @JsonView({ViewContact.BaseClass.class, ViewDepartment.FullInformationClassDepartment.class})
     private String name;
     @JsonView(ViewContact.BaseClass.class)
     @Column(nullable = false, length = 60)

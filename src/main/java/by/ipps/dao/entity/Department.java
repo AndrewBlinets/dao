@@ -36,6 +36,7 @@ public class Department extends BaseEntity implements Serializable {
     @JsonView(ViewContact.BaseClass.class)
     @ManyToMany(mappedBy = "departments")
     private Set<UserPortal> users;
+    @JsonView(ViewDepartment.FullInformationClassDepartment.class)
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "leader", nullable = true)
     private UserPortal leader;
@@ -43,6 +44,6 @@ public class Department extends BaseEntity implements Serializable {
     private List<Position> positions;
     @JsonView(ViewDepartment.BaseClassDepartment.class)
     @ManyToOne
-    @JoinColumn(name = "section_id", insertable = false, updatable = false)
+    @JoinColumn(name = "section_id")
     private Section section;
 }
