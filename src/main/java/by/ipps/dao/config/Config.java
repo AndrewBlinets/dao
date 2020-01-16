@@ -3,6 +3,7 @@ package by.ipps.dao.config;
 import by.ipps.dao.utils.seriazable.PageSerializer;
 import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.Module;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 import org.modelmapper.ModelMapper;

@@ -5,6 +5,8 @@ import by.ipps.dao.entity.Department;
 import by.ipps.dao.entity.Section;
 import java.util.List;
 import javax.validation.Valid;
+
+import by.ipps.dao.entity.UserPortal;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -24,7 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public interface BaseEntityController<T extends BaseEntity> {
 
     @PostMapping
-    ResponseEntity<T> create(@RequestBody @Valid T entity);
+    ResponseEntity<T> create(@RequestBody @Valid T entity, @RequestParam(value = "user") UserPortal userPortal);
 
     @GetMapping(value = "/{id}")
     ResponseEntity<T> get(@PathVariable Long id,
@@ -33,10 +35,10 @@ public interface BaseEntityController<T extends BaseEntity> {
                           @RequestParam(value = "department", required = false) Department department);
 
     @PutMapping
-    ResponseEntity<T> update(@RequestBody @Valid T entity);
+    ResponseEntity<T> update(@RequestBody @Valid T entity, @RequestParam(value = "user") UserPortal userPortal);
 
     @DeleteMapping(value = "/{id}")
-    ResponseEntity<Boolean> remove(@PathVariable Long id);
+    ResponseEntity<Boolean> remove(@PathVariable T id, @RequestParam(value = "user") UserPortal userPortal);
 
 
 

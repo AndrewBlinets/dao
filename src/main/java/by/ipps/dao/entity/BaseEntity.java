@@ -52,4 +52,11 @@ public class BaseEntity implements Serializable {
   @CreationTimestamp
   @Temporal(TemporalType.TIMESTAMP)
   private Date dateChangeStatusR;
+
+  @Override
+  public String toString() {
+    final StringBuffer sb = new StringBuffer("\"id\" : ");
+    sb.append("\"").append(id).append("\"");
+    return sb.toString();
+  }
 }

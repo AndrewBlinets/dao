@@ -1,25 +1,36 @@
 package by.ipps.dao.controller.base;
 
-import by.ipps.dao.entity.BaseEntity;
-import by.ipps.dao.entity.Department;
-import by.ipps.dao.entity.Section;
+import by.ipps.dao.entity.*;
+import by.ipps.dao.service.LoggerService;
 import by.ipps.dao.service.base.BaseEntityService;
-import java.util.List;
 import lombok.extern.log4j.Log4j2;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import javax.transaction.Transactional;
+import java.util.List;
+
 @Log4j2
+@Transactional
 public abstract class BaseEntityAbstractController<T extends BaseEntity, S extends BaseEntityService<T>>
         implements BaseEntityController<T> {
 
-    protected final S baseEntityServuce;
+    protected static final String CREATE = "CREATE";
+    protected static final String REMOVE = "REMOVE";
+    protected static final String UPDATE = "UPDATE";
 
+    protected final S baseEntityServuce;
     protected BaseEntityAbstractController(S s) {
         this.baseEntityServuce = s;
     }
+    @Autowired
+    protected LoggerService loggerService;
+    @Autowired
+    protected ModelMapper modelMapper;
 
     @Override
     public ResponseEntity<T> get(Long id, String language, Section section, Department department) {
@@ -30,24 +41,33 @@ public abstract class BaseEntityAbstractController<T extends BaseEntity, S exten
     }
 
     @Override
-    public ResponseEntity<T> create(T entity) {
+    public ResponseEntity<T> create(T entity, UserPortal userPortal) {
         T saved = baseEntityServuce.create(entity);
+        if(saved != null) {
+            loggerService.create(new Logger(userPortal, String.valueOf(entity.getClass()), entity.getId(), CREATE));
+        }
         return new ResponseEntity<>(saved, saved != null ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
     }
 
     @Override
-    public ResponseEntity<T> update(T entity) {
+    public ResponseEntity<T> update(T entity, UserPortal userPortal) {
+        String json = baseEntityServuce.findById(entity.getId()).toString();
         T saved = baseEntityServuce.update(entity);
+        if(saved != null){
+            loggerService.create(new Logger(userPortal, String.valueOf(entity.getClass()), entity.getId(), UPDATE, json));
+        }
         return new ResponseEntity<>(saved, saved != null ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
     }
 
     @Override
-    public ResponseEntity<Boolean> remove(Long id) {
-        boolean flag = baseEntityServuce.delete(baseEntityServuce.findById(id));
+    public ResponseEntity<Boolean> remove(T id, UserPortal userPortal) {
+        boolean flag = baseEntityServuce.delete(id);
+        if(flag)
+            loggerService.create(new Logger(userPortal, String.valueOf(id.getClass()), id.getId(), REMOVE));
         return new ResponseEntity<>(flag ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
     }
 
-//    @Transactional
+    //    @Transactional
     @Override
     public ResponseEntity<Page<T>> getAll(Pageable pageable, String language, Section section, Department department) {
         log.info(pageable.toString());
@@ -61,6 +81,4 @@ public abstract class BaseEntityAbstractController<T extends BaseEntity, S exten
         List<T> ts = baseEntityServuce.findAll();
         return new ResponseEntity<>(ts, ts != null ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
     }
-
-
 }

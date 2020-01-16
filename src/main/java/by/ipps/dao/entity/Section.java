@@ -27,4 +27,20 @@ public class Section extends BaseEntity implements Serializable {
     private int code;
     @OneToMany(mappedBy = "section")
     private List<Department> departments;
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("{");
+        sb.append(super.toString());
+        sb.append(", \"name\" : \"").append(name).append('\"');
+        sb.append(", \"code\" : \"").append(code).append('\"');
+        sb.append(", \"departments\":[");
+        if (departments != null) {
+            for (Department department : departments) {
+                sb.append("{\"department\" :").append(department.getId()).append("\"},");
+            }
+        }
+        sb.append("]}");
+        return sb.toString();
+    }
 }

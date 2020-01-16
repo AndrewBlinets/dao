@@ -4,6 +4,7 @@ import by.ipps.dao.controller.base.BaseEntityAbstractController;
 import by.ipps.dao.controller.base.BaseEntityController;
 import by.ipps.dao.entity.Department;
 import by.ipps.dao.entity.Section;
+import by.ipps.dao.entity.UserPortal;
 import by.ipps.dao.service.DepartmentService;
 import by.ipps.dao.utils.view.ViewDepartment;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -28,8 +29,8 @@ public class DepartmentController
 
   @Override
   @JsonView(ViewDepartment.FullInformationClassDepartment.class)
-  public ResponseEntity<Department> create(@Valid Department create) {
-    return super.create(create);
+  public ResponseEntity<Department> create(@Valid Department create, UserPortal userPortal) {
+    return super.create(create, userPortal);
   }
 
   @JsonView(ViewDepartment.FullInformationClassDepartment.class)
@@ -41,8 +42,8 @@ public class DepartmentController
 
   @Override
   @JsonView(ViewDepartment.FullInformationClassDepartment.class)
-  public ResponseEntity<Department> update(@Valid Department entity) {
-    return super.update(entity);
+  public ResponseEntity<Department> update(@Valid Department entity, UserPortal userPortal) {
+    return super.update(entity, userPortal);
   }
 
   @Override

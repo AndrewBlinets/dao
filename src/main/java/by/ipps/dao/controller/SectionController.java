@@ -4,6 +4,7 @@ import by.ipps.dao.controller.base.BaseEntityAbstractController;
 import by.ipps.dao.controller.base.BaseEntityController;
 import by.ipps.dao.entity.Department;
 import by.ipps.dao.entity.Section;
+import by.ipps.dao.entity.UserPortal;
 import by.ipps.dao.service.SectionService;
 import by.ipps.dao.utils.view.ViewSection;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -27,8 +28,8 @@ public class SectionController extends BaseEntityAbstractController<Section, Sec
 
   @JsonView(ViewSection.BaseClassSection.class)
   @Override
-  public ResponseEntity<Section> create(@Valid Section create) {
-    return super.create(create);
+  public ResponseEntity<Section> create(@Valid Section create, UserPortal userPortal) {
+    return super.create(create, userPortal);
   }
 
   @JsonView(ViewSection.BaseClassSection.class)
@@ -40,8 +41,8 @@ public class SectionController extends BaseEntityAbstractController<Section, Sec
 
   @JsonView(ViewSection.BaseClassSection.class)
   @Override
-  public ResponseEntity<Section> update(@Valid Section entity) {
-    return super.update(entity);
+  public ResponseEntity<Section> update(@Valid Section entity, UserPortal userPortal) {
+    return super.update(entity, userPortal);
   }
 
   @Override

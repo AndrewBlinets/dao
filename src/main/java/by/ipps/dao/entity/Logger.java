@@ -5,20 +5,18 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+
+import lombok.*;
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
+@EqualsAndHashCode(callSuper = true)
 public class Logger extends BaseEntity implements Serializable {
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private UserPortal user;
     @Column(nullable = false)
     private String tableName;
@@ -29,4 +27,18 @@ public class Logger extends BaseEntity implements Serializable {
     @Column(length = 1000)
     private String oldValue;
 
+    public Logger(UserPortal user, String tableName, long rowId, String event) {
+        this.user = user;
+        this.tableName = tableName;
+        this.rowId = rowId;
+        this.event = event;
+    }
+
+    public Logger(UserPortal user, String tableName, long rowId, String event, String oldValue) {
+        this.user = user;
+        this.tableName = tableName;
+        this.rowId = rowId;
+        this.event = event;
+        this.oldValue = oldValue;
+    }
 }
