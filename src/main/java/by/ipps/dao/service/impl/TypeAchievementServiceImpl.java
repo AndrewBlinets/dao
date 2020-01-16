@@ -7,10 +7,11 @@ import by.ipps.dao.service.base.BaseEntityServiceImpl;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TypeAchievementServiceImpl extends BaseEntityServiceImpl<TypeAchievement, TypeAchievementRepository>
-        implements TypeAchievementService {
+public class TypeAchievementServiceImpl
+    extends BaseEntityServiceImpl<TypeAchievement, TypeAchievementRepository>
+    implements TypeAchievementService {
 
-    public TypeAchievementServiceImpl(TypeAchievementRepository repository) {
-        super(repository);
-    }
+  public TypeAchievementServiceImpl(TypeAchievementRepository repository) {
+    super(repository);
+  }
 }

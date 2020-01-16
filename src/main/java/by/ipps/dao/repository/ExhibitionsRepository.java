@@ -4,5 +4,4 @@ import by.ipps.dao.entity.Exhibitions;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ExhibitionsRepository extends BaseEntityRepository<Exhibitions> {
-}
+public interface ExhibitionsRepository extends BaseEntityRepository<Exhibitions> {}

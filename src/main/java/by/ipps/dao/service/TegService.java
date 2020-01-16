@@ -5,5 +5,4 @@ import by.ipps.dao.service.base.BaseEntityService;
 import org.springframework.stereotype.Service;
 
 @Service
-public interface TegService extends BaseEntityService<Teg> {
-}
+public interface TegService extends BaseEntityService<Teg> {}

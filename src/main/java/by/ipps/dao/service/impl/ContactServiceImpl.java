@@ -7,8 +7,9 @@ import by.ipps.dao.service.base.BaseEntityServiceImpl;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ContactServiceImpl extends BaseEntityServiceImpl<Contact, ContactRepository> implements ContactService {
-    public ContactServiceImpl(ContactRepository repository) {
-        super(repository);
-    }
+public class ContactServiceImpl extends BaseEntityServiceImpl<Contact, ContactRepository>
+    implements ContactService {
+  public ContactServiceImpl(ContactRepository repository) {
+    super(repository);
+  }
 }

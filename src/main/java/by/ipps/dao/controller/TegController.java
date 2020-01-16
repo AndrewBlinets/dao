@@ -10,11 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/teg")
 public class TegController extends BaseEntityAbstractController<Teg, TegService>
-        implements BaseEntityController<Teg> {
+    implements BaseEntityController<Teg> {
 
-    protected TegController(TegService tegService) {
-        super(tegService);
-    }
-
-
+  protected TegController(TegService tegService) {
+    super(tegService);
+  }
 }

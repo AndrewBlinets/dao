@@ -4,27 +4,27 @@ import by.ipps.dao.entity.Department;
 import by.ipps.dao.service.DepartmentService;
 import by.ipps.dao.utils.view.ViewContact;
 import com.fasterxml.jackson.annotation.JsonView;
-import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/contact")
-public class ContactController  {
+public class ContactController {
 
-    private DepartmentService departmentService;
+  private DepartmentService departmentService;
 
-    public ContactController(DepartmentService departmentService) {
-        this.departmentService = departmentService;
-    }
+  public ContactController(DepartmentService departmentService) {
+    this.departmentService = departmentService;
+  }
 
-    @JsonView(ViewContact.BaseClass.class)
-    @GetMapping
-    @ResponseBody
-    public List<Department> getAllContact(){
-        return departmentService.findAll();
-    }
-
+  @JsonView(ViewContact.BaseClass.class)
+  @GetMapping
+  @ResponseBody
+  public List<Department> getAllContact() {
+    return departmentService.findAll();
+  }
 }

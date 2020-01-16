@@ -5,5 +5,4 @@ import by.ipps.dao.service.base.BaseEntityService;
 import org.springframework.stereotype.Service;
 
 @Service
-public interface LanguageService extends BaseEntityService<Language> {
-}
+public interface LanguageService extends BaseEntityService<Language> {}

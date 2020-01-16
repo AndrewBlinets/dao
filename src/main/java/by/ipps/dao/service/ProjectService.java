@@ -11,7 +11,8 @@ import org.springframework.stereotype.Service;
 @Service
 public interface ProjectService extends BaseEntityService<Project> {
 
-    Page<Project> findNewsPageBySectionAndDepartment(Section section, Department department, Pageable pageable);
+  Page<Project> findNewsPageBySectionAndDepartment(
+      Section section, Department department, Pageable pageable);
 
-    Project findByIdAndSectionAndDepartment(Long id, Section section, Department department);
+  Project findByIdAndSectionAndDepartment(Long id, Section section, Department department);
 }

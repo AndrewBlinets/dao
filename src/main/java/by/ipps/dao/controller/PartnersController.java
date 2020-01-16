@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/partners")
-public class PartnersController  extends BaseEntityAbstractController<Partners, PartnersService>
-        implements BaseEntityController<Partners> {
+public class PartnersController extends BaseEntityAbstractController<Partners, PartnersService>
+    implements BaseEntityController<Partners> {
 
-    protected PartnersController(PartnersService partnersService) {
-        super(partnersService);
-    }
+  protected PartnersController(PartnersService partnersService) {
+    super(partnersService);
+  }
 }

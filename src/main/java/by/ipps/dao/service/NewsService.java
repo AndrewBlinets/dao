@@ -10,10 +10,16 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface NewsService extends BaseEntityService<News> {
-    Page<News> findNewsPageBySectionAndDepartment(Section section, Department department, Pageable pageable);
-    News findByIdAndSectionAndDepartment(Long id, Section section, Department department);
-    Page<News> findNewsPageBySectionAndDepartmentForClient(Section section, Department department, Pageable pageable);
-    News findByIdAndSectionAndDepartmentForClient(Long id, Section section, Department department);
+  Page<News> findNewsPageBySectionAndDepartment(
+      Section section, Department department, Pageable pageable);
 
-    Page<News> findNewsPageBySectionAndDepartmentForAdmin(Section section, Department department, Pageable pageable);
+  News findByIdAndSectionAndDepartment(Long id, Section section, Department department);
+
+  Page<News> findNewsPageBySectionAndDepartmentForClient(
+      Section section, Department department, Pageable pageable);
+
+  News findByIdAndSectionAndDepartmentForClient(Long id, Section section, Department department);
+
+  Page<News> findNewsPageBySectionAndDepartmentForAdmin(
+      Section section, Department department, Pageable pageable);
 }

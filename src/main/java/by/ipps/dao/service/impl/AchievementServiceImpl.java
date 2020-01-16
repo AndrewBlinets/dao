@@ -7,9 +7,10 @@ import by.ipps.dao.service.base.BaseEntityServiceImpl;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AchievementServiceImpl extends BaseEntityServiceImpl<Achievement, AchievementRepository>
-        implements AchievementService {
-    public AchievementServiceImpl(AchievementRepository repository) {
-        super(repository);
-    }
+public class AchievementServiceImpl
+    extends BaseEntityServiceImpl<Achievement, AchievementRepository>
+    implements AchievementService {
+  public AchievementServiceImpl(AchievementRepository repository) {
+    super(repository);
+  }
 }

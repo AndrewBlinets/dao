@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/achievement")
-public class AchievementController extends BaseEntityAbstractController<Achievement, AchievementService>
-        implements BaseEntityController<Achievement> {
-    protected AchievementController(AchievementService achievementService) {
-        super(achievementService);
-    }
+public class AchievementController
+    extends BaseEntityAbstractController<Achievement, AchievementService>
+    implements BaseEntityController<Achievement> {
+  protected AchievementController(AchievementService achievementService) {
+    super(achievementService);
+  }
 }

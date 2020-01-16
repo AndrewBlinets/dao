@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/exhibitions")
-public class ExhibitionsController extends BaseEntityAbstractController<Exhibitions, ExhibitionsService>
-        implements BaseEntityController<Exhibitions> {
-    protected ExhibitionsController(ExhibitionsService exhibitionsService) {
-        super(exhibitionsService);
-    }
+public class ExhibitionsController
+    extends BaseEntityAbstractController<Exhibitions, ExhibitionsService>
+    implements BaseEntityController<Exhibitions> {
+  protected ExhibitionsController(ExhibitionsService exhibitionsService) {
+    super(exhibitionsService);
+  }
 }

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface CompanyService {
-    Company getActualInfo();
-    Company setActualInfo(Company company);
+  Company getActualInfo();
+
+  Company setActualInfo(Company company);
 }

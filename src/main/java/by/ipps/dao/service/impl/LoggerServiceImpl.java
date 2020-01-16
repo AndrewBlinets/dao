@@ -7,9 +7,10 @@ import by.ipps.dao.service.base.BaseEntityServiceImpl;
 import org.springframework.stereotype.Service;
 
 @Service
-public class LoggerServiceImpl extends BaseEntityServiceImpl<Logger, LoggerRepository> implements LoggerService {
+public class LoggerServiceImpl extends BaseEntityServiceImpl<Logger, LoggerRepository>
+    implements LoggerService {
 
-    public LoggerServiceImpl(LoggerRepository repository) {
-        super(repository);
-    }
+  public LoggerServiceImpl(LoggerRepository repository) {
+    super(repository);
+  }
 }

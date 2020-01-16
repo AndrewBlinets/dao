@@ -7,9 +7,10 @@ import by.ipps.dao.service.base.BaseEntityServiceImpl;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ExhibitionsServiceImpl extends BaseEntityServiceImpl<Exhibitions, ExhibitionsRepository>
-        implements ExhibitionsService {
-    public ExhibitionsServiceImpl(ExhibitionsRepository repository) {
-        super(repository);
-    }
+public class ExhibitionsServiceImpl
+    extends BaseEntityServiceImpl<Exhibitions, ExhibitionsRepository>
+    implements ExhibitionsService {
+  public ExhibitionsServiceImpl(ExhibitionsRepository repository) {
+    super(repository);
+  }
 }

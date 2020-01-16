@@ -11,9 +11,6 @@ import by.ipps.dao.entity.News;
 import by.ipps.dao.entity.Section;
 import by.ipps.dao.service.NewsService;
 import by.ipps.dao.utils.constant.FilterName;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
 import org.hibernate.Session;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -22,11 +19,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 @RestController
 @RequestMapping("/news")
@@ -101,17 +98,17 @@ public class NewsController extends BaseEntityAbstractController<News, NewsServi
     return new ResponseEntity<>(newsDto, HttpStatus.OK);
   }
 
-    @Override
-    public ResponseEntity<Page<News>> getAll(
-            Pageable pageable, String language, Section section, Department department) {
-        Page<News> newsPage = service.findNewsPageBySectionAndDepartment(section, department, pageable);
-        return new ResponseEntity<>(newsPage, HttpStatus.OK );
-    }
+  @Override
+  public ResponseEntity<Page<News>> getAll(
+      Pageable pageable, String language, Section section, Department department) {
+    Page<News> newsPage = service.findNewsPageBySectionAndDepartment(section, department, pageable);
+    return new ResponseEntity<>(newsPage, HttpStatus.OK);
+  }
 
-    @Override
-    public ResponseEntity<News> get(Long id, String language, Section section, Department department) {
-        News news = service.findByIdAndSectionAndDepartment(id, section, department);
-        return new ResponseEntity<>(news, news != null ? HttpStatus.OK : HttpStatus.NOT_FOUND);
-    }
-
+  @Override
+  public ResponseEntity<News> get(
+      Long id, String language, Section section, Department department) {
+    News news = service.findByIdAndSectionAndDepartment(id, section, department);
+    return new ResponseEntity<>(news, news != null ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+  }
 }

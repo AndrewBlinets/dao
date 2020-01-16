@@ -7,10 +7,10 @@ import by.ipps.dao.service.base.BaseEntityServiceImpl;
 import org.springframework.stereotype.Service;
 
 @Service
-public class LanguageServiceImpl extends BaseEntityServiceImpl<Language, LanguageRepository> implements LanguageService {
+public class LanguageServiceImpl extends BaseEntityServiceImpl<Language, LanguageRepository>
+    implements LanguageService {
 
-    public LanguageServiceImpl(LanguageRepository repository) {
-        super(repository);
-    }
-
+  public LanguageServiceImpl(LanguageRepository repository) {
+    super(repository);
+  }
 }

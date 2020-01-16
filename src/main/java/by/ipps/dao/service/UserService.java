@@ -6,5 +6,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface UserService extends BaseEntityService<UserPortal> {
-    UserPortal getUserByLogin(String login);
+  UserPortal getUserByLogin(String login);
 }

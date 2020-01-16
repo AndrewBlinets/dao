@@ -3,21 +3,15 @@ package by.ipps.dao.entity;
 import by.ipps.dao.utils.view.ViewContact;
 import by.ipps.dao.utils.view.ViewDepartment;
 import com.fasterxml.jackson.annotation.JsonView;
-import java.io.Serializable;
-import java.util.List;
-import java.util.Set;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -40,7 +34,7 @@ public class Department extends BaseEntity implements Serializable {
 
   @JsonView(ViewDepartment.FullInformationClassDepartment.class)
   @OneToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "leader", nullable = true)
+  @JoinColumn(name = "leader")
   private UserPortal leader;
 
   @ManyToMany(mappedBy = "departments")

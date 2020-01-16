@@ -4,5 +4,4 @@ import by.ipps.dao.entity.Teg;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface TegRepository extends BaseEntityRepository<Teg> {
-}
+public interface TegRepository extends BaseEntityRepository<Teg> {}

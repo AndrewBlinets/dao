@@ -8,19 +8,19 @@ import org.springframework.stereotype.Service;
 @Service
 public class CompanyServiceImpl implements CompanyService {
 
-    public CompanyServiceImpl(CompanyRepository repository) {
-        this.repository = repository;
-    }
+  public CompanyServiceImpl(CompanyRepository repository) {
+    this.repository = repository;
+  }
 
-    private CompanyRepository repository;
+  private CompanyRepository repository;
 
-    @Override
-    public Company getActualInfo() {
-        return repository.findByStatusR("A").orElse(null);
-    }
+  @Override
+  public Company getActualInfo() {
+    return repository.findByStatusR("A").orElse(null);
+  }
 
-    @Override
-    public Company setActualInfo(Company company) {
-        return repository.save(company);
-    }
+  @Override
+  public Company setActualInfo(Company company) {
+    return repository.save(company);
+  }
 }

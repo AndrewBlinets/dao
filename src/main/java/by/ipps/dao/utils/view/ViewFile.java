@@ -1,9 +1,7 @@
 package by.ipps.dao.utils.view;
 
 public class ViewFile {
-    interface Base {
-    }
+  interface Base {}
 
-    public static class BaseClass implements ViewNews.Base {
-    }
+  public static class BaseClass implements ViewNews.Base {}
 }

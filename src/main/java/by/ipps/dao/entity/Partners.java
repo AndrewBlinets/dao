@@ -1,13 +1,14 @@
 package by.ipps.dao.entity;
 
-import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import java.io.Serializable;
 
 @Setter
 @Getter
@@ -16,12 +17,9 @@ import lombok.Setter;
 @Entity
 public class Partners extends BaseEntity implements Serializable {
 
-    @Column
-    private String name;
+  @Column private String name;
 
-    @OneToOne
-    private FileManager image;
+  @OneToOne private FileManager image;
 
-    @Column
-    private String url;
+  @Column private String url;
 }

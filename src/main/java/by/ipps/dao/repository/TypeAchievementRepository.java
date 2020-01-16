@@ -4,5 +4,4 @@ import by.ipps.dao.entity.TypeAchievement;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface TypeAchievementRepository extends BaseEntityRepository<TypeAchievement> {
-}
+public interface TypeAchievementRepository extends BaseEntityRepository<TypeAchievement> {}

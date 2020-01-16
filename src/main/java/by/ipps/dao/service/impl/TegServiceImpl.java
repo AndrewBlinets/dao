@@ -7,9 +7,10 @@ import by.ipps.dao.service.base.BaseEntityServiceImpl;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TegServiceImpl extends BaseEntityServiceImpl<Teg, TegRepository> implements TegService {
+public class TegServiceImpl extends BaseEntityServiceImpl<Teg, TegRepository>
+    implements TegService {
 
-    public TegServiceImpl(TegRepository repository) {
-        super(repository);
-    }
+  public TegServiceImpl(TegRepository repository) {
+    super(repository);
+  }
 }

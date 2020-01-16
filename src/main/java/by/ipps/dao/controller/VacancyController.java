@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/vacancy")
 public class VacancyController extends BaseEntityAbstractController<Vacancy, VacancyService>
-        implements BaseEntityController<Vacancy> {
-    protected VacancyController(VacancyService vacancyService) {
-        super(vacancyService);
-    }
+    implements BaseEntityController<Vacancy> {
+  protected VacancyController(VacancyService vacancyService) {
+    super(vacancyService);
+  }
 }

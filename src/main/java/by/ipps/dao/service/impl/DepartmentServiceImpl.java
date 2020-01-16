@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class DepartmentServiceImpl extends BaseEntityServiceImpl<Department, DepartmentRepository>
-        implements DepartmentService {
+    implements DepartmentService {
 
-    public DepartmentServiceImpl(DepartmentRepository repository) {
-        super(repository);
-    }
+  public DepartmentServiceImpl(DepartmentRepository repository) {
+    super(repository);
+  }
 }

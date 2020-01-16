@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/logger")
 public class LoggerController extends BaseEntityAbstractController<Logger, LoggerService>
-        implements BaseEntityController<Logger> {
+    implements BaseEntityController<Logger> {
 
-    protected LoggerController(LoggerService loggerService) {
-        super(loggerService);
-    }
+  protected LoggerController(LoggerService loggerService) {
+    super(loggerService);
+  }
 }

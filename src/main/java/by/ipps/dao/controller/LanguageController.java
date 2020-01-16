@@ -10,10 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/language")
 public class LanguageController extends BaseEntityAbstractController<Language, LanguageService>
-        implements BaseEntityController<Language> {
+    implements BaseEntityController<Language> {
 
-    protected LanguageController(LanguageService languageService) {
-        super(languageService);
-    }
-
+  protected LanguageController(LanguageService languageService) {
+    super(languageService);
+  }
 }

@@ -6,5 +6,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface FileManagerService extends BaseEntityService<FileManager> {
-    FileManager save(FileManager paths);
+  FileManager save(FileManager paths);
 }

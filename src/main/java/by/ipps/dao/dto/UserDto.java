@@ -2,14 +2,11 @@ package by.ipps.dao.dto;
 
 import by.ipps.dao.entity.Department;
 import by.ipps.dao.entity.Role;
+import lombok.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 @Setter
 @Getter
@@ -17,26 +14,26 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class UserDto extends BaseDto {
-    private String login;
-    private String hashPassword;
-    private String name;
-    private String surName;
-    private String patronicName;
-    private List<String> roles;
-    private String position;
-    private String email;
-    private long department;
-    private boolean enabled;
-    private boolean block;
+  private String login;
+  private String hashPassword;
+  private String name;
+  private String surName;
+  private String patronicName;
+  private List<String> roles;
+  private String position;
+  private String email;
+  private long department;
+  private boolean enabled;
+  private boolean block;
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = new ArrayList<>();
-        for (Role r : roles) {
-            this.roles.add(r.getName());
-        }
+  public void setRoles(Set<Role> roles) {
+    this.roles = new ArrayList<>();
+    for (Role r : roles) {
+      this.roles.add(r.getName());
     }
+  }
 
-    public void setDepartment(Department department) {
-        this.department = department.getId();
-    }
+  public void setDepartment(Department department) {
+    this.department = department.getId();
+  }
 }

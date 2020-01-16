@@ -11,22 +11,24 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ProjectServiceImpl extends BaseEntityServiceImpl<Project, ProjectRepository> implements ProjectService {
+public class ProjectServiceImpl extends BaseEntityServiceImpl<Project, ProjectRepository>
+    implements ProjectService {
 
-    private ProjectRepository repository;
+  private ProjectRepository repository;
 
-    public ProjectServiceImpl(ProjectRepository repository) {
-        super(repository);
-        this.repository = repository;
-    }
+  public ProjectServiceImpl(ProjectRepository repository) {
+    super(repository);
+    this.repository = repository;
+  }
 
-    @Override
-    public Page<Project> findNewsPageBySectionAndDepartment(Section section, Department department, Pageable pageable) {
-        return repository.findNewsPageBySectionAndDepartment(section, department, pageable);
-    }
+  @Override
+  public Page<Project> findNewsPageBySectionAndDepartment(
+      Section section, Department department, Pageable pageable) {
+    return repository.findNewsPageBySectionAndDepartment(section, department, pageable);
+  }
 
-    @Override
-    public Project findByIdAndSectionAndDepartment(Long id, Section section, Department department) {
-        return null;
-    }
+  @Override
+  public Project findByIdAndSectionAndDepartment(Long id, Section section, Department department) {
+    return null;
+  }
 }

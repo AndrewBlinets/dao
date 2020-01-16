@@ -7,8 +7,9 @@ import by.ipps.dao.service.base.BaseEntityServiceImpl;
 import org.springframework.stereotype.Service;
 
 @Service
-public class VacancyServiceImpl extends BaseEntityServiceImpl<Vacancy, VacancyRepository> implements VacancyService {
-    public VacancyServiceImpl(VacancyRepository repository) {
-        super(repository);
-    }
+public class VacancyServiceImpl extends BaseEntityServiceImpl<Vacancy, VacancyRepository>
+    implements VacancyService {
+  public VacancyServiceImpl(VacancyRepository repository) {
+    super(repository);
+  }
 }

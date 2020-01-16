@@ -1,9 +1,7 @@
 package by.ipps.dao.utils.view;
 
 public class ViewSection {
-    interface Base {
-    }
+  interface Base {}
 
-    public static class BaseClassSection implements ViewSection.Base {
-    }
+  public static class BaseClassSection implements ViewSection.Base {}
 }

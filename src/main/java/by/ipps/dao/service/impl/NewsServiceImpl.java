@@ -11,37 +11,44 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
-public class NewsServiceImpl extends BaseEntityServiceImpl<News, NewsRepository> implements NewsService {
+public class NewsServiceImpl extends BaseEntityServiceImpl<News, NewsRepository>
+    implements NewsService {
 
-    private final NewsRepository repository;
+  private final NewsRepository repository;
 
-    public NewsServiceImpl(NewsRepository repository) {
-        super(repository);
-        this.repository = repository;
-    }
+  public NewsServiceImpl(NewsRepository repository) {
+    super(repository);
+    this.repository = repository;
+  }
 
-    @Override
-    public Page<News> findNewsPageBySectionAndDepartment(Section section, Department department, Pageable pageable) {
-        return repository.findNewsPageBySectionAndDepartment(section, department, pageable);
-    }
+  @Override
+  public Page<News> findNewsPageBySectionAndDepartment(
+      Section section, Department department, Pageable pageable) {
+    return repository.findNewsPageBySectionAndDepartment(section, department, pageable);
+  }
 
-    @Override
-    public News findByIdAndSectionAndDepartment(Long id, Section section, Department department) {
-        return repository.findByIdAndSectionAndDepartment(id, section, department).orElse(null);
-    }
+  @Override
+  public News findByIdAndSectionAndDepartment(Long id, Section section, Department department) {
+    return repository.findByIdAndSectionAndDepartment(id, section, department).orElse(null);
+  }
 
-    @Override
-    public Page<News> findNewsPageBySectionAndDepartmentForClient(Section section, Department department, Pageable pageable) {
-        return repository.findNewsPageBySectionAndDepartmentForClient(section, department, pageable);
-    }
+  @Override
+  public Page<News> findNewsPageBySectionAndDepartmentForClient(
+      Section section, Department department, Pageable pageable) {
+    return repository.findNewsPageBySectionAndDepartmentForClient(section, department, pageable);
+  }
 
-    @Override
-    public News findByIdAndSectionAndDepartmentForClient(Long id, Section section, Department department) {
-        return repository.findByIdAndSectionAndDepartmentForClient(id, section, department).orElse(null);
-    }
+  @Override
+  public News findByIdAndSectionAndDepartmentForClient(
+      Long id, Section section, Department department) {
+    return repository
+        .findByIdAndSectionAndDepartmentForClient(id, section, department)
+        .orElse(null);
+  }
 
-    @Override
-    public Page<News> findNewsPageBySectionAndDepartmentForAdmin(Section section, Department department, Pageable pageable) {
-        return repository.findNewsPageBySectionAndDepartmentForAdmin(section, department, pageable);
-    }
+  @Override
+  public Page<News> findNewsPageBySectionAndDepartmentForAdmin(
+      Section section, Department department, Pageable pageable) {
+    return repository.findNewsPageBySectionAndDepartmentForAdmin(section, department, pageable);
+  }
 }

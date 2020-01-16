@@ -7,8 +7,9 @@ import by.ipps.dao.service.base.BaseEntityServiceImpl;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PartnersServiceImpl extends BaseEntityServiceImpl<Partners, PartnersRepository> implements PartnersService {
-    public PartnersServiceImpl(PartnersRepository repository) {
-        super(repository);
-    }
+public class PartnersServiceImpl extends BaseEntityServiceImpl<Partners, PartnersRepository>
+    implements PartnersService {
+  public PartnersServiceImpl(PartnersRepository repository) {
+    super(repository);
+  }
 }

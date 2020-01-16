@@ -6,15 +6,14 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class DaoApplication  extends SpringBootServletInitializer {
+public class DaoApplication extends SpringBootServletInitializer {
 
-    public static void main(String[] args) {
-        SpringApplication.run(DaoApplication.class, args);
-    }
+  public static void main(String[] args) {
+    SpringApplication.run(DaoApplication.class, args);
+  }
 
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        return builder.sources(DaoApplication.class);
-    }
-
+  @Override
+  protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+    return builder.sources(DaoApplication.class);
+  }
 }

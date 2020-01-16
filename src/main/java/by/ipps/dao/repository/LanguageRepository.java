@@ -4,5 +4,4 @@ import by.ipps.dao.entity.Language;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface LanguageRepository extends BaseEntityRepository<Language> {
-}
+public interface LanguageRepository extends BaseEntityRepository<Language> {}

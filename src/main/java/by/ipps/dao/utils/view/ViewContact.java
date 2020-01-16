@@ -1,10 +1,7 @@
 package by.ipps.dao.utils.view;
 
 public class ViewContact {
-    interface Base {
-    }
+  interface Base {}
 
-    public static class BaseClass implements ViewContact.Base {
-    }
-
+  public static class BaseClass implements ViewContact.Base {}
 }
