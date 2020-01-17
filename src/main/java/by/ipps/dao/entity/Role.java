@@ -21,4 +21,14 @@ public class Role extends BaseEntity implements Serializable {
 
   @ManyToMany(mappedBy = "roles")
   private List<UserPortal> users;
+
+  @Override
+  public String toString() {
+    final StringBuffer sb = new StringBuffer("{");
+    sb.append(super.toString());
+    sb.append(", \"name\" : \"").append(name).append('\"');
+    sb.append(", \"users\" : \"").append(users);
+    sb.append("\"}");
+    return sb.toString();
+  }
 }

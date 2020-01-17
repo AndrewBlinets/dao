@@ -32,4 +32,15 @@ public class Position extends BaseEntity implements Serializable {
         @JoinColumn(name = "id_deportament", nullable = false, updatable = false)
       })
   private List<Department> departments;
+
+  @Override
+  public String toString() {
+    final StringBuffer sb = new StringBuffer("{");
+    sb.append(super.toString());
+    sb.append(", \"name\" : \"").append(name).append('\"');
+    sb.append(", \"users\" : \"").append(users).append('\"');
+    sb.append(", \"departments\" : \"").append(departments).append('\"');
+    sb.append('}');
+    return sb.toString();
+  }
 }

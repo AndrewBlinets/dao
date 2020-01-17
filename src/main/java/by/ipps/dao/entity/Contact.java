@@ -26,4 +26,14 @@ public class Contact extends BaseEntity {
   @OneToOne
   @JoinColumn(name = "users")
   private UserPortal userPortal;
+
+  @Override
+  public String toString() {
+    final StringBuffer sb = new StringBuffer("{");
+    sb.append(super.toString());
+    sb.append(", \"note\" : \"").append(note).append('\"');
+    sb.append(", userPortal=").append(userPortal);
+    sb.append('}');
+    return sb.toString();
+  }
 }

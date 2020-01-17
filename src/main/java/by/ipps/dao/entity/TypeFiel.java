@@ -19,4 +19,15 @@ public class TypeFiel extends BaseEntity {
 
   @Column private String typeDoc;
   @Column private String mine;
+
+  @Override
+  public String toString() {
+    final StringBuffer sb = new StringBuffer("{");
+    sb.append(super.toString());
+    sb.append(", \"expansion\" : \"").append(expansion).append('\"');
+    sb.append(", \"typeDoc\" : \"").append(typeDoc).append('\"');
+    sb.append(", \"mine\" : \"").append(mine).append('\"');
+    sb.append('}');
+    return sb.toString();
+  }
 }

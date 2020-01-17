@@ -23,4 +23,21 @@ public class Achievement extends BaseEntity implements Serializable {
   @ManyToOne
   @JoinColumn(name = "type_id", referencedColumnName = "id", insertable = false, updatable = false)
   private TypeAchievement typeAchievement;
+
+  @Override
+  public String toString() {
+    final StringBuffer sb = new StringBuffer("{");
+    sb.append(super.toString());
+    sb.append(", \"name\" : \"").append(name).append('\"');
+    sb.append(", \"images\" : [").append(images);
+    if (images != null) {
+      for (FileManager image : images) {
+        sb.append(" {\"id\" : \"").append(image.getId()).append("\"},");
+      }
+    }
+    sb.append("]");
+    sb.append(", \"typeAchievement\" : \"").append(typeAchievement);
+    sb.append("\"}");
+    return sb.toString();
+  }
 }

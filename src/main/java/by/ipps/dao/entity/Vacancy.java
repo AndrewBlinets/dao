@@ -18,4 +18,14 @@ public class Vacancy extends BaseEntity implements Serializable {
   @Column private String name;
 
   @Column private String content;
+
+  @Override
+  public String toString() {
+    final StringBuffer sb = new StringBuffer("{");
+    sb.append(super.toString());
+    sb.append(", \"name\" : \"").append(name).append('\"');
+    sb.append(", \"content\" : \"").append(content).append('\"');
+    sb.append('}');
+    return sb.toString();
+  }
 }

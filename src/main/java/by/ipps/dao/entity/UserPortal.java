@@ -3,10 +3,7 @@ package by.ipps.dao.entity;
 import by.ipps.dao.utils.view.ViewContact;
 import by.ipps.dao.utils.view.ViewDepartment;
 import com.fasterxml.jackson.annotation.JsonView;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -19,7 +16,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-// @ToString
+@EqualsAndHashCode(callSuper = true)
 public class UserPortal extends BaseEntity implements Serializable {
 
   @Column(nullable = false, length = 60)
@@ -91,4 +88,45 @@ public class UserPortal extends BaseEntity implements Serializable {
   @JsonView(ViewContact.BaseClass.class)
   @OneToOne(mappedBy = "userPortal")
   private Contact contact;
+
+  @Override
+  public String toString() {
+    final StringBuffer sb = new StringBuffer("{");
+    sb.append(super.toString());
+    sb.append(", \"login\" : \"").append(login).append('\"');
+    sb.append(", \"hashPassword\" : \"").append(hashPassword).append('\"');
+    sb.append(", \"dateLastChangePassword\" : \"").append(dateLastChangePassword).append('\"');
+    sb.append(", \"name\" : \"").append(name).append('\"');
+    sb.append(", \"surName\" : \"").append(surName).append('\"');
+    sb.append(", \"patronicName\" : \"").append(patronicName).append('\"');
+    sb.append(", \"email\" : \"").append(email).append('\"');
+    sb.append(", \"phone\" : \"").append(phone).append('\"');
+    sb.append(", \"room\" : \"").append(room).append('\"');
+    sb.append(", \"enabled\" : \"").append(enabled).append('\"');
+    sb.append(", \"block\" : \"").append(block).append('\"');
+    sb.append(", \"departments\": [");
+    if (departments != null) {
+      for (Department department : departments) {
+        sb.append(" {\"id\" : \"").append(department.getId()).append("\"},");
+      }
+    }
+    sb.append("]");
+    sb.append(", \"positions\": [");
+    if (positions != null) {
+      for (Position position : positions) {
+        sb.append(" {\"id\" : \"").append(position.getId()).append("\"},");
+      }
+    }
+    sb.append("]");
+    sb.append(", \"users\": [");
+    if (roles != null) {
+      for (Role role : roles) {
+        sb.append(" {\"id\" : \"").append(role.getId()).append("\"},");
+      }
+    }
+    sb.append("]");
+    sb.append(", \"contact\": \"").append(contact != null ? contact.getId() : 0).append("\"");
+    sb.append('}');
+    return sb.toString();
+  }
 }
