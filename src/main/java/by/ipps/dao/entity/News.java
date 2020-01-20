@@ -50,4 +50,22 @@ public class News extends BaseEntity implements Serializable {
       insertable = false,
       updatable = false)
   private Section section;
+
+  @Override
+  public String toString() {
+    final StringBuffer sb = new StringBuffer("{");
+    sb.append(super.toString());
+    sb.append(", \"datePublic\" : ").append(datePublic);
+    sb.append(", \"languageVersions\" :[");
+            for (NewsLanguageVersion languageVersion : languageVersions) {
+                sb.append("{\"id\" : ").append(languageVersion.getId()).append("},");
+            }
+    sb.append("], \"mainImage\" :\"").append(mainImage != null ? mainImage.getId() : 0);
+    sb.append(", \"countView\" :").append(countView);
+    sb.append(", \"status\" :\"").append(status).append('\"');
+    sb.append(", \"department\" : ").append(department != null ? department.getId() : 0);
+    sb.append(", \"section\" : ").append(section != null ? section.getId() : 0);
+    sb.append('}');
+    return sb.toString();
+  }
 }

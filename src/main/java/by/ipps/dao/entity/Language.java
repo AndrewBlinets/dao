@@ -1,9 +1,6 @@
 package by.ipps.dao.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +11,7 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 public class Language extends BaseEntity implements Serializable {
 
   @Column(nullable = false)
@@ -22,6 +20,4 @@ public class Language extends BaseEntity implements Serializable {
   @Column(length = 5, nullable = false)
   private String codeLanguage;
 
-  //    @OneToOne(fetch = FetchType.LAZY, mappedBy = "language")
-  //    private ProjectLanguageVersion projectLanguageVersion;
 }

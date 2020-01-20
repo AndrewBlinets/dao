@@ -33,4 +33,17 @@ public class ProjectLanguageVersion extends BaseEntity implements Serializable {
 
   @Column(name = "code_language")
   private String codeLanguage;
+
+  @Override
+  public String toString() {
+    final StringBuffer sb = new StringBuffer("{");
+    sb.append(super.toString());
+    sb.append(", \"title\" : \"").append(title).append('\"');
+    sb.append(", \"shortTitle\" : \"").append(shortTitle).append('\"');
+    sb.append(", \"content\" : \"").append(content).append('\"');
+    sb.append(", \"entrySpeech\" : \"").append(entrySpeech).append('\"');
+    sb.append(", \"codeLanguage\" : \"").append(codeLanguage).append('\"');
+    sb.append('}');
+    return sb.toString();
+  }
 }

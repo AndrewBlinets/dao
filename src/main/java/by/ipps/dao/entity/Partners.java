@@ -1,9 +1,6 @@
 package by.ipps.dao.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,6 +12,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@EqualsAndHashCode(callSuper = true)
 public class Partners extends BaseEntity implements Serializable {
 
   @Column private String name;
@@ -22,4 +20,15 @@ public class Partners extends BaseEntity implements Serializable {
   @OneToOne private FileManager image;
 
   @Column private String url;
+
+  @Override
+  public String toString() {
+    final StringBuffer sb = new StringBuffer("{");
+    sb.append(super.toString());
+    sb.append(", \"name\" : \"").append(name).append('\"');
+    sb.append(", \"image\" : ").append(image.getId());
+    sb.append(", \"url\" : \"").append(url).append('\"');
+    sb.append('}');
+    return sb.toString();
+  }
 }

@@ -27,13 +27,18 @@ public class Exhibitions extends BaseEntity implements Serializable {
   @OneToMany(fetch = FetchType.EAGER)
   private List<FileManager> images;
 
-//  @Override
-//  public String toString() {
-//    final StringBuffer sb = new StringBuffer("Exhibitions{");
-//    sb.append("name='").append(name).append('\'');
-//    sb.append(", date=").append(date);
-//    sb.append(", images=").append(images);
-//    sb.append('}');
-//    return sb.toString();
-//  }
+  @Override
+  public String toString() {
+    final StringBuffer sb = new StringBuffer("{");
+    sb.append(super.toString());
+    sb.append(", \"name\" : \"").append(name).append('\"');
+    sb.append(", \"date\" : ").append(date);
+    sb.append(", \"images\" : [");
+    for (FileManager fileManager : images){
+      sb.append("{\"id\":").append(fileManager.getId()).append("},");
+    }
+    sb.append("],");
+    sb.append('}');
+    return sb.toString();
+  }
 }

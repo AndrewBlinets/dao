@@ -1,10 +1,7 @@
 package by.ipps.dao.entity;
 
 import by.ipps.dao.utils.constant.FilterName;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.FilterDef;
 import org.hibernate.annotations.ParamDef;
 
@@ -23,22 +20,32 @@ import java.io.Serializable;
     parameters = {
       @ParamDef(name = "language", type = "string"),
     })
+@EqualsAndHashCode(callSuper = true)
 public class NewsLanguageVersion extends BaseEntity implements Serializable {
-
-  //    @OneToOne(fetch = FetchType.EAGER)
-  //    @JoinColumn(name = "language")
-  //    private Language language;
 
   @Column private String title;
 
   @Column(length = 10000)
   private String content;
 
-  @Column(length = 30)
+  @Column(length = 100)
   private String shortTitle;
 
   @Column private String entrySpeech;
 
   @Column(name = "code_language")
   private String codeLanguage;
+
+  @Override
+  public String toString() {
+    final StringBuffer sb = new StringBuffer("{");
+    sb.append(super.toString());
+    sb.append(", \"title\" : \"").append(title).append('\"');
+    sb.append(", \"content\" : \"").append(content).append('\"');
+    sb.append(", \"shortTitle\" : \"").append(shortTitle).append('\"');
+    sb.append(", \"entrySpeech\" : \"").append(entrySpeech).append('\"');
+    sb.append(", \"codeLanguage\" : \"").append(codeLanguage).append('\"');
+    sb.append('}');
+    return sb.toString();
+  }
 }

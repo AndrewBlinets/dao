@@ -32,7 +32,7 @@ public class Contact extends BaseEntity {
     final StringBuffer sb = new StringBuffer("{");
     sb.append(super.toString());
     sb.append(", \"note\" : \"").append(note).append('\"');
-    sb.append(", userPortal=").append(userPortal);
+    sb.append(", \"userPortal\" : ").append(userPortal.getId());
     sb.append('}');
     return sb.toString();
   }
