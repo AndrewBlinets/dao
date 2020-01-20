@@ -1,9 +1,6 @@
 package by.ipps.dao.entity;
 
-import by.ipps.dao.utils.view.ViewContact;
-import by.ipps.dao.utils.view.ViewDepartment;
-import by.ipps.dao.utils.view.ViewFile;
-import by.ipps.dao.utils.view.ViewSection;
+import by.ipps.dao.utils.view.*;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,7 +25,8 @@ public class BaseEntity implements Serializable {
     ViewFile.BaseClass.class,
     ViewSection.BaseClassSection.class,
     ViewDepartment.BaseClassDepartment.class,
-    ViewDepartment.FullInformationClassDepartment.class
+    ViewDepartment.FullInformationClassDepartment.class,
+    ViewNews.AdminNewsClass.class
   })
   @Id
   @Column
@@ -42,6 +40,7 @@ public class BaseEntity implements Serializable {
   @Column(nullable = false)
   @CreationTimestamp
   @Temporal(TemporalType.TIMESTAMP)
+  @JsonView({ViewNews.AdminNewsClass.class})
   private Date dti;
 
   @Column(nullable = false)

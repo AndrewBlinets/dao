@@ -1,6 +1,8 @@
 package by.ipps.dao.entity;
 
 import by.ipps.dao.utils.constant.FilterName;
+import by.ipps.dao.utils.view.ViewNews;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.*;
 import org.hibernate.annotations.FilterDef;
 import org.hibernate.annotations.ParamDef;
@@ -23,17 +25,24 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = true)
 public class NewsLanguageVersion extends BaseEntity implements Serializable {
 
-  @Column private String title;
+  @Column
+  @JsonView({ViewNews.AdminNewsClass.class})
+  private String title;
 
   @Column(length = 10000)
+  @JsonView({ViewNews.AdminNewsClass.class})
   private String content;
 
   @Column(length = 100)
+  @JsonView({ViewNews.AdminNewsClass.class})
   private String shortTitle;
 
-  @Column private String entrySpeech;
+  @Column
+  @JsonView({ViewNews.AdminNewsClass.class})
+  private String entrySpeech;
 
   @Column(name = "code_language")
+  @JsonView({ViewNews.AdminNewsClass.class})
   private String codeLanguage;
 
   @Override

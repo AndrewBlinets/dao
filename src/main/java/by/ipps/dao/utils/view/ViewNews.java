@@ -7,9 +7,13 @@ public class ViewNews {
 
   interface LongNews {}
 
+  interface AdminNews {}
+
   public static class BaseClass implements Base {}
 
   public static class ShortNewsClass implements ShortNews {}
 
   public static class LongNewsClass implements LongNews {}
+
+  public static class AdminNewsClass implements AdminNews{}
 }

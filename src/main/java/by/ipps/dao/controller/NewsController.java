@@ -9,8 +9,11 @@ import by.ipps.dao.dto.news.NewsDtoFull;
 import by.ipps.dao.entity.Department;
 import by.ipps.dao.entity.News;
 import by.ipps.dao.entity.Section;
+import by.ipps.dao.entity.UserPortal;
 import by.ipps.dao.service.NewsService;
 import by.ipps.dao.utils.constant.FilterName;
+import by.ipps.dao.utils.view.ViewNews;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.hibernate.Session;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -23,6 +26,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.swing.text.View;
 import javax.transaction.Transactional;
 
 @RestController
@@ -99,6 +103,7 @@ public class NewsController extends BaseEntityAbstractController<News, NewsServi
   }
 
   @Override
+  @JsonView({ViewNews.AdminNewsClass.class})
   public ResponseEntity<Page<News>> getAll(
       Pageable pageable, String language, Section section, Department department) {
     Page<News> newsPage = service.findNewsPageBySectionAndDepartment(section, department, pageable);
@@ -106,9 +111,22 @@ public class NewsController extends BaseEntityAbstractController<News, NewsServi
   }
 
   @Override
+  @JsonView({ViewNews.AdminNewsClass.class})
   public ResponseEntity<News> get(
       Long id, String language, Section section, Department department) {
     News news = service.findByIdAndSectionAndDepartment(id, section, department);
     return new ResponseEntity<>(news, news != null ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+  }
+
+  @Override
+  @JsonView(ViewNews.AdminNewsClass.class)
+  public ResponseEntity<News> create(News entity, UserPortal userPortal) {
+    return super.create(entity, userPortal);
+  }
+
+  @Override
+  @JsonView(ViewNews.AdminNewsClass.class)
+  public ResponseEntity<News> update(News entity, UserPortal userPortal) {
+    return super.update(entity, userPortal);
   }
 }

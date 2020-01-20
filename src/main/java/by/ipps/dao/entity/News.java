@@ -1,6 +1,8 @@
 package by.ipps.dao.entity;
 
 import by.ipps.dao.utils.constant.FilterName;
+import by.ipps.dao.utils.view.ViewNews;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Filter;
@@ -21,34 +23,39 @@ public class News extends BaseEntity implements Serializable {
   @Column
   @CreationTimestamp
   @Temporal(TemporalType.TIMESTAMP)
+  @JsonView({ViewNews.AdminNewsClass.class})
   private Date datePublic;
 
-  @OneToMany(fetch = FetchType.LAZY)
+  @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   @Filter(name = FilterName.LANGUAGE)
+  @JsonView({ViewNews.AdminNewsClass.class})
   private List<NewsLanguageVersion> languageVersions;
 
   @OneToOne
   @JoinColumn(name = "mainImge")
+  @JsonView({ViewNews.AdminNewsClass.class})
   private FileManager mainImage;
 
-  @Column private int countView;
+  @Column
+  @JsonView({ViewNews.AdminNewsClass.class})
+  private int countView;
 
-  @Column private String status;
+  @Column
+  @JsonView({ViewNews.AdminNewsClass.class})
+  private String status;
 
   @ManyToOne
   @JoinColumn(
       name = "departament_id",
-      referencedColumnName = "id",
-      insertable = false,
-      updatable = false)
+      referencedColumnName = "id")
+  @JsonView({ViewNews.AdminNewsClass.class})
   private Department department;
 
   @ManyToOne
   @JoinColumn(
       name = "section_id",
-      referencedColumnName = "id",
-      insertable = false,
-      updatable = false)
+      referencedColumnName = "id")
+  @JsonView({ViewNews.AdminNewsClass.class})
   private Section section;
 
   @Override
