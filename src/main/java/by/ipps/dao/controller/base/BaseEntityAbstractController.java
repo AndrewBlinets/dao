@@ -53,11 +53,13 @@ public abstract class BaseEntityAbstractController<
 
   @Override
   public ResponseEntity<T> update(T entity, UserPortal userPortal) {
-    String json = baseEntityServuce.findById(entity.getId()).toString();
+    T oldEntity = baseEntityServuce.findById(entity.getId());
+    entity.setDateChangeStatusR(oldEntity.getDateChangeStatusR());
+    entity.setDti(oldEntity.getDti());
     T saved = baseEntityServuce.update(entity);
     if (saved != null) {
       loggerService.create(
-          new Logger(userPortal, String.valueOf(entity.getClass()), entity.getId(), UPDATE, json));
+          new Logger(userPortal, String.valueOf(entity.getClass()), entity.getId(), UPDATE, oldEntity.toString()));
     }
     return new ResponseEntity<>(saved, saved != null ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
   }
