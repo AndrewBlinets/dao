@@ -33,11 +33,11 @@ public class UserPortal extends BaseEntity implements Serializable {
   @JsonView({ViewContact.BaseClass.class, ViewDepartment.FullInformationClassDepartment.class})
   private String name;
 
-  @JsonView(ViewContact.BaseClass.class)
+  @JsonView({ViewContact.BaseClass.class, ViewDepartment.FullInformationClassDepartment.class})
   @Column(nullable = false, length = 60)
   private String surName;
 
-  @JsonView(ViewContact.BaseClass.class)
+  @JsonView({ViewContact.BaseClass.class, ViewDepartment.FullInformationClassDepartment.class})
   @Column(nullable = false, length = 60)
   private String patronicName;
 

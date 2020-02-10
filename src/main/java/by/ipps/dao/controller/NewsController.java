@@ -8,6 +8,7 @@ import by.ipps.dao.dto.news.NewsDtoAdmin;
 import by.ipps.dao.dto.news.NewsDtoFull;
 import by.ipps.dao.entity.Department;
 import by.ipps.dao.entity.News;
+import by.ipps.dao.entity.NewsLanguageVersion;
 import by.ipps.dao.entity.Section;
 import by.ipps.dao.entity.UserPortal;
 import by.ipps.dao.service.NewsService;
@@ -127,6 +128,18 @@ public class NewsController extends BaseEntityAbstractController<News, NewsServi
   @Override
   @JsonView(ViewNews.AdminNewsClass.class)
   public ResponseEntity<News> update(News entity, UserPortal userPortal) {
+    News dataBaseVersion = service.findById(entity.getId());
+    entity.setStatusR(dataBaseVersion.getStatusR());
+    entity.setDateChangeStatusR(dataBaseVersion.getDateChangeStatusR());
+    entity.setDti(dataBaseVersion.getDti());
+    for (NewsLanguageVersion languageVersion : entity.getLanguageVersions()){
+      for (NewsLanguageVersion languageVersionBase : dataBaseVersion.getLanguageVersions()){
+        if(languageVersionBase.getId() == languageVersion.getId()){
+          languageVersion.setDti(languageVersionBase.getDti());
+          languageVersion.setDateChangeStatusR(languageVersionBase.getDateChangeStatusR());
+        }
+      }
+    }
     return super.update(entity, userPortal);
   }
 }

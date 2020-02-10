@@ -15,6 +15,7 @@ import java.util.Set;
 @AllArgsConstructor
 @ToString
 public class UserDto extends BaseDto {
+  private long id;
   private String login;
   private String hashPassword;
   private String name;
