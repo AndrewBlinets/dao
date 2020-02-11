@@ -34,7 +34,7 @@ public class Exhibitions extends BaseEntity implements Serializable {
     sb.append(", \"name\" : \"").append(name).append('\"');
     sb.append(", \"date\" : ").append(date);
     sb.append(", \"images\" : [");
-    for (FileManager fileManager : images){
+    for (FileManager fileManager : images) {
       sb.append("{\"id\":").append(fileManager.getId()).append("},");
     }
     sb.append("],");

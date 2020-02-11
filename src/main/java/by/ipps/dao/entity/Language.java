@@ -19,5 +19,4 @@ public class Language extends BaseEntity implements Serializable {
 
   @Column(length = 5, nullable = false)
   private String codeLanguage;
-
 }

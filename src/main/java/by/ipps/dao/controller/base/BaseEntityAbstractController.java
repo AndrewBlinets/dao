@@ -59,7 +59,12 @@ public abstract class BaseEntityAbstractController<
     T saved = baseEntityServuce.update(entity);
     if (saved != null) {
       loggerService.create(
-          new Logger(userPortal, String.valueOf(entity.getClass()), entity.getId(), UPDATE, oldEntity.toString()));
+          new Logger(
+              userPortal,
+              String.valueOf(entity.getClass()),
+              entity.getId(),
+              UPDATE,
+              oldEntity.toString()));
     }
     return new ResponseEntity<>(saved, saved != null ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
   }

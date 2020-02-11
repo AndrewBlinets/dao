@@ -28,15 +28,11 @@ public class Project extends BaseEntity implements Serializable {
   private List<FileManager> images;
 
   @ManyToOne
-  @JoinColumn(
-      name = "departament_id",
-      referencedColumnName = "id")
+  @JoinColumn(name = "departament_id", referencedColumnName = "id")
   private Department department;
 
   @ManyToOne
-  @JoinColumn(
-      name = "section_id",
-      referencedColumnName = "id")
+  @JoinColumn(name = "section_id", referencedColumnName = "id")
   private Section section;
 
   @Override
@@ -44,12 +40,12 @@ public class Project extends BaseEntity implements Serializable {
     final StringBuffer sb = new StringBuffer("{");
     sb.append(super.toString());
     sb.append(", \"images\" : [");
-    for (FileManager fileManager : images){
+    for (FileManager fileManager : images) {
       sb.append("{\"id\":").append(fileManager.getId()).append("},");
     }
     sb.append("],");
     sb.append(" \"languageVersions\" : [");
-    for (ProjectLanguageVersion projectLanguageVersion : languageVersions){
+    for (ProjectLanguageVersion projectLanguageVersion : languageVersions) {
       sb.append("{\"id\":").append(projectLanguageVersion.getId()).append("},");
     }
     sb.append("]");
