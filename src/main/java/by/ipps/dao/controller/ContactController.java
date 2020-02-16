@@ -25,6 +25,12 @@ public class ContactController {
   @GetMapping
   @ResponseBody
   public List<Department> getAllContact() {
-    return departmentService.findAll();
+    try{
+      List<Department> asd = departmentService.findAll();
+      return departmentService.findAll();
+    }catch (Exception e){
+      e.printStackTrace();
+      return null;
+    }
   }
 }

@@ -45,16 +45,12 @@ public class News extends BaseEntity implements Serializable {
   private String status;
 
   @ManyToOne
-  @JoinColumn(
-      name = "departament_id",
-      referencedColumnName = "id")
+  @JoinColumn(name = "departament_id", referencedColumnName = "id")
   @JsonView({ViewNews.AdminNewsClass.class})
   private Department department;
 
   @ManyToOne
-  @JoinColumn(
-      name = "section_id",
-      referencedColumnName = "id")
+  @JoinColumn(name = "section_id", referencedColumnName = "id")
   @JsonView({ViewNews.AdminNewsClass.class})
   private Section section;
 
@@ -64,9 +60,9 @@ public class News extends BaseEntity implements Serializable {
     sb.append(super.toString());
     sb.append(", \"datePublic\" : ").append(datePublic);
     sb.append(", \"languageVersions\" :[");
-            for (NewsLanguageVersion languageVersion : languageVersions) {
-                sb.append("{\"id\" : ").append(languageVersion.getId()).append("},");
-            }
+    for (NewsLanguageVersion languageVersion : languageVersions) {
+      sb.append("{\"id\" : ").append(languageVersion.getId()).append("},");
+    }
     sb.append("], \"mainImage\" :\"").append(mainImage != null ? mainImage.getId() : 0);
     sb.append(", \"countView\" :").append(countView);
     sb.append(", \"status\" :\"").append(status).append('\"');

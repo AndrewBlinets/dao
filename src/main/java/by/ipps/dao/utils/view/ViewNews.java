@@ -15,5 +15,5 @@ public class ViewNews {
 
   public static class LongNewsClass implements LongNews {}
 
-  public static class AdminNewsClass implements AdminNews{}
+  public static class AdminNewsClass implements AdminNews {}
 }

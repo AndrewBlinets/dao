@@ -6,11 +6,7 @@ import by.ipps.dao.custom.CustomPage;
 import by.ipps.dao.dto.news.NewsDto;
 import by.ipps.dao.dto.news.NewsDtoAdmin;
 import by.ipps.dao.dto.news.NewsDtoFull;
-import by.ipps.dao.entity.Department;
-import by.ipps.dao.entity.News;
-import by.ipps.dao.entity.NewsLanguageVersion;
-import by.ipps.dao.entity.Section;
-import by.ipps.dao.entity.UserPortal;
+import by.ipps.dao.entity.*;
 import by.ipps.dao.service.NewsService;
 import by.ipps.dao.utils.constant.FilterName;
 import by.ipps.dao.utils.view.ViewNews;
@@ -27,7 +23,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.swing.text.View;
 import javax.transaction.Transactional;
 
 @RestController
@@ -132,9 +127,9 @@ public class NewsController extends BaseEntityAbstractController<News, NewsServi
     entity.setStatusR(dataBaseVersion.getStatusR());
     entity.setDateChangeStatusR(dataBaseVersion.getDateChangeStatusR());
     entity.setDti(dataBaseVersion.getDti());
-    for (NewsLanguageVersion languageVersion : entity.getLanguageVersions()){
-      for (NewsLanguageVersion languageVersionBase : dataBaseVersion.getLanguageVersions()){
-        if(languageVersionBase.getId() == languageVersion.getId()){
+    for (NewsLanguageVersion languageVersion : entity.getLanguageVersions()) {
+      for (NewsLanguageVersion languageVersionBase : dataBaseVersion.getLanguageVersions()) {
+        if (languageVersionBase.getId() == languageVersion.getId()) {
           languageVersion.setDti(languageVersionBase.getDti());
           languageVersion.setDateChangeStatusR(languageVersionBase.getDateChangeStatusR());
         }

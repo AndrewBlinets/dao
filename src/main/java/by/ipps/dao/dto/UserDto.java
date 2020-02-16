@@ -2,10 +2,10 @@ package by.ipps.dao.dto;
 
 import by.ipps.dao.entity.Department;
 import by.ipps.dao.entity.Role;
-import java.util.Date;
 import lombok.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 

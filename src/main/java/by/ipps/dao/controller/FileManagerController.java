@@ -18,7 +18,7 @@ public class FileManagerController {
   private FileManagerService fileManagerService;
   private LoggerService loggerService;
 
-  public FileManagerController(FileManagerService fileManagerService,LoggerService loggerService) {
+  public FileManagerController(FileManagerService fileManagerService, LoggerService loggerService) {
     this.fileManagerService = fileManagerService;
     this.loggerService = loggerService;
   }
@@ -28,8 +28,10 @@ public class FileManagerController {
   public FileManager saveImage(
       @RequestBody FileManager fileManagers, @RequestParam(value = "user") UserPortal userPortal) {
     fileManagers = fileManagerService.save(fileManagers);
-    if(fileManagers != null){
-      loggerService.create(new Logger(userPortal, String.valueOf(fileManagers.getClass()), fileManagers.getId(), "CREATE"));
+    if (fileManagers != null) {
+      loggerService.create(
+          new Logger(
+              userPortal, String.valueOf(fileManagers.getClass()), fileManagers.getId(), "CREATE"));
     }
     return fileManagers;
   }
