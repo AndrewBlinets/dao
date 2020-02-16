@@ -29,6 +29,6 @@ public class ProjectServiceImpl extends BaseEntityServiceImpl<Project, ProjectRe
 
   @Override
   public Project findByIdAndSectionAndDepartment(Long id, Section section, Department department) {
-    return null;
+    return repository.findByIdAndSectionAndDepartment(id, section, department).orElse(null);
   }
 }
