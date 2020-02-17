@@ -1,6 +1,7 @@
 package by.ipps.dao.dto.news;
 
 import by.ipps.dao.dto.BaseDto;
+import by.ipps.dao.entity.BaseEntity;
 import by.ipps.dao.entity.FileManager;
 import by.ipps.dao.entity.NewsLanguageVersion;
 import lombok.AllArgsConstructor;
@@ -16,7 +17,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class NewsDto extends BaseDto implements Serializable {
+public class NewsDto extends BaseEntity implements Serializable {
 
   private Date datePublic;
   private long mainImage;

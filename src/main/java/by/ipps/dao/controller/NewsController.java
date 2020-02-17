@@ -120,6 +120,7 @@ public class NewsController extends BaseEntityAbstractController<News, NewsServi
     return super.create(entity, userPortal);
   }
 
+
   @Override
   @JsonView(ViewNews.AdminNewsClass.class)
   public ResponseEntity<News> update(News entity, UserPortal userPortal) {

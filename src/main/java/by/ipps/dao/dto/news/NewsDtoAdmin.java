@@ -1,6 +1,7 @@
 package by.ipps.dao.dto.news;
 
 import by.ipps.dao.dto.BaseDto;
+import by.ipps.dao.entity.BaseEntity;
 import by.ipps.dao.entity.NewsLanguageVersion;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,11 +16,11 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class NewsDtoAdmin extends BaseDto implements Serializable {
+public class NewsDtoAdmin extends BaseEntity implements Serializable {
   private Date datePublic;
   private Date dti;
   private String shortTitle;
-  private String status;
+  private int status;
 
   public void setLanguageVersions(List<NewsLanguageVersion> versions) {
     if (!versions.isEmpty()) {

@@ -25,10 +25,10 @@ public class ContactController {
   @GetMapping
   @ResponseBody
   public List<Department> getAllContact() {
-    try{
+    try {
       List<Department> asd = departmentService.findAll();
       return departmentService.findAll();
-    }catch (Exception e){
+    } catch (Exception e) {
       e.printStackTrace();
       return null;
     }

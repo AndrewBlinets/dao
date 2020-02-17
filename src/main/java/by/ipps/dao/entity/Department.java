@@ -28,7 +28,7 @@ public class Department extends BaseEntity implements Serializable {
   @Column
   private String code;
 
-//  @JsonView()
+  //  @JsonView()
   @ManyToMany(mappedBy = "departments")
   private Set<UserPortal> users;
 

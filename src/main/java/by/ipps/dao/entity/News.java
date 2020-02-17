@@ -42,7 +42,7 @@ public class News extends BaseEntity implements Serializable {
 
   @Column
   @JsonView({ViewNews.AdminNewsClass.class})
-  private String status;
+  private int status;
 
   @ManyToOne
   @JoinColumn(name = "departament_id", referencedColumnName = "id")
