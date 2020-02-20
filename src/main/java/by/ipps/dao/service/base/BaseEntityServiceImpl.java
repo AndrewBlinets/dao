@@ -4,6 +4,7 @@ import by.ipps.dao.entity.BaseEntity;
 import by.ipps.dao.repository.BaseEntityRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import java.util.Date;
 import java.util.List;

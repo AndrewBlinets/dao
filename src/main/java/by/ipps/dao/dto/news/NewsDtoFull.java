@@ -23,10 +23,14 @@ public class NewsDtoFull extends BaseDto implements Serializable {
   private int countView;
   private String title;
   private String content;
+  private String entrySpeech;
+  private String shortTitle;
 
   public void setLanguageVersions(List<NewsLanguageVersion> versions) {
     this.title = versions.get(0).getTitle();
     this.content = versions.get(0).getContent();
+    this.entrySpeech = versions.get(0).getEntrySpeech();
+    this.shortTitle = versions.get(0).getShortTitle();
   }
 
   public void setMainImage(FileManager mainImage) {

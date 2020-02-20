@@ -16,7 +16,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class NewsDtoAdmin extends BaseEntity implements Serializable {
+public class NewsDtoAdmin extends BaseDto implements Serializable {
   private Date datePublic;
   private Date dti;
   private String shortTitle;

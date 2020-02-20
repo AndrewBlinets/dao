@@ -35,7 +35,7 @@ public interface NewsRepository extends BaseEntityRepository<News> {
       value =
           "select n from News n where n.statusR = 'A' and n.id = :id and"
               + " (n.section = :section or :section is null) and (n.department = :department or :department is null) "
-              + "and  n.datePublic < current_timestamp")
+              + "and  n.datePublic < current_timestamp and n.status = 1")
   Optional<News> findByIdAndSectionAndDepartmentForClient(
       @Param("id") Long id,
       @Param("section") Section section,
@@ -44,7 +44,7 @@ public interface NewsRepository extends BaseEntityRepository<News> {
   @Query(
       value =
           "SELECT n from News n where n.statusR = 'A' and (n.section = :section or :section is null) and"
-              + " (n.department = :department or :department is null) and  n.datePublic < current_timestamp ")
+              + " (n.department = :department or :department is null) and  n.datePublic < current_timestamp and n.status = 1 ")
   Page<News> findNewsPageBySectionAndDepartmentForClient(
       @Param("section") Section section,
       @Param("department") Department department,
@@ -53,7 +53,7 @@ public interface NewsRepository extends BaseEntityRepository<News> {
   @Query(
       value =
           "SELECT n from News n where n.statusR = 'A' and (n.section = :section or :section is null) and"
-              + " (n.department = :department or :department is null) ")
+              + " (n.department = :department or :department is null)")
   Page<News> findNewsPageBySectionAndDepartmentForAdmin(
       @Param("section") Section section,
       @Param("department") Department department,

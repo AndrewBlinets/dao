@@ -17,7 +17,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class NewsDto extends BaseEntity implements Serializable {
+public class NewsDto extends BaseDto implements Serializable {
 
   private Date datePublic;
   private long mainImage;
@@ -33,6 +33,8 @@ public class NewsDto extends BaseEntity implements Serializable {
   }
 
   public void setMainImage(FileManager mainImage) {
-    this.mainImage = mainImage.getId();
+    try{this.mainImage = mainImage.getId();
+      }catch (NullPointerException e){
+    }
   }
 }

@@ -28,11 +28,11 @@ public class Department extends BaseEntity implements Serializable {
   @Column
   private String code;
 
-  //  @JsonView()
+    @JsonView({ViewContact.BaseClass.class})
   @ManyToMany(mappedBy = "departments")
-  private Set<UserPortal> users;
+  private List<UserPortal> users;
 
-  @JsonView({ViewDepartment.FullInformationClassDepartment.class, ViewContact.BaseClass.class})
+  @JsonView({ViewDepartment.FullInformationClassDepartment.class})
   @OneToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "leader")
   private UserPortal leader;
