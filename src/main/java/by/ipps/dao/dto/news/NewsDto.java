@@ -1,7 +1,6 @@
 package by.ipps.dao.dto.news;
 
-import by.ipps.dao.dto.BaseDto;
-import by.ipps.dao.entity.BaseEntity;
+import by.ipps.dao.dto.page.BaseDto;
 import by.ipps.dao.entity.FileManager;
 import by.ipps.dao.entity.NewsLanguageVersion;
 import lombok.AllArgsConstructor;
@@ -33,8 +32,9 @@ public class NewsDto extends BaseDto implements Serializable {
   }
 
   public void setMainImage(FileManager mainImage) {
-    try{this.mainImage = mainImage.getId();
-      }catch (NullPointerException e){
+    try {
+      this.mainImage = mainImage.getId();
+    } catch (NullPointerException e) {
     }
   }
 }

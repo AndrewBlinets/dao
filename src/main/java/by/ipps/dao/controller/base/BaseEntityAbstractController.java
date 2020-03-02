@@ -24,26 +24,27 @@ public abstract class BaseEntityAbstractController<
   protected static final String REMOVE = "REMOVE";
   protected static final String UPDATE = "UPDATE";
 
-  protected final S baseEntityServuce;
+  protected final S baseEntityService;
 
   protected BaseEntityAbstractController(S s) {
-    this.baseEntityServuce = s;
+    this.baseEntityService = s;
   }
 
   @Autowired protected LoggerService loggerService;
   @Autowired protected ModelMapper modelMapper;
 
   @Override
-  public ResponseEntity<T> get(Long id, String language, Section section, Department department) {
+  public ResponseEntity<T> get(
+      Long id, String language, PageWithSection pageWithSection, Department department) {
     log.info(id);
     log.info(language);
-    T entity = baseEntityServuce.findById(id);
+    T entity = baseEntityService.findById(id);
     return new ResponseEntity<>(entity, entity != null ? HttpStatus.OK : HttpStatus.NOT_FOUND);
   }
 
   @Override
   public ResponseEntity<T> create(T entity, UserPortal userPortal) {
-    T saved = baseEntityServuce.create(entity);
+    T saved = baseEntityService.create(entity);
     if (saved != null) {
       loggerService.create(
           new Logger(userPortal, String.valueOf(entity.getClass()), entity.getId(), CREATE));
@@ -53,10 +54,10 @@ public abstract class BaseEntityAbstractController<
 
   @Override
   public ResponseEntity<T> update(T entity, UserPortal userPortal) {
-    T oldEntity = baseEntityServuce.findById(entity.getId());
+    T oldEntity = baseEntityService.findById(entity.getId());
     entity.setDateChangeStatusR(oldEntity.getDateChangeStatusR());
     entity.setDti(oldEntity.getDti());
-    T saved = baseEntityServuce.update(entity);
+    T saved = baseEntityService.update(entity);
     if (saved != null) {
       loggerService.create(
           new Logger(
@@ -71,7 +72,7 @@ public abstract class BaseEntityAbstractController<
 
   @Override
   public ResponseEntity<Boolean> remove(T id, UserPortal userPortal) {
-    boolean flag = baseEntityServuce.delete(id);
+    boolean flag = baseEntityService.delete(id);
     if (flag)
       loggerService.create(
           new Logger(userPortal, String.valueOf(id.getClass()), id.getId(), REMOVE));
@@ -81,16 +82,16 @@ public abstract class BaseEntityAbstractController<
   //    @Transactional
   @Override
   public ResponseEntity<Page<T>> getAll(
-      Pageable pageable, String language, Section section, Department department) {
+      Pageable pageable, String language, PageWithSection pageWithSection, Department department) {
     log.info(pageable.toString());
     log.info(language);
-    Page<T> ts = baseEntityServuce.findPagingRecords(pageable);
+    Page<T> ts = baseEntityService.findPagingRecords(pageable);
     return new ResponseEntity<>(ts, ts != null ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
   }
 
   @Override
-  public ResponseEntity<List<T>> getAll(Section section, Department department) {
-    List<T> ts = baseEntityServuce.findAll();
+  public ResponseEntity<List<T>> getAll(PageWithSection pageWithSection, Department department) {
+    List<T> ts = baseEntityService.findAll();
     return new ResponseEntity<>(ts, ts != null ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
   }
 }

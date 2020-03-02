@@ -1,7 +1,9 @@
 package by.ipps.dao.repository;
 
 import by.ipps.dao.entity.Section;
-import org.springframework.stereotype.Repository;
 
-@Repository
-public interface SectionRepository extends BaseEntityRepository<Section> {}
+public interface SectionRepository extends BaseEntityRepository<Section> {
+
+  //  @Query(value = "select s from Section s where s.statusR = 'A' and s.page.id = :id")
+  //  List<Section> findSectionByIdPage(@Param("id") long id);
+}

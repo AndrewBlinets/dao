@@ -3,7 +3,7 @@ package by.ipps.dao.controller;
 import by.ipps.dao.controller.base.BaseEntityAbstractController;
 import by.ipps.dao.controller.base.BaseEntityController;
 import by.ipps.dao.entity.Department;
-import by.ipps.dao.entity.Section;
+import by.ipps.dao.entity.PageWithSection;
 import by.ipps.dao.entity.UserPortal;
 import by.ipps.dao.service.DepartmentService;
 import by.ipps.dao.utils.view.ViewDepartment;
@@ -36,8 +36,8 @@ public class DepartmentController
   @JsonView(ViewDepartment.FullInformationClassDepartment.class)
   @Override
   public ResponseEntity<Department> get(
-      Long id, String language, Section section, Department department) {
-    return super.get(id, language, section, department);
+      Long id, String language, PageWithSection pageWithSection, Department department) {
+    return super.get(id, language, pageWithSection, department);
   }
 
   @Override
@@ -49,13 +49,14 @@ public class DepartmentController
   @Override
   @JsonView(ViewDepartment.BaseClassDepartment.class)
   public ResponseEntity<Page<Department>> getAll(
-      Pageable pageable, String language, Section section, Department department) {
-    return super.getAll(pageable, language, section, department);
+      Pageable pageable, String language, PageWithSection pageWithSection, Department department) {
+    return super.getAll(pageable, language, pageWithSection, department);
   }
 
   @Override
   @JsonView(ViewDepartment.BaseClassDepartment.class)
-  public ResponseEntity<List<Department>> getAll(Section section, Department department) {
-    return super.getAll(section, department);
+  public ResponseEntity<List<Department>> getAll(
+      PageWithSection pageWithSection, Department department) {
+    return super.getAll(pageWithSection, department);
   }
 }

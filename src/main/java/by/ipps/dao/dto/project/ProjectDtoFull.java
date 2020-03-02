@@ -1,6 +1,6 @@
 package by.ipps.dao.dto.project;
 
-import by.ipps.dao.dto.BaseDto;
+import by.ipps.dao.dto.page.BaseDto;
 import by.ipps.dao.entity.FileManager;
 import by.ipps.dao.entity.ProjectLanguageVersion;
 import lombok.AllArgsConstructor;
@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -21,7 +20,6 @@ public class ProjectDtoFull extends BaseDto implements Serializable {
   private long mainImage;
   private String title;
   private String content;
-  private List<Long> images;
 
   public void setLanguageVersions(List<ProjectLanguageVersion> versions) {
     if (!versions.isEmpty()) {
@@ -30,10 +28,9 @@ public class ProjectDtoFull extends BaseDto implements Serializable {
     }
   }
 
-  public void setImages(List<FileManager> images) {
-    if (!images.isEmpty()) {
-      this.images = new ArrayList<>();
-      for (FileManager fileManager : images) this.images.add(fileManager.getId());
+  public void setMainImage(FileManager image) {
+    if (image != null) {
+      this.mainImage = image.getId();
     }
   }
 }

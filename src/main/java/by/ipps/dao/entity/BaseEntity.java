@@ -23,10 +23,14 @@ public class BaseEntity implements Serializable {
   @JsonView({
     ViewContact.BaseClass.class,
     ViewFile.BaseClass.class,
-    ViewSection.BaseClassSection.class,
+    ViewPage.BaseClassPage.class,
     ViewDepartment.BaseClassDepartment.class,
     ViewDepartment.FullInformationClassDepartment.class,
-    ViewNews.AdminNewsClass.class
+    ViewNews.AdminNewsClass.class,
+    ViewPage.BaseClassPageContent.class,
+    ViewPage.BaseClassPageName.class,
+    ViewPage.AdminClass.class,
+    ViewPage.SectionClass.class
   })
   @Id
   @Column

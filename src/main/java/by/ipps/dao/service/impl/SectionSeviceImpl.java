@@ -6,10 +6,17 @@ import by.ipps.dao.service.SectionService;
 import by.ipps.dao.service.base.BaseEntityServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-public class SectionServiceImpl extends BaseEntityServiceImpl<Section, SectionRepository>
+public class SectionSeviceImpl extends BaseEntityServiceImpl<Section, SectionRepository>
     implements SectionService {
-  public SectionServiceImpl(SectionRepository repository) {
+  public SectionSeviceImpl(SectionRepository repository) {
     super(repository);
+  }
+
+  @Override
+  public List<Section> findByIdPage(long id) {
+    return null; // repository.findSectionByIdPage(id);
   }
 }

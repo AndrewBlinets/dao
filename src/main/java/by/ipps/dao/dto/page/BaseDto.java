@@ -1,4 +1,4 @@
-package by.ipps.dao.dto;
+package by.ipps.dao.dto.page;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -50,9 +50,9 @@ public class News extends BaseEntity implements Serializable {
   private Department department;
 
   @ManyToOne
-  @JoinColumn(name = "section_id", referencedColumnName = "id")
+  @JoinColumn(name = "page_id", referencedColumnName = "id")
   @JsonView({ViewNews.AdminNewsClass.class})
-  private Section section;
+  private PageWithSection page;
 
   @Override
   public String toString() {
@@ -67,7 +67,7 @@ public class News extends BaseEntity implements Serializable {
     sb.append(", \"countView\" :").append(countView);
     sb.append(", \"status\" :\"").append(status).append('\"');
     sb.append(", \"department\" : ").append(department != null ? department.getId() : 0);
-    sb.append(", \"section\" : ").append(section != null ? section.getId() : 0);
+    sb.append(", \"page\" : ").append(page != null ? page.getId() : 0);
     sb.append('}');
     return sb.toString();
   }

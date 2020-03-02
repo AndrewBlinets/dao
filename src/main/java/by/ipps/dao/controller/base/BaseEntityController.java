@@ -2,7 +2,7 @@ package by.ipps.dao.controller.base;
 
 import by.ipps.dao.entity.BaseEntity;
 import by.ipps.dao.entity.Department;
-import by.ipps.dao.entity.Section;
+import by.ipps.dao.entity.PageWithSection;
 import by.ipps.dao.entity.UserPortal;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,7 +25,7 @@ public interface BaseEntityController<T extends BaseEntity> {
   ResponseEntity<T> get(
       @PathVariable Long id,
       @RequestParam(value = "language", required = false, defaultValue = "ru") String language,
-      @RequestParam(value = "section", required = false) Section section,
+      @RequestParam(value = "section", required = false) PageWithSection pageWithSection,
       @RequestParam(value = "department", required = false) Department department);
 
   @PutMapping
@@ -34,7 +34,7 @@ public interface BaseEntityController<T extends BaseEntity> {
 
   @DeleteMapping(value = "/{id}")
   ResponseEntity<Boolean> remove(
-      @PathVariable T id, @RequestParam(value = "user") UserPortal userPortal);
+      @PathVariable T id, @RequestParam(value = "user") UserPortal userPortal) throws Exception;
 
   @GetMapping
   ResponseEntity<Page<T>> getAll(
@@ -44,12 +44,12 @@ public interface BaseEntityController<T extends BaseEntity> {
           })
           Pageable pageable,
       @RequestParam(value = "language", required = false, defaultValue = "ru") String language,
-      @RequestParam(value = "section", required = false) Section section,
+      @RequestParam(value = "section", required = false) PageWithSection pageWithSection,
       @RequestParam(value = "department", required = false) Department department);
 
   @GetMapping(value = "/all")
   @ResponseBody
   ResponseEntity<List<T>> getAll(
-      @RequestParam(value = "section", required = false) Section section,
+      @RequestParam(value = "section", required = false) PageWithSection pageWithSection,
       @RequestParam(value = "department", required = false) Department department);
 }

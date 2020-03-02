@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -28,7 +27,7 @@ public class Department extends BaseEntity implements Serializable {
   @Column
   private String code;
 
-    @JsonView({ViewContact.BaseClass.class})
+  @JsonView({ViewContact.BaseClass.class})
   @ManyToMany(mappedBy = "departments")
   private List<UserPortal> users;
 
@@ -42,8 +41,8 @@ public class Department extends BaseEntity implements Serializable {
 
   @JsonView(ViewDepartment.BaseClassDepartment.class)
   @ManyToOne
-  @JoinColumn(name = "section_id")
-  private Section section;
+  @JoinColumn(name = "page_id")
+  private PageWithSection pageWithSection;
 
   @Override
   public String toString() {
@@ -66,7 +65,9 @@ public class Department extends BaseEntity implements Serializable {
       }
     }
     sb.append("]");
-    sb.append(", \"section\" :\"").append(section != null ? section.getId() : 0).append("\"");
+    sb.append(", \"page\" :\"")
+        .append(pageWithSection != null ? pageWithSection.getId() : 0)
+        .append("\"");
     sb.append('}');
     return sb.toString();
   }

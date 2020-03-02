@@ -1,5 +1,6 @@
 package by.ipps.dao.dto;
 
+import by.ipps.dao.dto.page.BaseDto;
 import by.ipps.dao.entity.Department;
 import by.ipps.dao.entity.Role;
 import lombok.*;

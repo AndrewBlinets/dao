@@ -2,18 +2,19 @@ package by.ipps.dao.service.base;
 
 import by.ipps.dao.entity.BaseEntity;
 import by.ipps.dao.repository.BaseEntityRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 
 import java.util.Date;
 import java.util.List;
 
 // @Transactional
+@Slf4j
 public class BaseEntityServiceImpl<T extends BaseEntity, R extends BaseEntityRepository<T>>
     implements BaseEntityService<T> {
 
-  private final R repository;
+  protected final R repository;
 
   public BaseEntityServiceImpl(R repository) {
     this.repository = repository;

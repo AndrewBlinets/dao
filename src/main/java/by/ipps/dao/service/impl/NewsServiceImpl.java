@@ -2,7 +2,7 @@ package by.ipps.dao.service.impl;
 
 import by.ipps.dao.entity.Department;
 import by.ipps.dao.entity.News;
-import by.ipps.dao.entity.Section;
+import by.ipps.dao.entity.PageWithSection;
 import by.ipps.dao.repository.NewsRepository;
 import by.ipps.dao.service.NewsService;
 import by.ipps.dao.service.base.BaseEntityServiceImpl;
@@ -22,33 +22,34 @@ public class NewsServiceImpl extends BaseEntityServiceImpl<News, NewsRepository>
   }
 
   @Override
-  public Page<News> findNewsPageBySectionAndDepartment(
-      Section section, Department department, Pageable pageable) {
-    return repository.findNewsPageBySectionAndDepartment(section, department, pageable);
+  public Page<News> findNewsPageBypageAndDepartment(
+      PageWithSection pageWithSection, Department department, Pageable pageable) {
+    return repository.findNewsPageBySectionAndDepartment(pageWithSection, department, pageable);
   }
 
   @Override
-  public News findByIdAndSectionAndDepartment(Long id, Section section, Department department) {
-    return repository.findByIdAndSectionAndDepartment(id, section, department).orElse(null);
+  public News findByIdAndSectionAndDepartment(
+      Long id, PageWithSection pageWithSection, Department department) {
+    return repository.findByIdAndSectionAndDepartment(id, pageWithSection, department).orElse(null);
   }
 
   @Override
   public Page<News> findNewsPageBySectionAndDepartmentForClient(
-      Section section, Department department, Pageable pageable) {
-    return repository.findNewsPageBySectionAndDepartmentForClient(section, department, pageable);
+      PageWithSection pageWithSection, Department department, Pageable pageable) {
+    return repository.findNewsPageBypageAndDepartmentForClient(
+        pageWithSection, department, pageable);
   }
 
   @Override
   public News findByIdAndSectionAndDepartmentForClient(
-      Long id, Section section, Department department) {
-    return repository
-        .findByIdAndSectionAndDepartmentForClient(id, section, department)
-        .orElse(null);
+      Long id, PageWithSection pageWithSection, Department department) {
+    return repository.findByIdAndSectionAndDepartment(id, pageWithSection, department).orElse(null);
   }
 
   @Override
   public Page<News> findNewsPageBySectionAndDepartmentForAdmin(
-      Section section, Department department, Pageable pageable) {
-    return repository.findNewsPageBySectionAndDepartmentForAdmin(section, department, pageable);
+      PageWithSection pageWithSection, Department department, Pageable pageable) {
+    return repository.findNewsPageBySectionAndDepartmentForAdmin(
+        pageWithSection, department, pageable);
   }
 }

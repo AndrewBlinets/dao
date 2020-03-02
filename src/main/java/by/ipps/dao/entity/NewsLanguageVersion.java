@@ -25,7 +25,7 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = true)
 public class NewsLanguageVersion extends BaseEntity implements Serializable {
 
-  @Column
+  @Column(length = 500)
   @JsonView({ViewNews.AdminNewsClass.class})
   private String title;
 
@@ -33,11 +33,11 @@ public class NewsLanguageVersion extends BaseEntity implements Serializable {
   @JsonView({ViewNews.AdminNewsClass.class})
   private String content;
 
-  @Column(length = 100)
+  @Column(length = 500)
   @JsonView({ViewNews.AdminNewsClass.class})
   private String shortTitle;
 
-  @Column
+  @Column(length = 2000)
   @JsonView({ViewNews.AdminNewsClass.class})
   private String entrySpeech;
 

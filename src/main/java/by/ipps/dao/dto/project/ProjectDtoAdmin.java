@@ -1,7 +1,7 @@
-package by.ipps.dao.dto.news;
+package by.ipps.dao.dto.project;
 
 import by.ipps.dao.dto.page.BaseDto;
-import by.ipps.dao.entity.NewsLanguageVersion;
+import by.ipps.dao.entity.ProjectLanguageVersion;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,13 +15,14 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class NewsDtoAdmin extends BaseDto implements Serializable {
+public class ProjectDtoAdmin extends BaseDto implements Serializable {
+
   private Date datePublic;
   private Date dti;
   private String shortTitle;
   private int status;
 
-  public void setLanguageVersions(List<NewsLanguageVersion> versions) {
+  public void setLanguageVersions(List<ProjectLanguageVersion> versions) {
     if (!versions.isEmpty()) {
       this.shortTitle = versions.get(0).getShortTitle();
     }
