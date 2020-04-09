@@ -28,6 +28,18 @@ public class ProjectServiceImpl extends BaseEntityServiceImpl<Project, ProjectRe
   }
 
   @Override
+  public Page<Project> findProjectPageBySectionAndDepartmentForAdmin(
+      PageWithSection section, Department department, Pageable pageable) {
+    return repository.findProjectPageBypageAndDepartmentForAdmin(section, department, pageable);
+  }
+
+  @Override
+  public Project findByIdAndSectionAndDepartmentForClient(
+      Long id, PageWithSection section, Department department) {
+    return repository.findByIdAndSectionAndDepartmentForClient(id, section, department).orElse(null);
+  }
+
+  @Override
   public Project findByIdAndSectionAndDepartment(
       Long id, PageWithSection section, Department department) {
     return repository.findByIdAndSectionAndDepartment(id, section, department).orElse(null);

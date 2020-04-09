@@ -1,13 +1,11 @@
 package by.ipps.dao.entity;
 
 import by.ipps.dao.utils.view.ViewContact;
-import by.ipps.dao.utils.view.ViewDepartment;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -17,33 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class UserPortal extends BaseEntity implements Serializable {
-
-  @Column(nullable = false, length = 60)
-  private String login;
-
-  @Column(nullable = false)
-  private String hashPassword;
-
-  @Column(nullable = false)
-  @Temporal(TemporalType.TIMESTAMP)
-  private Date dateLastChangePassword;
-
-  @Column(nullable = false, length = 60)
-  @JsonView({ViewContact.BaseClass.class, ViewDepartment.FullInformationClassDepartment.class})
-  private String name;
-
-  @JsonView({ViewContact.BaseClass.class, ViewDepartment.FullInformationClassDepartment.class})
-  @Column(nullable = false, length = 60)
-  private String surName;
-
-  @JsonView({ViewContact.BaseClass.class, ViewDepartment.FullInformationClassDepartment.class})
-  @Column(nullable = false, length = 60)
-  private String patronicName;
-
-  @JsonView(ViewContact.BaseClass.class)
-  @Column
-  private String email;
+public class UserPortal extends UserBase implements Serializable {
 
   @JsonView(ViewContact.BaseClass.class)
   @Column
@@ -52,9 +24,6 @@ public class UserPortal extends BaseEntity implements Serializable {
   @JsonView(ViewContact.BaseClass.class)
   @Column(length = 3)
   private String room;
-
-  @Column private Boolean enabled;
-  @Column private Boolean block;
 
   @ManyToMany
   @JoinTable(

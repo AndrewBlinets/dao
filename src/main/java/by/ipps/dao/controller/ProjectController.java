@@ -68,7 +68,7 @@ public class ProjectController extends BaseEntityAbstractController<Project, Pro
         .unwrap(Session.class)
         .enableFilter(FilterName.LANGUAGE)
         .setParameter("language", language);
-    Project project = service.findByIdAndSectionAndDepartment(id, pageWithSection, department);
+    Project project = service.findByIdAndSectionAndDepartmentForClient(id, pageWithSection, department);
     if (project != null) {
       ProjectDtoFull projectDtoFull = mapper.map(project, ProjectDtoFull.class);
       entityManager.unwrap(Session.class).disableFilter(FilterName.LANGUAGE);
@@ -90,7 +90,7 @@ public class ProjectController extends BaseEntityAbstractController<Project, Pro
         .enableFilter(FilterName.LANGUAGE)
         .setParameter("language", language);
     Page<Project> news =
-        service.findProjectPageBySectionAndDepartment(pageWithSection, department, pageable);
+        service.findProjectPageBySectionAndDepartmentForAdmin(pageWithSection, department, pageable);
     java.lang.reflect.Type targetListType =
         new TypeToken<CustomPage<ProjectDtoAdmin>>() {}.getType();
     CustomPage<ProjectDtoAdmin> newsDto = mapper.map(news, targetListType);

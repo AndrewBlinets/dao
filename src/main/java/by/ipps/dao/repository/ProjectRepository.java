@@ -27,7 +27,7 @@ public interface ProjectRepository extends BaseEntityRepository<Project> {
           "select p from Project p where p.statusR = 'A' and p.id = :id and"
               + " (p.page = :page or :page is null) and"
               + " (p.department = :department or :department is null)  and p.status = 1")
-  Optional<Project> findByIdAndSectionAndDepartment(
+  Optional<Project> findByIdAndSectionAndDepartmentForClient(
       @Param("id") Long id,
       @Param("page") PageWithSection pageWithSection,
       @Param("department") Department department);
@@ -40,4 +40,14 @@ public interface ProjectRepository extends BaseEntityRepository<Project> {
       @Param("page") PageWithSection pageWithSection,
       @Param("department") Department department,
       Pageable pageable);
+
+
+  @Query(
+          value =
+                  "select p from Project p where p.statusR = 'A' and p.id = :id and"
+                          + " (p.page = :page or :page is null) and"
+                          + " (p.department = :department or :department is null)")
+  Optional<Project> findByIdAndSectionAndDepartment( @Param("id") Long id,
+                                                    @Param("page") PageWithSection pageWithSection,
+                                                    @Param("department") Department department);
 }
