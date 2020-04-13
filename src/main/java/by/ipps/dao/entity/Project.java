@@ -44,6 +44,11 @@ public class Project extends BaseEntity implements Serializable {
 
   @Column private int status;
 
+  @Column private boolean publicForCustomer;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<DocumentForCustomer> images;
+
   @Override
   public String toString() {
     final StringBuffer sb = new StringBuffer("{");
