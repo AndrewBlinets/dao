@@ -21,6 +21,7 @@ public class ProjectDtoAdmin extends BaseDto implements Serializable {
   private Date dti;
   private String shortTitle;
   private int status;
+  private boolean publicForCustomer;
 
   public void setLanguageVersions(List<ProjectLanguageVersion> versions) {
     if (!versions.isEmpty()) {
