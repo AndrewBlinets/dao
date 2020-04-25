@@ -1,14 +1,26 @@
 package by.ipps.dao.entity;
 
 import by.ipps.dao.utils.constant.FilterName;
-import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.Filter;
-
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Filter;
 
 @Entity
 @NoArgsConstructor
@@ -46,8 +58,8 @@ public class Project extends BaseEntity implements Serializable {
 
   @Column private boolean publicForCustomer;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<DocumentForCustomer> images;
+  @OneToMany(fetch = FetchType.LAZY)
+  private List<DocumentForCustomer> images;
 
   @Override
   public String toString() {
