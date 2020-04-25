@@ -7,7 +7,8 @@ import by.ipps.dao.service.base.BaseEntityServiceImpl;
 import org.springframework.stereotype.Service;
 
 @Service
-public class NewsForCustomerServiceImpl extends BaseEntityServiceImpl<NewsForCustomer, NewsForCustomerRepository>
+public class NewsForCustomerServiceImpl
+    extends BaseEntityServiceImpl<NewsForCustomer, NewsForCustomerRepository>
     implements NewsForCustomerService {
 
   public NewsForCustomerServiceImpl(NewsForCustomerRepository repository) {

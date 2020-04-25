@@ -6,5 +6,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface CustomerService extends BaseEntityService<Customer> {
-    Customer getCustomerByLogin(String login);
+  Customer getCustomerByLogin(String login);
 }

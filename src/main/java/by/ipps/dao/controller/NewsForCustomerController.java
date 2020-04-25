@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/newForCustomer")
-public class NewsForCustomerController extends BaseEntityAbstractController<NewsForCustomer, NewsForCustomerService>
+public class NewsForCustomerController
+    extends BaseEntityAbstractController<NewsForCustomer, NewsForCustomerService>
     implements BaseEntityController<NewsForCustomer> {
 
-  protected NewsForCustomerController(
-      NewsForCustomerService newsForCustomerService) {
+  protected NewsForCustomerController(NewsForCustomerService newsForCustomerService) {
     super(newsForCustomerService);
   }
 }

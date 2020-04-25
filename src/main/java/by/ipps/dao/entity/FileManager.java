@@ -2,20 +2,15 @@ package by.ipps.dao.entity;
 
 import by.ipps.dao.utils.view.ViewFile;
 import com.fasterxml.jackson.annotation.JsonView;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import java.io.Serializable;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
+@Data
 public class FileManager extends BaseEntity implements Serializable {
 
   @Column(nullable = false)

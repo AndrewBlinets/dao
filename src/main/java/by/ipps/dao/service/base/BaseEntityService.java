@@ -1,10 +1,9 @@
 package by.ipps.dao.service.base;
 
 import by.ipps.dao.entity.BaseEntity;
+import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
-import java.util.List;
 
 public interface BaseEntityService<T extends BaseEntity> {
 

@@ -1,20 +1,15 @@
 package by.ipps.dao.entity;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import java.io.Serializable;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
-@NoArgsConstructor
-@Getter
-@Setter
+@Data
 @EqualsAndHashCode(callSuper = true)
 public class Logger extends BaseEntity implements Serializable {
 

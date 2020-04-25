@@ -1,8 +1,8 @@
 package by.ipps.dao.service.impl;
 
 import by.ipps.dao.entity.Department;
-import by.ipps.dao.entity.PageWithSection;
 import by.ipps.dao.entity.Project;
+import by.ipps.dao.entity.Sheet;
 import by.ipps.dao.repository.ProjectRepository;
 import by.ipps.dao.service.ProjectService;
 import by.ipps.dao.service.base.BaseEntityServiceImpl;
@@ -23,25 +23,26 @@ public class ProjectServiceImpl extends BaseEntityServiceImpl<Project, ProjectRe
 
   @Override
   public Page<Project> findProjectPageBySectionAndDepartment(
-      PageWithSection section, Department department, Pageable pageable) {
+      Sheet section, Department department, Pageable pageable) {
     return repository.findProjectPageBypageAndDepartment(section, department, pageable);
   }
 
   @Override
   public Page<Project> findProjectPageBySectionAndDepartmentForAdmin(
-      PageWithSection section, Department department, Pageable pageable) {
+      Sheet section, Department department, Pageable pageable) {
     return repository.findProjectPageBypageAndDepartmentForAdmin(section, department, pageable);
   }
 
   @Override
   public Project findByIdAndSectionAndDepartmentForClient(
-      Long id, PageWithSection section, Department department) {
-    return repository.findByIdAndSectionAndDepartmentForClient(id, section, department).orElse(null);
+      Long id, Sheet section, Department department) {
+    return repository
+        .findByIdAndSectionAndDepartmentForClient(id, section, department)
+        .orElse(null);
   }
 
   @Override
-  public Project findByIdAndSectionAndDepartment(
-      Long id, PageWithSection section, Department department) {
+  public Project findByIdAndSectionAndDepartment(Long id, Sheet section, Department department) {
     return repository.findByIdAndSectionAndDepartment(id, section, department).orElse(null);
   }
 }

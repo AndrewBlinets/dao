@@ -3,19 +3,16 @@ package by.ipps.dao.entity;
 import by.ipps.dao.utils.constant.FilterName;
 import by.ipps.dao.utils.view.ViewNews;
 import com.fasterxml.jackson.annotation.JsonView;
-import lombok.*;
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.FilterDef;
 import org.hibernate.annotations.ParamDef;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import java.io.Serializable;
-
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
+@Data
 @FilterDef(
     name = FilterName.LANGUAGE,
     defaultCondition = "code_language = :language",
@@ -47,7 +44,7 @@ public class NewsLanguageVersion extends BaseEntity implements Serializable {
 
   @Override
   public String toString() {
-    final StringBuffer sb = new StringBuffer("{");
+    final StringBuilder sb = new StringBuilder("{");
     sb.append(super.toString());
     sb.append(", \"title\" : \"").append(title).append('\"');
     sb.append(", \"content\" : \"").append(content).append('\"');

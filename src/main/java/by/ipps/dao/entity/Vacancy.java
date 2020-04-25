@@ -1,18 +1,13 @@
 package by.ipps.dao.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import java.io.Serializable;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 public class Vacancy extends BaseEntity implements Serializable {
   @Column private String name;
@@ -21,7 +16,7 @@ public class Vacancy extends BaseEntity implements Serializable {
 
   @Override
   public String toString() {
-    final StringBuffer sb = new StringBuffer("{");
+    final StringBuilder sb = new StringBuilder("{");
     sb.append(super.toString());
     sb.append(", \"name\" : \"").append(name).append('\"');
     sb.append(", \"content\" : \"").append(content).append('\"');

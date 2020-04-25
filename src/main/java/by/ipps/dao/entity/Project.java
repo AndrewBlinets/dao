@@ -14,19 +14,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Filter;
 
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
+@Data
 @EqualsAndHashCode(callSuper = true)
 public class Project extends BaseEntity implements Serializable {
 
@@ -52,7 +46,7 @@ public class Project extends BaseEntity implements Serializable {
 
   @ManyToOne
   @JoinColumn(name = "page_id", referencedColumnName = "id")
-  private PageWithSection page;
+  private Sheet page;
 
   @Column private int status;
 
@@ -63,7 +57,7 @@ public class Project extends BaseEntity implements Serializable {
 
   @Override
   public String toString() {
-    final StringBuffer sb = new StringBuffer("{");
+    final StringBuilder sb = new StringBuilder("{");
     sb.append(super.toString());
     //    sb.append(", \"images\" : [");
     //    for (FileManager fileManager : images) {

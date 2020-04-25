@@ -7,7 +7,8 @@ import by.ipps.dao.service.base.BaseEntityServiceImpl;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DocumentForCustomerServiceImpl extends BaseEntityServiceImpl<DocumentForCustomer, DocumentForCustomerRepository>
+public class DocumentForCustomerServiceImpl
+    extends BaseEntityServiceImpl<DocumentForCustomer, DocumentForCustomerRepository>
     implements DocumentForCustomerService {
 
   public DocumentForCustomerServiceImpl(DocumentForCustomerRepository repository) {

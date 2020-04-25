@@ -1,20 +1,15 @@
 package by.ipps.dao.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-
+import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
-import java.io.Serializable;
-import java.util.List;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class Role extends BaseEntity implements Serializable {
   @Column private String name;
@@ -24,7 +19,7 @@ public class Role extends BaseEntity implements Serializable {
 
   @Override
   public String toString() {
-    final StringBuffer sb = new StringBuffer("{");
+    final StringBuilder sb = new StringBuilder("{");
     sb.append(super.toString());
     sb.append(", \"name\" : \"").append(name).append('\"');
     sb.append(", \"users\" : \"").append(users);

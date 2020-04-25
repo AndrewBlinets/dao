@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service;
 public class CustomerServiceImpl extends BaseEntityServiceImpl<Customer, CustomerRepository>
     implements CustomerService {
 
-    public CustomerServiceImpl(CustomerRepository repository) {
-        super(repository);
-    }
+  public CustomerServiceImpl(CustomerRepository repository) {
+    super(repository);
+  }
 
-    @Override
-    public Customer getCustomerByLogin(String login) {
-        return repository.findCustomerByLoginAndStatusR(login, "A").orElse(null);
-    }
+  @Override
+  public Customer getCustomerByLogin(String login) {
+    return repository.findCustomerByLoginAndStatusR(login, "A").orElse(null);
+  }
 }

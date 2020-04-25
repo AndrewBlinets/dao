@@ -3,15 +3,14 @@ package by.ipps.dao.entity;
 import by.ipps.dao.utils.constant.FilterName;
 import by.ipps.dao.utils.view.ViewPage;
 import com.fasterxml.jackson.annotation.JsonView;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.FilterDef;
 import org.hibernate.annotations.ParamDef;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
@@ -36,7 +35,7 @@ public class BlockLanguageVersion extends BaseEntity {
 
   @Override
   public String toString() {
-    final StringBuffer sb = new StringBuffer("{");
+    final StringBuilder sb = new StringBuilder("{");
     sb.append(super.toString());
     sb.append(", \"content\" :").append(content).append("\",");
     sb.append(", \"codeLanguage\" :").append(codeLanguage).append("\"");

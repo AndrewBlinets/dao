@@ -3,24 +3,25 @@ package by.ipps.dao.entity;
 import by.ipps.dao.utils.constant.FilterName;
 import by.ipps.dao.utils.view.ViewPage;
 import com.fasterxml.jackson.annotation.JsonView;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Filter;
-import org.hibernate.annotations.Where;
-
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
+import javax.persistence.Table;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.Filter;
+import org.hibernate.annotations.Where;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "page")
-public class PageWithSection extends BaseEntity implements Serializable {
+public class Sheet extends BaseEntity implements Serializable {
 
   @JsonView(ViewPage.AdminClass.class)
   @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -51,7 +52,7 @@ public class PageWithSection extends BaseEntity implements Serializable {
 
   @Override
   public String toString() {
-    final StringBuffer sb = new StringBuffer("{");
+    final StringBuilder sb = new StringBuilder("{");
     sb.append(super.toString());
     sb.append(", \"code\" : \"").append(code).append('\"');
     sb.append(", \"status\" : \"").append(status).append('\"');

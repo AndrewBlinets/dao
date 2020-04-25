@@ -1,18 +1,13 @@
 package by.ipps.dao.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class TypeFiel extends BaseEntity {
   @Column(length = 6)
   private String expansion;
@@ -22,7 +17,7 @@ public class TypeFiel extends BaseEntity {
 
   @Override
   public String toString() {
-    final StringBuffer sb = new StringBuffer("{");
+    final StringBuilder sb = new StringBuilder("{");
     sb.append(super.toString());
     sb.append(", \"expansion\" : \"").append(expansion).append('\"');
     sb.append(", \"typeDoc\" : \"").append(typeDoc).append('\"');

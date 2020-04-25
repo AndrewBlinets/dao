@@ -1,6 +1,6 @@
 package by.ipps.dao.dto;
 
-import by.ipps.dao.dto.page.BaseDto;
+import by.ipps.dao.dto.sheet.BaseDto;
 import by.ipps.dao.entity.ProjectLanguageVersion;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -20,5 +20,4 @@ public class ProjectDtoForCustomer extends BaseDto {
       this.shortTitle = versions.get(0).getShortTitle();
     }
   }
-
 }

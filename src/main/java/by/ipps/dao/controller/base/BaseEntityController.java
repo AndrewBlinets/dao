@@ -2,18 +2,24 @@ package by.ipps.dao.controller.base;
 
 import by.ipps.dao.entity.BaseEntity;
 import by.ipps.dao.entity.Department;
-import by.ipps.dao.entity.PageWithSection;
+import by.ipps.dao.entity.Sheet;
 import by.ipps.dao.entity.UserPortal;
+import java.util.List;
+import javax.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.SortDefault;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.List;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 public interface BaseEntityController<T extends BaseEntity> {
 
@@ -25,7 +31,7 @@ public interface BaseEntityController<T extends BaseEntity> {
   ResponseEntity<T> get(
       @PathVariable Long id,
       @RequestParam(value = "language", required = false, defaultValue = "ru") String language,
-      @RequestParam(value = "section", required = false) PageWithSection pageWithSection,
+      @RequestParam(value = "section", required = false) Sheet sheet,
       @RequestParam(value = "department", required = false) Department department);
 
   @PutMapping
@@ -44,12 +50,12 @@ public interface BaseEntityController<T extends BaseEntity> {
           })
           Pageable pageable,
       @RequestParam(value = "language", required = false, defaultValue = "ru") String language,
-      @RequestParam(value = "section", required = false) PageWithSection pageWithSection,
+      @RequestParam(value = "section", required = false) Sheet sheet,
       @RequestParam(value = "department", required = false) Department department);
 
   @GetMapping(value = "/all")
   @ResponseBody
   ResponseEntity<List<T>> getAll(
-      @RequestParam(value = "section", required = false) PageWithSection pageWithSection,
+      @RequestParam(value = "section", required = false) Sheet sheet,
       @RequestParam(value = "department", required = false) Department department);
 }

@@ -2,20 +2,15 @@ package by.ipps.dao.entity;
 
 import by.ipps.dao.utils.view.ViewContact;
 import com.fasterxml.jackson.annotation.JsonView;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+@Data
 @Entity
 public class Contact extends BaseEntity {
 
@@ -29,7 +24,7 @@ public class Contact extends BaseEntity {
 
   @Override
   public String toString() {
-    final StringBuffer sb = new StringBuffer("{");
+    final StringBuilder sb = new StringBuilder("{");
     sb.append(super.toString());
     sb.append(", \"note\" : \"").append(note).append('\"');
     sb.append(", \"userPortal\" : ").append(userPortal.getId());

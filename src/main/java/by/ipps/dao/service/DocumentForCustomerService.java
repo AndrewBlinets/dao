@@ -5,6 +5,4 @@ import by.ipps.dao.service.base.BaseEntityService;
 import org.springframework.stereotype.Service;
 
 @Service
-public interface DocumentForCustomerService extends BaseEntityService<DocumentForCustomer> {
-
-}
+public interface DocumentForCustomerService extends BaseEntityService<DocumentForCustomer> {}

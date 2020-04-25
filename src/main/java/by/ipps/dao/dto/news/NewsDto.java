@@ -1,16 +1,15 @@
 package by.ipps.dao.dto.news;
 
-import by.ipps.dao.dto.page.BaseDto;
+import by.ipps.dao.dto.sheet.BaseDto;
 import by.ipps.dao.entity.FileManager;
 import by.ipps.dao.entity.NewsLanguageVersion;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
 
 @Getter
 @Setter

@@ -1,19 +1,16 @@
 package by.ipps.dao.entity;
 
 import by.ipps.dao.utils.constant.FilterName;
-import lombok.*;
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.FilterDef;
 import org.hibernate.annotations.ParamDef;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import java.io.Serializable;
-
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 @EqualsAndHashCode(callSuper = true)
 @FilterDef(
     name = FilterName.LANGUAGE,
@@ -32,14 +29,12 @@ public class ProjectLanguageVersion extends BaseEntity implements Serializable {
   @Column(length = 10000)
   private String content;
 
-  //  @Column private String entrySpeech;
-
   @Column(name = "code_language")
   private String codeLanguage;
 
   @Override
   public String toString() {
-    final StringBuffer sb = new StringBuffer("{");
+    final StringBuilder sb = new StringBuilder("{");
     sb.append(super.toString());
     sb.append(", \"title\" : \"").append(title).append('\"');
     sb.append(", \"shortTitle\" : \"").append(shortTitle).append('\"');

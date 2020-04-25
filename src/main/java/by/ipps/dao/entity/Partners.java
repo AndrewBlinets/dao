@@ -1,16 +1,13 @@
 package by.ipps.dao.entity;
 
-import lombok.*;
-
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
-import java.io.Serializable;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-@Setter
-@Getter
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 @Entity
 @EqualsAndHashCode(callSuper = true)
 public class Partners extends BaseEntity implements Serializable {
@@ -23,7 +20,7 @@ public class Partners extends BaseEntity implements Serializable {
 
   @Override
   public String toString() {
-    final StringBuffer sb = new StringBuffer("{");
+    final StringBuilder sb = new StringBuilder("{");
     sb.append(super.toString());
     sb.append(", \"name\" : \"").append(name).append('\"');
     sb.append(", \"image\" : ").append(image.getId());

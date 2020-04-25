@@ -4,21 +4,16 @@ import by.ipps.dao.utils.view.ViewContact;
 import by.ipps.dao.utils.view.ViewCustomer;
 import by.ipps.dao.utils.view.ViewDepartment;
 import com.fasterxml.jackson.annotation.JsonView;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import java.util.Date;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @MappedSuperclass
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class UserBase extends BaseEntity {
 

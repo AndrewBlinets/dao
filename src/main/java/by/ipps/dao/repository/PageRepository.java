@@ -1,12 +1,11 @@
 package by.ipps.dao.repository;
 
-import by.ipps.dao.entity.PageWithSection;
+import by.ipps.dao.entity.Sheet;
+import java.util.List;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
-public interface PageRepository extends BaseEntityRepository<PageWithSection> {
+public interface PageRepository extends BaseEntityRepository<Sheet> {
 
-  List<PageWithSection> findByStatusRAndStatusAndShowForClientInBar(String a, int i, boolean b);
+  List<Sheet> findByStatusRAndStatusAndShowForClientInBar(String a, int i, boolean b);
 }

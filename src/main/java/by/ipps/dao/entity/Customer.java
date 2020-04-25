@@ -1,20 +1,22 @@
 package by.ipps.dao.entity;
 
-import by.ipps.dao.utils.view.ViewCustomer;
-import com.fasterxml.jackson.annotation.JsonView;
-import java.util.List;
-import lombok.*;
-
-import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.Where;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 @EqualsAndHashCode(callSuper = true)
 public class Customer extends UserBase implements Serializable {
 
@@ -24,9 +26,9 @@ public class Customer extends UserBase implements Serializable {
 
   @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   @JoinTable(
-          name = "role_customer",
-          joinColumns = @JoinColumn(name = "id_customer", nullable = false, updatable = false),
-          inverseJoinColumns = {@JoinColumn(name = "role_id", nullable = false, updatable = false)})
+      name = "role_customer",
+      joinColumns = @JoinColumn(name = "id_customer", nullable = false, updatable = false),
+      inverseJoinColumns = {@JoinColumn(name = "role_id", nullable = false, updatable = false)})
   private Set<Role> roles;
 
   @OneToMany

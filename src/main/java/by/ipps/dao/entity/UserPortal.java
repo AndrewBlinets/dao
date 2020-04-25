@@ -2,18 +2,23 @@ package by.ipps.dao.entity;
 
 import by.ipps.dao.utils.view.ViewContact;
 import com.fasterxml.jackson.annotation.JsonView;
-import lombok.*;
-
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 @EqualsAndHashCode(callSuper = true)
 public class UserPortal extends UserBase implements Serializable {
 
@@ -60,7 +65,7 @@ public class UserPortal extends UserBase implements Serializable {
 
   @Override
   public String toString() {
-    final StringBuffer sb = new StringBuffer("{");
+    final StringBuilder sb = new StringBuilder("{");
     sb.append(super.toString());
     sb.append(", \"login\" : \"").append(login).append('\"');
     sb.append(", \"hashPassword\" : \"").append(hashPassword).append('\"');

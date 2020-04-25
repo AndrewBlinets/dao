@@ -1,17 +1,26 @@
 package by.ipps.dao.entity;
 
-import by.ipps.dao.utils.view.*;
+import by.ipps.dao.utils.view.ViewContact;
+import by.ipps.dao.utils.view.ViewCustomer;
+import by.ipps.dao.utils.view.ViewDepartment;
+import by.ipps.dao.utils.view.ViewFile;
+import by.ipps.dao.utils.view.ViewNews;
+import by.ipps.dao.utils.view.ViewPage;
 import com.fasterxml.jackson.annotation.JsonView;
+import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Date;
 
 @MappedSuperclass
 @Data
@@ -55,7 +64,7 @@ public class BaseEntity implements Serializable {
 
   @Override
   public String toString() {
-    final StringBuffer sb = new StringBuffer("\"id\" : ");
+    final StringBuilder sb = new StringBuilder("\"id\" : ");
     sb.append("\"").append(id).append("\"");
     return sb.toString();
   }

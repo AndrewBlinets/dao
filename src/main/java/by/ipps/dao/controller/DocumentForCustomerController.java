@@ -13,8 +13,7 @@ public class DocumentForCustomerController
     extends BaseEntityAbstractController<DocumentForCustomer, DocumentForCustomerService>
     implements BaseEntityController<DocumentForCustomer> {
 
-  protected DocumentForCustomerController(
-      DocumentForCustomerService documentForCustomerService) {
+  protected DocumentForCustomerController(DocumentForCustomerService documentForCustomerService) {
     super(documentForCustomerService);
   }
 }

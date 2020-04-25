@@ -1,16 +1,13 @@
 package by.ipps.dao.entity;
 
-import lombok.*;
-
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import java.io.Serializable;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 @EqualsAndHashCode(callSuper = true)
 public class Language extends BaseEntity implements Serializable {
 

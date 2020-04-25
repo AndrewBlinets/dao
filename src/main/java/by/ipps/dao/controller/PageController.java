@@ -3,15 +3,23 @@ package by.ipps.dao.controller;
 import by.ipps.dao.controller.base.BaseEntityAbstractController;
 import by.ipps.dao.controller.base.BaseEntityController;
 import by.ipps.dao.custom.CustomPage;
-import by.ipps.dao.dto.page.PageDto;
-import by.ipps.dao.dto.page.PageDtoFull;
-import by.ipps.dao.dto.page.PageForList;
-import by.ipps.dao.entity.*;
+import by.ipps.dao.dto.sheet.PageDto;
+import by.ipps.dao.dto.sheet.PageDtoFull;
+import by.ipps.dao.dto.sheet.PageForList;
+import by.ipps.dao.entity.Block;
+import by.ipps.dao.entity.Department;
+import by.ipps.dao.entity.Section;
+import by.ipps.dao.entity.Sheet;
+import by.ipps.dao.entity.UserPortal;
 import by.ipps.dao.service.PageService;
 import by.ipps.dao.utils.addFun.BaseParams;
 import by.ipps.dao.utils.constant.FilterName;
 import by.ipps.dao.utils.view.ViewPage;
 import com.fasterxml.jackson.annotation.JsonView;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.validation.Valid;
 import org.hibernate.Session;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -20,17 +28,16 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.validation.Valid;
-import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/page")
-public class PageController extends BaseEntityAbstractController<PageWithSection, PageService>
-    implements BaseEntityController<PageWithSection> {
+public class PageController extends BaseEntityAbstractController<Sheet, PageService>
+    implements BaseEntityController<Sheet> {
 
   private BaseParams baseParams;
   private ModelMapper mapper;
@@ -44,28 +51,25 @@ public class PageController extends BaseEntityAbstractController<PageWithSection
 
   @Override
   @JsonView(ViewPage.AdminClass.class)
-  public ResponseEntity<PageWithSection> create(
-      @Valid PageWithSection create, UserPortal userPortal) {
+  public ResponseEntity<Sheet> create(@Valid Sheet create, UserPortal userPortal) {
     return super.create(create, userPortal);
   }
 
   @JsonView(ViewPage.AdminClass.class)
   @Override
-  public ResponseEntity<PageWithSection> get(
-      Long id, String language, PageWithSection pageWithSection, Department department) {
-    return super.get(id, language, pageWithSection, department);
+  public ResponseEntity<Sheet> get(Long id, String language, Sheet sheet, Department department) {
+    return super.get(id, language, sheet, department);
   }
 
   @Override
   @JsonView(ViewPage.AdminClass.class)
-  public ResponseEntity<PageWithSection> update(
-      @Valid PageWithSection entity, UserPortal userPortal) {
+  public ResponseEntity<Sheet> update(@Valid Sheet entity, UserPortal userPortal) {
     setBaseParams(entity);
     return super.update(entity, userPortal);
   }
 
-  private void setBaseParams(PageWithSection entity) {
-    PageWithSection dataBaseVersion = baseEntityService.findById(entity.getId());
+  private void setBaseParams(Sheet entity) {
+    Sheet dataBaseVersion = baseEntityService.findById(entity.getId());
     baseParams.setParams(entity, dataBaseVersion);
     for (Section section : entity.getSections())
       for (Section sectionBase : dataBaseVersion.getSections()) {
@@ -81,14 +85,13 @@ public class PageController extends BaseEntityAbstractController<PageWithSection
   }
 
   @Override
-  public ResponseEntity<Page<PageWithSection>> getAll(
-      Pageable pageable, String language, PageWithSection pageWithSection, Department department) {
+  public ResponseEntity<Page<Sheet>> getAll(
+      Pageable pageable, String language, Sheet sheet, Department department) {
     return new ResponseEntity<>(HttpStatus.HTTP_VERSION_NOT_SUPPORTED);
   }
 
   @Override
-  public ResponseEntity<List<PageWithSection>> getAll(
-      PageWithSection pageWithSection, Department department) {
+  public ResponseEntity<List<Sheet>> getAll(Sheet sheet, Department department) {
     return new ResponseEntity<>(HttpStatus.HTTP_VERSION_NOT_SUPPORTED);
   }
 
@@ -100,7 +103,7 @@ public class PageController extends BaseEntityAbstractController<PageWithSection
         .unwrap(Session.class)
         .enableFilter(FilterName.LANGUAGE)
         .setParameter("language", language);
-    Page<PageWithSection> page = baseEntityService.findPagingRecords(pageable);
+    Page<Sheet> page = baseEntityService.findPagingRecords(pageable);
     java.lang.reflect.Type targetListType = new TypeToken<CustomPage<PageForList>>() {}.getType();
     CustomPage<PageForList> pages = mapper.map(page, targetListType);
     entityManager.unwrap(Session.class).disableFilter(FilterName.LANGUAGE);
@@ -115,7 +118,7 @@ public class PageController extends BaseEntityAbstractController<PageWithSection
         .unwrap(Session.class)
         .enableFilter(FilterName.LANGUAGE)
         .setParameter("language", language);
-    PageWithSection pageFromBD = baseEntityService.findById(id);
+    Sheet pageFromBD = baseEntityService.findById(id);
     PageDto page = mapper.map(pageFromBD, PageDto.class);
     entityManager.unwrap(Session.class).disableFilter(FilterName.LANGUAGE);
     return new ResponseEntity<>(page, HttpStatus.OK);
@@ -128,7 +131,7 @@ public class PageController extends BaseEntityAbstractController<PageWithSection
         .unwrap(Session.class)
         .enableFilter(FilterName.LANGUAGE)
         .setParameter("language", language);
-    List<PageWithSection> page = baseEntityService.findAllForClient();
+    List<Sheet> page = baseEntityService.findAllForClient();
     java.lang.reflect.Type targetListType = new TypeToken<List<PageForList>>() {}.getType();
     List<PageForList> list = mapper.map(page, targetListType);
     entityManager.unwrap(Session.class).disableFilter(FilterName.LANGUAGE);
@@ -144,7 +147,7 @@ public class PageController extends BaseEntityAbstractController<PageWithSection
         .enableFilter(FilterName.LANGUAGE)
         .setParameter("language", language);
     entityManager.unwrap(Session.class).enableFilter(FilterName.STATUS).setParameter("status", 1);
-    PageWithSection pageFromBD = baseEntityService.findByIdForClient(id);
+    Sheet pageFromBD = baseEntityService.findByIdForClient(id);
     PageDtoFull page = mapper.map(pageFromBD, PageDtoFull.class);
     entityManager.unwrap(Session.class).disableFilter(FilterName.LANGUAGE);
     entityManager.unwrap(Session.class).disableFilter(FilterName.STATUS);
