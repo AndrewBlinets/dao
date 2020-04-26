@@ -17,7 +17,7 @@ import javax.persistence.OneToOne;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@Entity
+@Entity(name = "userportal")
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class UserPortal extends UserBase implements Serializable {

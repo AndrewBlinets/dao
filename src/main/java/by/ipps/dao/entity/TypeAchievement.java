@@ -10,7 +10,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
-@Entity
+@Entity(name = "typeachievement")
 @Data
 public class TypeAchievement extends BaseEntity implements Serializable {
   @Column private String name;

@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
-@Entity
+@Entity(name = "typefiel")
 @Data
 public class TypeFiel extends BaseEntity {
   @Column(length = 6)
