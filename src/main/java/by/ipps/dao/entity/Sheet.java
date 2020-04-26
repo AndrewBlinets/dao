@@ -32,7 +32,7 @@ public class Sheet extends BaseEntity implements Serializable {
   @JsonView(ViewPage.AdminClass.class)
   private int code;
 
-  @OneToMany(mappedBy = "pageWithSection")
+  @OneToMany(mappedBy = "sheet")
   private List<Department> departments;
 
   @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
