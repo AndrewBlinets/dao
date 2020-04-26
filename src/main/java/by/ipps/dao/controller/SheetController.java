@@ -36,14 +36,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/page")
-public class PageController extends BaseEntityAbstractController<Sheet, PageService>
+public class SheetController extends BaseEntityAbstractController<Sheet, PageService>
     implements BaseEntityController<Sheet> {
 
   private BaseParams baseParams;
   private ModelMapper mapper;
   @PersistenceContext private EntityManager entityManager;
 
-  protected PageController(PageService pageService, BaseParams baseParams, ModelMapper mapper) {
+  protected SheetController(PageService pageService, BaseParams baseParams, ModelMapper mapper) {
     super(pageService);
     this.baseParams = baseParams;
     this.mapper = mapper;
