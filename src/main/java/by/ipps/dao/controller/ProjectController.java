@@ -3,9 +3,12 @@ package by.ipps.dao.controller;
 import by.ipps.dao.controller.base.BaseEntityAbstractController;
 import by.ipps.dao.controller.base.BaseEntityController;
 import by.ipps.dao.custom.CustomPage;
+import by.ipps.dao.dto.ProjectDtoForCustomer;
+import by.ipps.dao.dto.ProjectDtoForCustomerOne;
 import by.ipps.dao.dto.project.ProjectDto;
 import by.ipps.dao.dto.project.ProjectDtoAdmin;
 import by.ipps.dao.dto.project.ProjectDtoFull;
+import by.ipps.dao.entity.Customer;
 import by.ipps.dao.entity.Department;
 import by.ipps.dao.entity.Project;
 import by.ipps.dao.entity.ProjectLanguageVersion;
@@ -13,6 +16,7 @@ import by.ipps.dao.entity.Sheet;
 import by.ipps.dao.entity.UserPortal;
 import by.ipps.dao.service.ProjectService;
 import by.ipps.dao.utils.constant.FilterName;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -28,6 +32,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -37,14 +42,13 @@ public class ProjectController extends BaseEntityAbstractController<Project, Pro
 
   private ModelMapper mapper;
   private ProjectService service;
+  @PersistenceContext private EntityManager entityManager;
 
   protected ProjectController(ProjectService projectService, ModelMapper mapper) {
     super(projectService);
     this.mapper = mapper;
     this.service = projectService;
   }
-
-  @PersistenceContext private EntityManager entityManager;
 
   @GetMapping("/client")
   public ResponseEntity<CustomPage<ProjectDto>> getAllForClient(
@@ -134,5 +138,31 @@ public class ProjectController extends BaseEntityAbstractController<Project, Pro
       }
     }
     return super.update(entity, userPortal);
+  }
+
+  @GetMapping(value = "/projectForCustomerByIdCustomer/{customer}")
+  @ResponseBody
+  public ResponseEntity<List<ProjectDtoForCustomer>> getProjectForCustomerByIdCustomer(
+      @PathVariable Customer customer) {
+    List<Project> projects = customer.getProjects();
+    java.lang.reflect.Type targetListType =
+        new TypeToken<List<ProjectDtoForCustomer>>() {}.getType();
+    List<ProjectDtoForCustomer> projectsDto = mapper.map(projects, targetListType);
+    return projectsDto.isEmpty()
+        ? new ResponseEntity<>(HttpStatus.NOT_FOUND)
+        : new ResponseEntity<>(projectsDto, HttpStatus.OK);
+  }
+
+  @GetMapping(value = "/projectForCustomerById/{customer}/{project}")
+  @ResponseBody
+  public ResponseEntity<ProjectDtoForCustomerOne> getProjectForCustomerById(
+      @PathVariable Customer customer, @PathVariable Project project) {
+    List<Project> projects = customer.getProjects();
+    if(projects.contains(project)) {
+      ProjectDtoForCustomerOne projectsDto = mapper.map(projects, ProjectDtoForCustomerOne.class);
+      return new ResponseEntity<>(projectsDto, HttpStatus.OK);
+    } else {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
   }
 }
