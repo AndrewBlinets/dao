@@ -3,7 +3,7 @@ package by.ipps.dao.controller.base;
 import by.ipps.dao.entity.BaseEntity;
 import by.ipps.dao.entity.Department;
 import by.ipps.dao.entity.Sheet;
-import by.ipps.dao.entity.UserPortal;
+import by.ipps.dao.entity.*;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.data.domain.Page;

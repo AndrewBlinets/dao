@@ -17,7 +17,11 @@ public class ProjectDtoForCustomer extends BaseDto {
 
   public void setLanguageVersions(List<ProjectLanguageVersion> versions) {
     if (!versions.isEmpty()) {
-      this.shortTitle = versions.get(0).getShortTitle();
+      for (ProjectLanguageVersion projectLanguageVersion : versions)
+        if(projectLanguageVersion.getCodeLanguage().equals("ru")){
+          this.shortTitle = projectLanguageVersion.getShortTitle();
+          break;
+      }
     }
   }
 }

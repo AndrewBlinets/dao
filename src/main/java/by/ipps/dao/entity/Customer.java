@@ -1,16 +1,15 @@
 package by.ipps.dao.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+
+import by.ipps.dao.utils.view.ViewContact;
+import by.ipps.dao.utils.view.ViewCustomer;
+import by.ipps.dao.utils.view.ViewDepartment;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.Where;
@@ -18,7 +17,48 @@ import org.hibernate.annotations.Where;
 @Entity
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class Customer extends UserBase implements Serializable {
+public class Customer extends BaseEntity implements Serializable {
+
+  @Column(nullable = false, length = 60)
+  protected String login;
+
+  @Column(nullable = false)
+  protected String hashPassword;
+
+  @Column(nullable = false)
+  @Temporal(TemporalType.TIMESTAMP)
+  protected Date dateLastChangePassword;
+
+  @Column(nullable = false, length = 60)
+  @JsonView({
+          ViewContact.BaseClass.class,
+          ViewDepartment.FullInformationClassDepartment.class,
+          ViewCustomer.BaseClass.class
+  })
+  protected String name;
+
+  @JsonView({
+          ViewContact.BaseClass.class,
+          ViewDepartment.FullInformationClassDepartment.class,
+          ViewCustomer.BaseClass.class
+  })
+  @Column(nullable = false, length = 60)
+  protected String surName;
+
+  @JsonView({
+          ViewContact.BaseClass.class,
+          ViewDepartment.FullInformationClassDepartment.class,
+          ViewCustomer.BaseClass.class
+  })
+  @Column(nullable = false, length = 60)
+  protected String patronicName;
+
+  @Column protected Boolean enabled;
+  @Column protected Boolean block;
+
+  @JsonView(ViewCustomer.BaseClass.class)
+  @Column(length = 100)
+  protected String email;
 
   @ManyToOne
   @JoinColumn(name = "org_id", referencedColumnName = "id", insertable = false, updatable = false)
@@ -31,7 +71,13 @@ public class Customer extends UserBase implements Serializable {
       inverseJoinColumns = {@JoinColumn(name = "role_id", nullable = false, updatable = false)})
   private Set<Role> roles;
 
-  @OneToMany
-  @Where(clause = "statusr = 'A' and publicForCustomer = true")
+  @ManyToMany
+  @JoinTable(
+          name = "customer_projects",
+          joinColumns = @JoinColumn(name = "customer_id", nullable = false, updatable = false),
+          inverseJoinColumns = {@JoinColumn(name = "projects_id", nullable = false, updatable = false)})
+  @Where(clause = "statusr = 'A' and public_for_customer = true")
+  @OrderBy("id" +
+          "")
   private List<Project> projects;
 }

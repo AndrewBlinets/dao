@@ -1,26 +1,67 @@
 package by.ipps.dao.entity;
 
 import by.ipps.dao.utils.view.ViewContact;
+import by.ipps.dao.utils.view.ViewCustomer;
+import by.ipps.dao.utils.view.ViewDepartment;
 import com.fasterxml.jackson.annotation.JsonView;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
-@Entity(name = "userportal")
+@Entity
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class UserPortal extends UserBase implements Serializable {
+@AllArgsConstructor
+@NoArgsConstructor
+public class UserPortal extends BaseEntity implements Serializable {
+
+  @Column(nullable = false, length = 60)
+  protected String login;
+
+  @Column(nullable = false)
+  protected String hashPassword;
+
+  @Column(nullable = false)
+  @Temporal(TemporalType.TIMESTAMP)
+  protected Date dateLastChangePassword;
+
+  @Column(nullable = false, length = 60)
+  @JsonView({
+          ViewContact.BaseClass.class,
+          ViewDepartment.FullInformationClassDepartment.class,
+          ViewCustomer.BaseClass.class
+  })
+  protected String name;
+
+  @JsonView({
+          ViewContact.BaseClass.class,
+          ViewDepartment.FullInformationClassDepartment.class,
+          ViewCustomer.BaseClass.class
+  })
+  @Column(nullable = false, length = 60)
+  protected String surName;
+
+  @JsonView({
+          ViewContact.BaseClass.class,
+          ViewDepartment.FullInformationClassDepartment.class,
+          ViewCustomer.BaseClass.class
+  })
+  @Column(nullable = false, length = 60)
+  protected String patronicName;
+
+  @Column protected Boolean enabled;
+  @Column protected Boolean block;
+
+  @JsonView(ViewCustomer.BaseClass.class)
+  @Column(length = 100)
+  protected String email;
 
   @JsonView(ViewContact.BaseClass.class)
   @Column
