@@ -73,11 +73,18 @@ public class Customer extends BaseEntity implements Serializable {
 
   @ManyToMany
   @JoinTable(
-          name = "customer_projects",
-          joinColumns = @JoinColumn(name = "customer_id", nullable = false, updatable = false),
-          inverseJoinColumns = {@JoinColumn(name = "projects_id", nullable = false, updatable = false)})
+      name = "customer_projects",
+      joinColumns = @JoinColumn(name = "customer_id", nullable = false, updatable = false),
+      inverseJoinColumns = {@JoinColumn(name = "projects_id", nullable = false, updatable = false)})
   @Where(clause = "statusr = 'A' and public_for_customer = true")
-  @OrderBy("id" +
-          "")
+  @OrderBy("id")
   private List<Project> projects;
+
+  @ManyToMany
+  @JoinTable(
+      name = "customer_favoriteProject",
+      joinColumns = @JoinColumn(name = "customer_id", nullable = false, updatable = false),
+      inverseJoinColumns = {@JoinColumn(name = "projects_id", nullable = false, updatable = false)})
+  @Where(clause = "statusr = 'A' and public_for_customer = true")
+  private List<Project> favoriteProject;
 }

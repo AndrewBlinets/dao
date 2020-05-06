@@ -34,6 +34,11 @@ public class ProjectServiceImpl extends BaseEntityServiceImpl<Project, ProjectRe
   }
 
   @Override
+  public Project findByIdAndPublicForCustomer(long project) {
+    return repository.findByIdAndStatusRAndPublicForCustomer(project, "A", true).orElse(null);
+  }
+
+  @Override
   public Project findByIdAndSectionAndDepartmentForClient(
       Long id, Sheet section, Department department) {
     return repository

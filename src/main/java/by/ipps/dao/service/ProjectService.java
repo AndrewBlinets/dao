@@ -20,4 +20,6 @@ public interface ProjectService extends BaseEntityService<Project> {
 
   Page<Project> findProjectPageBySectionAndDepartmentForAdmin(
       Sheet sheet, Department department, Pageable pageable);
+
+  Project findByIdAndPublicForCustomer(long project);
 }

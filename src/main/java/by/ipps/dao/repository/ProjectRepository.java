@@ -41,4 +41,6 @@ public interface ProjectRepository extends BaseEntityRepository<Project> {
               + " (p.department = :department or :department is null)")
   Optional<Project> findByIdAndSectionAndDepartment(
       @Param("id") Long id, @Param("page") Sheet sheet, @Param("department") Department department);
+
+  Optional<Project> findByIdAndStatusRAndPublicForCustomer(long project, String a, boolean b);
 }
