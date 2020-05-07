@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ProjectDtoForCustomer extends BaseDto {
   private String shortTitle;
+  private boolean favorite;
 
   public void setLanguageVersions(List<ProjectLanguageVersion> versions) {
     if (!versions.isEmpty()) {

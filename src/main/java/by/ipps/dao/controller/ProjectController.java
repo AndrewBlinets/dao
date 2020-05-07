@@ -145,9 +145,20 @@ public class ProjectController extends BaseEntityAbstractController<Project, Pro
   public ResponseEntity<List<ProjectDtoForCustomer>> getProjectForCustomerByIdCustomer(
       @PathVariable Customer customer) {
     List<Project> projects = customer.getProjects();
+    List<Project> favoriteProjects = customer.getFavoriteProject();
     java.lang.reflect.Type targetListType =
         new TypeToken<List<ProjectDtoForCustomer>>() {}.getType();
     List<ProjectDtoForCustomer> projectsDto = mapper.map(projects, targetListType);
+    for(Project project : projects){
+      if(favoriteProjects.contains(project)){
+        for (ProjectDtoForCustomer projectDtoForCustomer : projectsDto){
+          if(projectDtoForCustomer.getId() == project.getId()){
+            projectDtoForCustomer.setFavorite(true);
+            break;
+          }
+        }
+      }
+    }
     return projectsDto.isEmpty()
         ? new ResponseEntity<>(HttpStatus.NOT_FOUND)
         : new ResponseEntity<>(projectsDto, HttpStatus.OK);
