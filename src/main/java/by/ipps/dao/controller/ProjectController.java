@@ -153,7 +153,7 @@ public class ProjectController extends BaseEntityAbstractController<Project, Pro
       if(favoriteProjects.contains(project)){
         for (ProjectDtoForCustomer projectDtoForCustomer : projectsDto){
           if(projectDtoForCustomer.getId() == project.getId()){
-            projectDtoForCustomer.setFavorite(true);
+            projectDtoForCustomer.setFavorites(true);
             break;
           }
         }
@@ -170,7 +170,7 @@ public class ProjectController extends BaseEntityAbstractController<Project, Pro
       @PathVariable Customer customer, @PathVariable Project project) {
     List<Project> projects = customer.getProjects();
     if(projects.contains(project)) {
-      ProjectDtoForCustomerOne projectsDto = mapper.map(projects, ProjectDtoForCustomerOne.class);
+      ProjectDtoForCustomerOne projectsDto = mapper.map(project, ProjectDtoForCustomerOne.class);
       return new ResponseEntity<>(projectsDto, HttpStatus.OK);
     } else {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);

@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.CreationTimestamp;
@@ -57,7 +59,8 @@ public class Project extends BaseEntity implements Serializable {
   private List<DocumentForCustomer> images;
 
   @ManyToMany(mappedBy = "projects")
-  private List<Customer> departments;
+  @JsonIgnore
+  private List<Customer> customers;
 
   @Override
   public String toString() {
