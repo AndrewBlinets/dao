@@ -45,7 +45,6 @@ public class CustomerController extends BaseEntityAbstractController<Customer, C
     } else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
 
-  //    @JsonView(ViewCustomer.BaseClass.class)
   @PostMapping(value = "/getInfoAboutCustomer")
   @ResponseBody
   public ResponseEntity<CustomerDtoFull> getInfoAboutCustomer(@RequestBody String login) {

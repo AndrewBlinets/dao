@@ -1,15 +1,24 @@
 package by.ipps.dao.entity;
 
-import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
-import javax.persistence.*;
-
 import by.ipps.dao.utils.view.ViewContact;
 import by.ipps.dao.utils.view.ViewCustomer;
 import by.ipps.dao.utils.view.ViewDepartment;
 import com.fasterxml.jackson.annotation.JsonView;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OrderBy;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.Where;
@@ -31,24 +40,24 @@ public class Customer extends BaseEntity implements Serializable {
 
   @Column(nullable = false, length = 60)
   @JsonView({
-          ViewContact.BaseClass.class,
-          ViewDepartment.FullInformationClassDepartment.class,
-          ViewCustomer.BaseClass.class
+    ViewContact.BaseClass.class,
+    ViewDepartment.FullInformationClassDepartment.class,
+    ViewCustomer.BaseClass.class
   })
   protected String name;
 
   @JsonView({
-          ViewContact.BaseClass.class,
-          ViewDepartment.FullInformationClassDepartment.class,
-          ViewCustomer.BaseClass.class
+    ViewContact.BaseClass.class,
+    ViewDepartment.FullInformationClassDepartment.class,
+    ViewCustomer.BaseClass.class
   })
   @Column(nullable = false, length = 60)
   protected String surName;
 
   @JsonView({
-          ViewContact.BaseClass.class,
-          ViewDepartment.FullInformationClassDepartment.class,
-          ViewCustomer.BaseClass.class
+    ViewContact.BaseClass.class,
+    ViewDepartment.FullInformationClassDepartment.class,
+    ViewCustomer.BaseClass.class
   })
   @Column(nullable = false, length = 60)
   protected String patronicName;
@@ -87,4 +96,12 @@ public class Customer extends BaseEntity implements Serializable {
       inverseJoinColumns = {@JoinColumn(name = "projects_id", nullable = false, updatable = false)})
   @Where(clause = "statusr = 'A' and public_for_customer = true")
   private List<Project> favoriteProject;
+
+  @ManyToMany
+  @JoinTable(
+      name = "customer_section",
+      joinColumns = @JoinColumn(name = "customer_id", nullable = false, updatable = false),
+      inverseJoinColumns = {@JoinColumn(name = "section_id", nullable = false, updatable = false)})
+  @Where(clause = "statusr = 'A'")
+  private Set<Section> sections;
 }

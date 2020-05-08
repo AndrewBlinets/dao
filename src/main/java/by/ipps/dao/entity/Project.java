@@ -51,7 +51,8 @@ public class Project extends BaseEntity implements Serializable {
 
   @Column private int status;
 
-  @Column(name = "public_for_customer") private boolean publicForCustomer;
+  @Column(name = "public_for_customer")
+  private boolean publicForCustomer;
 
   @OneToMany(fetch = FetchType.LAZY)
   private List<DocumentForCustomer> images;

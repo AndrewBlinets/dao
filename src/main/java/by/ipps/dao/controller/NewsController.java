@@ -10,7 +10,7 @@ import by.ipps.dao.entity.Department;
 import by.ipps.dao.entity.News;
 import by.ipps.dao.entity.NewsLanguageVersion;
 import by.ipps.dao.entity.Sheet;
-import by.ipps.dao.entity.*;
+import by.ipps.dao.entity.UserPortal;
 import by.ipps.dao.service.NewsService;
 import by.ipps.dao.utils.constant.FilterName;
 import by.ipps.dao.utils.view.ViewNews;

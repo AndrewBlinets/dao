@@ -4,7 +4,7 @@ import by.ipps.dao.entity.BaseEntity;
 import by.ipps.dao.entity.Department;
 import by.ipps.dao.entity.Logger;
 import by.ipps.dao.entity.Sheet;
-import by.ipps.dao.entity.*;
+import by.ipps.dao.entity.UserPortal;
 import by.ipps.dao.service.LoggerService;
 import by.ipps.dao.service.base.BaseEntityService;
 import java.util.List;

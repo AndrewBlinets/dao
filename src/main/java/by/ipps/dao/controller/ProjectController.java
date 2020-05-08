@@ -4,7 +4,6 @@ import by.ipps.dao.controller.base.BaseEntityAbstractController;
 import by.ipps.dao.controller.base.BaseEntityController;
 import by.ipps.dao.custom.CustomPage;
 import by.ipps.dao.dto.ProjectDtoForCustomer;
-import by.ipps.dao.dto.ProjectDtoForCustomerOne;
 import by.ipps.dao.dto.project.ProjectDto;
 import by.ipps.dao.dto.project.ProjectDtoAdmin;
 import by.ipps.dao.dto.project.ProjectDtoFull;
@@ -149,11 +148,11 @@ public class ProjectController extends BaseEntityAbstractController<Project, Pro
     java.lang.reflect.Type targetListType =
         new TypeToken<List<ProjectDtoForCustomer>>() {}.getType();
     List<ProjectDtoForCustomer> projectsDto = mapper.map(projects, targetListType);
-    for(Project project : projects){
-      if(favoriteProjects.contains(project)){
-        for (ProjectDtoForCustomer projectDtoForCustomer : projectsDto){
-          if(projectDtoForCustomer.getId() == project.getId()){
-            projectDtoForCustomer.setFavorite(true);
+    for (Project project : projects) {
+      if (favoriteProjects.contains(project)) {
+        for (ProjectDtoForCustomer projectDtoForCustomer : projectsDto) {
+          if (projectDtoForCustomer.getId() == project.getId()) {
+            projectDtoForCustomer.setFavorites(true);
             break;
           }
         }
@@ -166,11 +165,13 @@ public class ProjectController extends BaseEntityAbstractController<Project, Pro
 
   @GetMapping(value = "/projectForCustomerById/{customer}/{project}")
   @ResponseBody
-  public ResponseEntity<ProjectDtoForCustomerOne> getProjectForCustomerById(
+  public ResponseEntity<ProjectDtoForCustomer> getProjectForCustomerById(
       @PathVariable Customer customer, @PathVariable Project project) {
-    List<Project> projects = customer.getProjects();
-    if(projects.contains(project)) {
-      ProjectDtoForCustomerOne projectsDto = mapper.map(projects, ProjectDtoForCustomerOne.class);
+    if (project != null && customer != null) {
+      ProjectDtoForCustomer projectsDto = mapper.map(project, ProjectDtoForCustomer.class);
+      if (customer.getProjects().contains(project)) {
+        projectsDto.setFavorites(true);
+      }
       return new ResponseEntity<>(projectsDto, HttpStatus.OK);
     } else {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);

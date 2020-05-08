@@ -8,8 +8,17 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
-import javax.persistence.*;
-
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -34,24 +43,24 @@ public class UserPortal extends BaseEntity implements Serializable {
 
   @Column(nullable = false, length = 60)
   @JsonView({
-          ViewContact.BaseClass.class,
-          ViewDepartment.FullInformationClassDepartment.class,
-          ViewCustomer.BaseClass.class
+    ViewContact.BaseClass.class,
+    ViewDepartment.FullInformationClassDepartment.class,
+    ViewCustomer.BaseClass.class
   })
   protected String name;
 
   @JsonView({
-          ViewContact.BaseClass.class,
-          ViewDepartment.FullInformationClassDepartment.class,
-          ViewCustomer.BaseClass.class
+    ViewContact.BaseClass.class,
+    ViewDepartment.FullInformationClassDepartment.class,
+    ViewCustomer.BaseClass.class
   })
   @Column(nullable = false, length = 60)
   protected String surName;
 
   @JsonView({
-          ViewContact.BaseClass.class,
-          ViewDepartment.FullInformationClassDepartment.class,
-          ViewCustomer.BaseClass.class
+    ViewContact.BaseClass.class,
+    ViewDepartment.FullInformationClassDepartment.class,
+    ViewCustomer.BaseClass.class
   })
   @Column(nullable = false, length = 60)
   protected String patronicName;

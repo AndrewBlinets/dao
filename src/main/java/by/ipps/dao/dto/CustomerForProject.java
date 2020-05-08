@@ -15,5 +15,4 @@ public class CustomerForProject extends BaseDto implements Serializable {
   private String name;
   private String surName;
   private String patronicName;
-
 }

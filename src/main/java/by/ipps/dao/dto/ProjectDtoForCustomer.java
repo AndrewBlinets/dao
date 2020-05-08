@@ -14,15 +14,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ProjectDtoForCustomer extends BaseDto {
   private String shortTitle;
-  private boolean favorite;
+  private boolean favorites;
 
   public void setLanguageVersions(List<ProjectLanguageVersion> versions) {
     if (!versions.isEmpty()) {
       for (ProjectLanguageVersion projectLanguageVersion : versions)
-        if(projectLanguageVersion.getCodeLanguage().equals("ru")){
+        if (projectLanguageVersion.getCodeLanguage().equals("ru")) {
           this.shortTitle = projectLanguageVersion.getShortTitle();
           break;
-      }
+        }
     }
   }
 }

@@ -32,4 +32,8 @@ public class NewsForCustomer extends BaseEntity {
   @ManyToOne
   @JoinColumn(name = "project_id", referencedColumnName = "id")
   private Project project;
+
+  @ManyToOne
+  @JoinColumn(name = "section_id", referencedColumnName = "id")
+  private Section section;
 }
