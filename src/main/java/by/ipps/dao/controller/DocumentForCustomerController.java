@@ -80,7 +80,7 @@ public class DocumentForCustomerController
           })
           Pageable pageable,
       @PathVariable Customer customer) {
-    return;
+    return null;
   }
 
   @GetMapping("/byCustomer/{customer}")
