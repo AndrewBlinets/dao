@@ -1,12 +1,9 @@
 package by.ipps.dao.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import javax.persistence.*;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -34,6 +31,6 @@ public class NewsForCustomer extends BaseEntity {
   private Project project;
 
   @ManyToOne
-  @JoinColumn(name = "section_id", referencedColumnName = "id")
-  private Section section;
+  @JoinColumn(name = "sheet_id", referencedColumnName = "id")
+  private Sheet sheet;
 }

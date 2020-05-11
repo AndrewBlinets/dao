@@ -3,19 +3,15 @@ package by.ipps.dao.entity;
 import by.ipps.dao.utils.constant.FilterName;
 import by.ipps.dao.utils.view.ViewPage;
 import com.fasterxml.jackson.annotation.JsonView;
-import java.io.Serializable;
-import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.Filter;
 import org.hibernate.annotations.FilterDef;
 import org.hibernate.annotations.ParamDef;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity

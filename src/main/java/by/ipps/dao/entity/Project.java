@@ -2,27 +2,17 @@ package by.ipps.dao.entity;
 
 import by.ipps.dao.utils.constant.FilterName;
 import by.ipps.dao.utils.view.ViewDocumentForCustomer;
-import com.fasterxml.jackson.annotation.JsonView;
-import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Filter;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -69,6 +59,10 @@ public class Project extends BaseEntity implements Serializable {
   @OneToMany(mappedBy = "project")
   @JsonIgnore
   private List<DocumentForCustomer> documentForCustomers;
+
+  @OneToMany(mappedBy = "project")
+  @JsonIgnore
+  private List<NewsForCustomer> newsForCustomers;
 
   @Override
   public String toString() {

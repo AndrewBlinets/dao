@@ -2,33 +2,22 @@ package by.ipps.dao.controller;
 
 import by.ipps.dao.controller.base.BaseEntityAbstractController;
 import by.ipps.dao.controller.base.BaseEntityController;
-import by.ipps.dao.custom.CustomPage;
 import by.ipps.dao.dto.*;
-import by.ipps.dao.dto.project.ProjectDtoAdmin;
 import by.ipps.dao.entity.Customer;
 import by.ipps.dao.entity.Project;
 import by.ipps.dao.service.CustomerService;
 import by.ipps.dao.service.ProjectService;
-import java.util.List;
-
 import by.ipps.dao.utils.constant.FilterName;
 import org.hibernate.Session;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @RestController
 @RequestMapping("/customer")
@@ -37,7 +26,8 @@ public class CustomerController extends BaseEntityAbstractController<Customer, C
 
   private ProjectService projectService;
 
-  public CustomerController(CustomerService customerService, ProjectService projectService, ModelMapper mapper) {
+  public CustomerController(
+      CustomerService customerService, ProjectService projectService, ModelMapper mapper) {
     super(customerService);
     this.projectService = projectService;
     this.mapper = mapper;
@@ -63,8 +53,7 @@ public class CustomerController extends BaseEntityAbstractController<Customer, C
     } else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
 
-  @PersistenceContext
-  private EntityManager entityManager;
+  @PersistenceContext private EntityManager entityManager;
   private ModelMapper mapper;
 
   @GetMapping(value = "/favoriteProject")
@@ -80,7 +69,7 @@ public class CustomerController extends BaseEntityAbstractController<Customer, C
       java.lang.reflect.Type targetListType =
           new TypeToken<List<ProjectDtoForCustomerOne>>() {}.getType();
       List<ProjectDtoForCustomerOne> projectDto = mapper.map(projects, targetListType);
-      for (ProjectDtoForCustomerOne project : projectDto){
+      for (ProjectDtoForCustomerOne project : projectDto) {
         project.setFavorites(true);
       }
       entityManager.unwrap(Session.class).disableFilter(FilterName.LANGUAGE);
@@ -92,7 +81,8 @@ public class CustomerController extends BaseEntityAbstractController<Customer, C
 
   @PostMapping(value = "/favoriteProject")
   @ResponseBody
-  public ResponseEntity<ProjectDtoForCustomerOne> addFavoriteProject(@RequestBody FavoriteProject favoriteProject) {
+  public ResponseEntity<ProjectDtoForCustomerOne> addFavoriteProject(
+      @RequestBody FavoriteProject favoriteProject) {
     try {
       Project project = projectService.findByIdAndPublicForCustomer(favoriteProject.getProject());
       Customer customer = this.baseEntityService.findById(favoriteProject.getCustomer());
@@ -102,9 +92,9 @@ public class CustomerController extends BaseEntityAbstractController<Customer, C
         this.baseEntityService.update(customer);
       }
       entityManager
-              .unwrap(Session.class)
-              .enableFilter(FilterName.LANGUAGE)
-              .setParameter("language", "ru");
+          .unwrap(Session.class)
+          .enableFilter(FilterName.LANGUAGE)
+          .setParameter("language", "ru");
       ProjectDtoForCustomerOne projectDto = mapper.map(project, ProjectDtoForCustomerOne.class);
       entityManager.unwrap(Session.class).disableFilter(FilterName.LANGUAGE);
       projectDto.setFavorites(true);

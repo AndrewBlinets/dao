@@ -1,14 +1,14 @@
 package by.ipps.dao.entity;
 
 import by.ipps.dao.utils.view.ViewDocumentForCustomer;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -18,7 +18,8 @@ public class DocumentForCustomer extends BaseEntity {
   @JoinColumn @ManyToOne private Project project;
   @JoinColumn @ManyToOne private Sheet sheet;
 
-  @Column @JsonView({ViewDocumentForCustomer.BaseClass.class})
+  @Column
+  @JsonView({ViewDocumentForCustomer.BaseClass.class})
   private byte[] file;
 
   @Column(length = 100)

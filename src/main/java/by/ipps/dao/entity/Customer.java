@@ -4,24 +4,15 @@ import by.ipps.dao.utils.view.ViewContact;
 import by.ipps.dao.utils.view.ViewCustomer;
 import by.ipps.dao.utils.view.ViewDepartment;
 import com.fasterxml.jackson.annotation.JsonView;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.Where;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OrderBy;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import org.hibernate.annotations.Where;
 
 @Entity
 @Data

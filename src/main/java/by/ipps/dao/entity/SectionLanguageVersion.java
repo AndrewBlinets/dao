@@ -3,12 +3,13 @@ package by.ipps.dao.entity;
 import by.ipps.dao.utils.constant.FilterName;
 import by.ipps.dao.utils.view.ViewPage;
 import com.fasterxml.jackson.annotation.JsonView;
-import javax.persistence.Column;
-import javax.persistence.Entity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.FilterDef;
 import org.hibernate.annotations.ParamDef;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
 
 @Entity
 @Data

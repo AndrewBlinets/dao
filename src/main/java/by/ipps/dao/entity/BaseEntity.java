@@ -1,27 +1,17 @@
 package by.ipps.dao.entity;
 
-import by.ipps.dao.utils.view.ViewContact;
-import by.ipps.dao.utils.view.ViewCustomer;
-import by.ipps.dao.utils.view.ViewDepartment;
-import by.ipps.dao.utils.view.ViewDocumentForCustomer;
-import by.ipps.dao.utils.view.ViewFile;
-import by.ipps.dao.utils.view.ViewNews;
-import by.ipps.dao.utils.view.ViewPage;
+import by.ipps.dao.utils.view.*;
 import com.fasterxml.jackson.annotation.JsonView;
-import java.io.Serializable;
-import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
 
 @MappedSuperclass
 @Data
@@ -42,7 +32,7 @@ public class BaseEntity implements Serializable {
     ViewPage.AdminClass.class,
     ViewPage.SectionClass.class,
     ViewCustomer.BaseClass.class,
-      ViewDocumentForCustomer.FileClass.class
+    ViewDocumentForCustomer.FileClass.class
   })
   @Id
   @Column

@@ -2,14 +2,11 @@ package by.ipps.dao.dto;
 
 import by.ipps.dao.entity.Org;
 import by.ipps.dao.entity.Role;
+import lombok.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 @Setter
 @Getter

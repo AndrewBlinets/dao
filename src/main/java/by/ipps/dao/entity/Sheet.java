@@ -3,20 +3,16 @@ package by.ipps.dao.entity;
 import by.ipps.dao.utils.constant.FilterName;
 import by.ipps.dao.utils.view.ViewDocumentForCustomer;
 import by.ipps.dao.utils.view.ViewPage;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
-import java.io.Serializable;
-import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
-import javax.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.Filter;
 import org.hibernate.annotations.Where;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
@@ -39,6 +35,9 @@ public class Sheet extends BaseEntity implements Serializable {
   @OneToMany(mappedBy = "sheet")
   private List<DocumentForCustomer> documentForCustomers;
 
+  @OneToMany(mappedBy = "sheet")
+  private List<NewsForCustomer> newsForCustomers;
+
   @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   @JsonView(ViewPage.AdminClass.class)
   @Filter(name = FilterName.STATUS)
@@ -53,6 +52,10 @@ public class Sheet extends BaseEntity implements Serializable {
   @Column
   @JsonView({ViewPage.AdminClass.class})
   private boolean showForClientInBar;
+
+  @ManyToMany(mappedBy = "sheets")
+  @JsonIgnore
+  private List<Customer> customers;
 
   @Override
   public String toString() {

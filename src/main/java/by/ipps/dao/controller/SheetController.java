@@ -8,7 +8,6 @@ import by.ipps.dao.dto.sheet.PageDtoFull;
 import by.ipps.dao.dto.sheet.PageForList;
 import by.ipps.dao.entity.Block;
 import by.ipps.dao.entity.Department;
-import by.ipps.dao.entity.Section;
 import by.ipps.dao.entity.Sheet;
 import by.ipps.dao.entity.UserPortal;
 import by.ipps.dao.service.PageService;
@@ -16,10 +15,6 @@ import by.ipps.dao.utils.addFun.BaseParams;
 import by.ipps.dao.utils.constant.FilterName;
 import by.ipps.dao.utils.view.ViewPage;
 import com.fasterxml.jackson.annotation.JsonView;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.validation.Valid;
 import org.hibernate.Session;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -28,11 +23,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/page")

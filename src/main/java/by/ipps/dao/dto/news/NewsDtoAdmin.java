@@ -2,13 +2,14 @@ package by.ipps.dao.dto.news;
 
 import by.ipps.dao.dto.sheet.BaseDto;
 import by.ipps.dao.entity.NewsLanguageVersion;
-import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Data

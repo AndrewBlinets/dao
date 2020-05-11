@@ -1,8 +1,9 @@
 package by.ipps.dao.repository;
 
 import by.ipps.dao.entity.Customer;
-import java.util.Optional;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 @Repository
 public interface CustomerRepository extends BaseEntityRepository<Customer> {

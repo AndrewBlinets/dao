@@ -1,9 +1,10 @@
 package by.ipps.dao.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity

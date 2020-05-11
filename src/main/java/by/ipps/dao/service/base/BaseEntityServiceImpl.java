@@ -2,11 +2,12 @@ package by.ipps.dao.service.base;
 
 import by.ipps.dao.entity.BaseEntity;
 import by.ipps.dao.repository.BaseEntityRepository;
-import java.util.Date;
-import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
+import java.util.Date;
+import java.util.List;
 
 // @Transactional
 @Slf4j

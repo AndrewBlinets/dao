@@ -4,8 +4,9 @@ import by.ipps.dao.entity.Section;
 import by.ipps.dao.repository.SectionRepository;
 import by.ipps.dao.service.SectionService;
 import by.ipps.dao.service.base.BaseEntityServiceImpl;
-import java.util.List;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class SectionSeviceImpl extends BaseEntityServiceImpl<Section, SectionRepository>
