@@ -36,4 +36,6 @@ public class UserController extends BaseEntityAbstractController<UserPortal, Use
       return new ResponseEntity<>(userDto, HttpStatus.OK);
     } else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
+
+//  @Get
 }

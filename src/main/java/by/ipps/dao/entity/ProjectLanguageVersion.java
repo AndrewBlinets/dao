@@ -1,6 +1,8 @@
 package by.ipps.dao.entity;
 
 import by.ipps.dao.utils.constant.FilterName;
+import by.ipps.dao.utils.view.ViewDocumentForCustomer;
+import com.fasterxml.jackson.annotation.JsonView;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,6 +26,7 @@ public class ProjectLanguageVersion extends BaseEntity implements Serializable {
   private String title;
 
   @Column(length = 500)
+  @JsonView(ViewDocumentForCustomer.FileClass.class)
   private String shortTitle;
 
   @Column(length = 10000)

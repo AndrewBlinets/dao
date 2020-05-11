@@ -3,6 +3,7 @@ package by.ipps.dao.entity;
 import by.ipps.dao.utils.view.ViewContact;
 import by.ipps.dao.utils.view.ViewCustomer;
 import by.ipps.dao.utils.view.ViewDepartment;
+import by.ipps.dao.utils.view.ViewDocumentForCustomer;
 import by.ipps.dao.utils.view.ViewFile;
 import by.ipps.dao.utils.view.ViewNews;
 import by.ipps.dao.utils.view.ViewPage;
@@ -40,7 +41,8 @@ public class BaseEntity implements Serializable {
     ViewPage.BaseClassPageName.class,
     ViewPage.AdminClass.class,
     ViewPage.SectionClass.class,
-    ViewCustomer.BaseClass.class
+    ViewCustomer.BaseClass.class,
+      ViewDocumentForCustomer.FileClass.class
   })
   @Id
   @Column

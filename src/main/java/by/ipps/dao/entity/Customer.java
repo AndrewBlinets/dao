@@ -99,9 +99,9 @@ public class Customer extends BaseEntity implements Serializable {
 
   @ManyToMany
   @JoinTable(
-      name = "customer_section",
+      name = "customer_sheet",
       joinColumns = @JoinColumn(name = "customer_id", nullable = false, updatable = false),
-      inverseJoinColumns = {@JoinColumn(name = "section_id", nullable = false, updatable = false)})
+      inverseJoinColumns = {@JoinColumn(name = "sheet_id", nullable = false, updatable = false)})
   @Where(clause = "statusr = 'A'")
-  private Set<Section> sections;
+  private List<Sheet> sheets;
 }

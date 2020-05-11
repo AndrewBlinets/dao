@@ -1,6 +1,7 @@
 package by.ipps.dao.entity;
 
 import by.ipps.dao.utils.constant.FilterName;
+import by.ipps.dao.utils.view.ViewDocumentForCustomer;
 import by.ipps.dao.utils.view.ViewPage;
 import com.fasterxml.jackson.annotation.JsonView;
 import javax.persistence.Column;
@@ -21,7 +22,7 @@ import org.hibernate.annotations.ParamDef;
     })
 public class PageLanguageVersion extends BaseEntity {
 
-  @JsonView(ViewPage.AdminClass.class)
+  @JsonView({ViewPage.AdminClass.class, ViewDocumentForCustomer.FileClass.class})
   @Column
   private String name;
 

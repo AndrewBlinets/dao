@@ -1,6 +1,7 @@
 package by.ipps.dao.entity;
 
 import by.ipps.dao.utils.constant.FilterName;
+import by.ipps.dao.utils.view.ViewDocumentForCustomer;
 import by.ipps.dao.utils.view.ViewPage;
 import com.fasterxml.jackson.annotation.JsonView;
 import java.io.Serializable;
@@ -23,7 +24,7 @@ import org.hibernate.annotations.Where;
 @Table(name = "page")
 public class Sheet extends BaseEntity implements Serializable {
 
-  @JsonView(ViewPage.AdminClass.class)
+  @JsonView({ViewPage.AdminClass.class, ViewDocumentForCustomer.FileClass.class})
   @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   @Filter(name = FilterName.LANGUAGE)
   private List<PageLanguageVersion> languageVersions;
@@ -34,6 +35,9 @@ public class Sheet extends BaseEntity implements Serializable {
 
   @OneToMany(mappedBy = "sheet")
   private List<Department> departments;
+
+  @OneToMany(mappedBy = "sheet")
+  private List<DocumentForCustomer> documentForCustomers;
 
   @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   @JsonView(ViewPage.AdminClass.class)

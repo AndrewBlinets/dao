@@ -1,6 +1,8 @@
 package by.ipps.dao.entity;
 
 import by.ipps.dao.utils.constant.FilterName;
+import by.ipps.dao.utils.view.ViewDocumentForCustomer;
+import com.fasterxml.jackson.annotation.JsonView;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -34,6 +36,7 @@ public class Project extends BaseEntity implements Serializable {
 
   @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   @Filter(name = FilterName.LANGUAGE)
+  @JsonView({ViewDocumentForCustomer.FileClass.class})
   private List<ProjectLanguageVersion> languageVersions;
 
   @OneToOne(fetch = FetchType.LAZY)
@@ -62,6 +65,10 @@ public class Project extends BaseEntity implements Serializable {
   @ManyToMany(mappedBy = "projects")
   @JsonIgnore
   private List<Customer> customers;
+
+  @ManyToMany(mappedBy = "projects")
+  @JsonIgnore
+  private List<DocumentForCustomer> documentForCustomers;
 
   @Override
   public String toString() {
