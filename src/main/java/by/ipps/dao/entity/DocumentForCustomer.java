@@ -31,7 +31,7 @@ public class DocumentForCustomer extends BaseEntity {
   private String description;
 
   @Column
-  @JsonView({ViewDocumentForCustomer.FileClass.class, ViewDocumentForCustomer.FileClass.class})
+  @JsonView({ViewDocumentForCustomer.FileClass.class})
   private int size;
 
   @Column(length = 50)
