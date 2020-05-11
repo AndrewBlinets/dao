@@ -66,7 +66,7 @@ public class Project extends BaseEntity implements Serializable {
   @JsonIgnore
   private List<Customer> customers;
 
-  @ManyToMany(mappedBy = "projects")
+  @OneToMany(mappedBy = "project")
   @JsonIgnore
   private List<DocumentForCustomer> documentForCustomers;
 

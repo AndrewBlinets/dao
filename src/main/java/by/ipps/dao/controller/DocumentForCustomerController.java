@@ -7,7 +7,7 @@ import by.ipps.dao.entity.Department;
 import by.ipps.dao.entity.DocumentForCustomer;
 import by.ipps.dao.entity.Project;
 import by.ipps.dao.entity.Sheet;
-import by.ipps.dao.entity.UserPortal;
+import by.ipps.dao.entity.*;
 import by.ipps.dao.service.DocumentForCustomerService;
 import by.ipps.dao.utils.view.ViewDocumentForCustomer;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -70,17 +70,17 @@ public class DocumentForCustomerController
     return super.getAll(sheet, department);
   }
 
-  @GetMapping("/byCustomer/{customer}")
+  @GetMapping("/byCustomerPage/{customer}")
   @ResponseBody
   @JsonView(ViewDocumentForCustomer.FileClass.class)
-  public ResponseEntity<Page<DocumentForCustomer>> getAllByIdCustomer(
+  public ResponseEntity<Page<DocumentForCustomer>> getPageByIdCustomer(
       @PageableDefault()
           @SortDefault.SortDefaults({
             @SortDefault(sort = "id", direction = Sort.Direction.ASC),
           })
           Pageable pageable,
       @PathVariable Customer customer) {
-    return null;
+    return new ResponseEntity<>(HttpStatus.OK);
   }
 
   @GetMapping("/byCustomer/{customer}")
