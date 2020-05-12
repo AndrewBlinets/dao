@@ -15,8 +15,15 @@ import javax.persistence.ManyToOne;
 @Entity
 public class DocumentForCustomer extends BaseEntity {
 
-  @JoinColumn @ManyToOne private Project project;
-  @JoinColumn @ManyToOne private Sheet sheet;
+  @JoinColumn
+  @ManyToOne
+  @JsonView({ViewDocumentForCustomer.FileClass.class})
+  private Project project;
+
+  @JoinColumn
+  @ManyToOne
+  @JsonView({ViewDocumentForCustomer.FileClass.class})
+  private Sheet sheet;
 
   @Column
   @JsonView({ViewDocumentForCustomer.BaseClass.class})
