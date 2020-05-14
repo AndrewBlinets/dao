@@ -32,7 +32,8 @@ public class BaseEntity implements Serializable {
     ViewPage.AdminClass.class,
     ViewPage.SectionClass.class,
     ViewCustomer.BaseClass.class,
-    ViewDocumentForCustomer.FileClass.class
+    ViewDocumentForCustomer.FileClass.class,
+    ViewVacancy.BaseClass.class
   })
   @Id
   @Column

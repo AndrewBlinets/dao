@@ -1,5 +1,7 @@
 package by.ipps.dao.entity;
 
+import by.ipps.dao.utils.view.ViewVacancy;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -11,9 +13,14 @@ import java.io.Serializable;
 @Data
 @Entity
 public class Vacancy extends BaseEntity implements Serializable {
-  @Column private String name;
 
-  @Column private String content;
+  @JsonView({ViewVacancy.BaseClass.class})
+  @Column
+  private String name;
+
+  @JsonView({ViewVacancy.BaseClass.class})
+  @Column
+  private String content;
 
   @Override
   public String toString() {

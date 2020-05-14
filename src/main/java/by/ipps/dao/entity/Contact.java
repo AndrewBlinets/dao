@@ -20,7 +20,13 @@ public class Contact extends BaseEntity {
   private String note;
 
   @OneToOne
+  @JoinColumn(name = "position")
+  @JsonView(ViewContact.BaseClass.class)
+  private Position position;
+
+  @OneToOne
   @JoinColumn(name = "users")
+  @JsonView(ViewContact.BaseClass.class)
   private UserPortal userPortal;
 
   @Override
@@ -28,6 +34,7 @@ public class Contact extends BaseEntity {
     final StringBuilder sb = new StringBuilder("{");
     sb.append(super.toString());
     sb.append(", \"note\" : \"").append(note).append('\"');
+    sb.append(", \"position\" : \"").append(position.getId()).append('\"');
     sb.append(", \"userPortal\" : ").append(userPortal.getId());
     sb.append('}');
     return sb.toString();

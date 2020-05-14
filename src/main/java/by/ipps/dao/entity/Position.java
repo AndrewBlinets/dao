@@ -13,7 +13,7 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class Position extends BaseEntity implements Serializable {
-  @JsonView(ViewContact.BaseClass.class)
+  @JsonView({ViewContact.BaseClass.class, ViewContact.BaseClass.class})
   @Column
   private String name;
 

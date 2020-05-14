@@ -31,14 +31,12 @@ public class Customer extends BaseEntity implements Serializable {
 
   @Column(nullable = false, length = 60)
   @JsonView({
-    ViewContact.BaseClass.class,
     ViewDepartment.FullInformationClassDepartment.class,
     ViewCustomer.BaseClass.class
   })
   protected String name;
 
   @JsonView({
-    ViewContact.BaseClass.class,
     ViewDepartment.FullInformationClassDepartment.class,
     ViewCustomer.BaseClass.class
   })
@@ -46,7 +44,6 @@ public class Customer extends BaseEntity implements Serializable {
   protected String surName;
 
   @JsonView({
-    ViewContact.BaseClass.class,
     ViewDepartment.FullInformationClassDepartment.class,
     ViewCustomer.BaseClass.class
   })

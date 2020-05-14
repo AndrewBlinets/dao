@@ -79,7 +79,6 @@ public class UserPortal extends BaseEntity implements Serializable {
       })
   private Set<Department> departments;
 
-  @JsonView(ViewContact.BaseClass.class)
   @ManyToMany
   @JoinTable(
       name = "position_user",
@@ -99,7 +98,6 @@ public class UserPortal extends BaseEntity implements Serializable {
   @OneToMany(mappedBy = "user")
   private List<Logger> logers;
 
-  @JsonView(ViewContact.BaseClass.class)
   @OneToOne(mappedBy = "userPortal")
   private Contact contact;
 
